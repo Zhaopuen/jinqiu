@@ -1,0 +1,51 @@
+<app-header title="金秋梦装饰"></app-header>
+
+<ion-content>
+  <!--<app-top></app-top>-->
+  <!--<p class="topTip"><small>免费量房+3D全景设计+一站式购物+免费送货+免费安装+上门售服务</small></p>-->
+    <!-- 施工长 -->
+    <div class="pmalldetail_crumbs">
+      <span>当前位置：</span>
+      <span> 施工 > </span>
+      <span> 施工长 > </span>
+      <span style="color:#E63088;">施工长详情</span>
+    </div>
+    <div *ngIf="workDetailInfo">
+        <div class="work-detail">
+          <img src="{{workDetailInfo.user_profile.photo_url}}" alt="">
+          <p class="detail-con">
+            <span class="con-name">{{workDetailInfo.nickname}}</span>
+            <span class="con-redress">{{workDetailInfo.province_text}}{{workDetailInfo.city_text}}</span>
+          </p>
+          <p class="detail-good">
+            <span class="good">擅长</span>
+            <span class="good-title">{{workDetailInfo.user_profile.strengths}}</span>
+          </p>
+        </div>
+        <div class="detail-resume">
+          <p class="resume-title">详细简历</p>
+        </div>
+        <ul class="design_detailli">
+          <li>1.工作城市：{{workDetailInfo.province_text}}{{workDetailInfo.city_text}}
+            <!-- <button ion-button outline color="rose" small (click)="saveWorker(workDetailInfo.id)">选择指定</button></li> -->
+          <li>2.真实姓名：{{workDetailInfo.user_profile.name}}</li>
+          <li>3.联系方式：{{workDetailInfo.tel}}</li>
+          <li>4.出生年月：{{workDetailInfo.user_profile.birth_year}}{{workDetailInfo.user_profile.birth_month}}</li>
+          <li>5.擅长：{{workDetailInfo.user_profile.strengths}}</li>
+          <li>6.工作经历：
+            <div class="design_exprice" *ngIf="worke">
+                <p><span>工作时间：{{workExprice.start_date}}-{{workExprice.end_date}}</span></p>
+                <p><span>任职公司：{{workExprice.company}}</span></p>
+                <p><span>职务和工作内容：{{workExprice.content}}</span></p>
+               <p></p>
+            </div>
+          </li>
+          <li>7.最想和顾客说的一句话：{{workDetailInfo.user_profile.words}}</li>
+          <li>8.设计作品：</li>
+          <div class="designimgbox">
+              <img *ngFor="let item of workImgs;let i=index" src="{{item}}" alt="" class="designimg">
+          </div>
+        </ul>
+    </div>
+
+</ion-content>

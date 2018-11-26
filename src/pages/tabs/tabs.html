@@ -1,0 +1,10 @@
+<ion-tabs>
+  <ion-tab [root]="tab1Root" tabUrlPath="index" tabTitle="首页" tabIcon="home">
+
+  </ion-tab>
+  <ion-tab [root]="tab2Root" tabUrlPath="mycart" tabTitle="购物车" tabIcon="cart"></ion-tab>
+  <ion-tab [root]="tab3Root" [rootParams]="{status:0}" tabUrlPath="myorder" tabTitle="我的订单"  tabIcon="ios-list-box-outline"></ion-tab>
+  <ion-tab [root]="tab4Root" tabUrlPath="user-contact" tabTitle="联系我们" tabIcon="ios-headset-outline"></ion-tab>
+  <ion-tab [root]="tab5Root" tabUrlPath="user-view" tabTitle="投诉建议" tabIcon="contacts"></ion-tab>
+  <ion-tab [root]="tab6Root" tabUrlPath="sysmsg" tabTitle="消息" tabIcon="md-volume-up"></ion-tab>
+</ion-tabs>

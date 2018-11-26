@@ -1,0 +1,412 @@
+page-style {
+  // .content-ios{
+  //   background: #fff !important;
+  // }
+  img{
+    object-fit: cover;
+  }
+  .button-ios-dark{
+    background:#3d3d3d !important;
+  }
+  .button-ios-secondary{
+    background: #3BC62C !important;
+  }
+  ion-content.topIon {
+    top: 44px;
+  }
+  .fixed-content, .scroll-content {
+    margin-top: 0 !important;
+  }
+  .topTip{
+    position: fixed;
+    // top:44px;
+    left:0;
+    width:100%;
+    background: #fff;
+    height:34px;
+    line-height: 34px;
+    z-index: 100;
+    text-align: center;
+    color:#666;
+    white-space: nowrap;
+    overflow: auto;
+    small{
+      font-size:1.1rem;
+    }
+  }
+  .ion3D_h4 {
+    margin-left: 2rem;
+    margin: 0;
+    padding-left: 1rem;
+    display: inline-block;
+    font-size: 0.4rem;
+    margin: 0;
+    height: 3rem;
+    line-height: 3rem;
+    background: #e0e0e0;
+    width: 80%;
+    color: #626262;
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  .styleSelectButton {
+    float: right;
+    margin: 0;
+    height: 3rem;
+    width: 20%;
+    background: #3D3D3D;
+    background-image: url(../../assets/imgs/selects.png);
+    background-size: 1.5rem;
+    background-repeat: no-repeat;
+    background-position: 4rem;
+    border-radius: 0;
+    font-size: 0.3em;
+    padding-left: 0;
+    color: #fff;
+    // span {
+    //   margin-left: -0.5rem;
+    // }
+  }
+  .model {
+    width: 130%;
+    height: auto;
+    overflow: hidden;
+    background: #fff;
+    position: absolute;
+    top: 3rem;
+    left: 0;
+    z-index: 999;
+    padding: 0.4rem 1rem;
+    border: 1px solid #d9d9d9;
+  }
+  .model p {
+    margin: 0;
+    line-height: 2.5rem;
+    min-height: 2rem;
+    font-size: 1.5rem;
+    // padding:0 1rem;
+  }
+  .model p span {
+    font-size: 1.4rem;
+    margin: 0 0.8rem;
+  }
+  .model p i {
+    font-style: normal;
+    color: #000;
+    font-size: 1.6rem;
+  }
+  .modelbun {
+    width: 6.5rem;
+    height: 2.5rem;
+    margin: 1rem auto;
+    display: block;
+  }
+  .itemClick {
+    color: #DC217A;
+  }
+  .ion_content {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 0;
+    background: #f1f1f1;
+    padding: 0 0.7rem;
+    justify-content: space-between;
+  }
+  .ion_content .ion_item {
+    width: 49%;
+    margin-bottom: 1rem;
+    border: 1px solid #d9d9d9 !important;
+  }
+
+  .ion_content .ion_item img {
+    width: 100%;
+    height: 11rem;
+    border-radius: 0 !important;
+  }
+  .ion_content .ion_item p {
+    width: 100%;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    padding: 0 0.3rem;
+
+  }
+  .styleTxtPfirst span:nth-child(1) {
+    font-size: 1.6rem;
+    color: #3d3d3d;
+  }
+  .styleTxtPfirst span:nth-child(2) {
+    font-size: 1rem;
+    float: right;
+  }
+  .styleTxtPsecond {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .item-ios.item-block .item-inner {
+    border: 0;
+    padding: 0;
+  }
+  .list-ios > .item-block:first-child {
+    border: 0;
+  }
+  .list-ios > .item-block {
+    border: 0;
+    padding: 0;
+  }
+  .ion_item {
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background: #fff;
+  }
+  .ion_item ion-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .ion_item p {
+    font-size: 1.2rem;
+  }
+  // 猜你喜欢
+  .styleButoons {
+    background: #F1F1F1 !important;
+  }
+  .testLikeHeader {
+    font-size: 1.6rem;
+    height: 3rem;
+    margin-left: 1rem;
+    line-height: 3rem;
+    margin-top: 0.2rem;
+  }
+  .testLikeH4 {
+    font-size: 1.6rem;
+    // margin-bottom: 0.5rem;
+    height: 3rem;
+    margin-left: 1rem;
+    line-height: 3rem;
+  }
+  .testLikecon {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .iontestLike_p {
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    line-height: 3rem;
+    align-content: center;
+    justify-content: center;
+    background: #fff;
+  }
+  .radio {
+    border: 1px solid #999;
+    border-radius: 50%;
+    height: 1.2rem;
+    width: 1.2rem;
+    margin-top: 0.8rem;
+    margin-right: 0.3rem;
+  }
+  .showBigImg {
+    position: fixed;
+    left: 0;
+    top: 19%;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: #333;
+    z-index:9999999999;
+  }
+  .showBigImg img {
+    // margin-top: 10rem;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 37%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  .testLikeStyleBun {
+    button {
+      background: linear-gradient(to right, #DF0371, #FA001B);
+      padding: 0;
+      .button-inner {
+        padding: 0;
+      }
+      span {
+        background: linear-gradient(to right, #DF0371, #FA001B);
+      }
+    }
+
+  }
+  // 风格介绍
+  .label-ios {
+    margin: 0;
+    padding: 0;
+    width: auto;
+    // display:flex;
+    // justify-content: center;
+  }
+  .item-block {
+    min-height: 0;
+  }
+  .input-wrapper {
+    display: inline;
+    width: auto;
+    height: auto;
+  }
+  .styleAboutList {
+    display: flex;
+    position: relative;
+    // .button-small-ios{
+    //   height:2.5rem !important;
+    // }
+  }
+  .styleAboutList button {
+    font-size: 1rem;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    // line-height: 2.5rem;
+    height: 2.5rem !important;
+  }
+  .styleAboutList button span {
+    line-height: 2.5rem;
+    text-align: center;
+    height: 2.5rem !important;
+  }
+  .styleAboutDiv {
+    position: absolute;
+    left: 0;
+    top: 3rem;
+    width: 100%;
+    height: auto;
+    padding: 0.8rem;
+    // margin-bottom: 3rem;
+  }
+  .styleAboutDiv p {
+    // text-indent: 3rem;
+    line-height: 2rem;
+    color: #3d3d3d;
+    white-space: normal !important;
+    img{
+      border:1px solid #d9d9d9;
+    }
+  }
+  .styleAboutItem {
+    height: auto;
+    .label-ios {
+      border-radius: 10px;
+      margin: 0 0.3rem;
+    }
+  }
+  .styleAboutImg {
+    position: absolute;
+    top: 6rem;
+    left: 0;
+  }
+  // 平面效果图集
+  .plane_list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 0.8rem;
+    justify-content: space-between;
+  }
+  .plane_item {
+    width: 49%;
+    text-align: center;
+    margin: 0.4rem 0;
+    padding: 0 0.2rem;
+  }
+  .plane_item img {
+    width: 100%;
+    height: 11rem;
+    display: block;
+    border:1px solid #d9d9d9;
+  }
+  .plane_item p {
+    height: 3rem;
+    line-height: 3rem;
+  }
+
+  .styleSegment {
+    padding-left: 0.5rem;
+    margin-top: 85px;
+    background: #eee;
+    ion-segment {
+      justify-content: flex-start;
+    }
+    .segment-ios .segment-button {
+      border-radius: 0.4rem;
+      margin: 0 0.25rem;
+      border: 2px solid #3d3d3d;
+      padding: 0 0.1rem;
+      color: #3d3d3d;
+      font-size: 12px;
+      height:2.6rem;
+      line-height: 2.4rem;
+      white-space: normal;
+      display: inline;
+      flex: 0;
+      min-width: 5.5rem;
+      background:#fff;
+      font-weight: bold;
+      text-overflow: clip !important;
+    }
+    .segment-ios .segment-button:nth-child(1) {
+      min-width: 6rem;
+    }
+    .segment-ios .segment-button:nth-child(2) {
+      min-width: 7rem;
+    }
+    .segment-ios .segment-button:nth-child(3) {
+      min-width: 6.5rem;
+    }
+    .segment-ios .segment-button:nth-child(4) {
+      min-width: 12rem;
+    }
+    .toolbar-ios .segment-button {
+      display: block;
+    }
+    .segment-ios .segment-button.segment-activated {
+      background: rgb(47, 192, 71);
+      border: 1px solid rgb(47, 192, 71);
+      color: #333;
+      font-weight: bold;
+    }
+  }
+  .styleAboutList {
+    margin: 0.5rem 0 0 0;
+    .styleAboutItem {
+      width: 6rem;
+    }
+    .styleAboutItem:nth-child(2) {
+      width: 6.5rem;
+    }
+    .item-ios .item-button {
+      padding: 0;
+      overflow: auto;
+      margin-left: 0.2rem;
+    }
+    .item-ios {
+      background: #eee;
+    }
+  }
+
+}
+
+// 3D全景图集

@@ -1,0 +1,213 @@
+page-hardcover {
+  img{
+    object-fit: cover;
+  }
+  .design_imgsbox{
+    width:100%;
+    height:auto;
+    overflow: hidden;
+    position: relative;
+  }
+  .quanjing{
+    position: absolute;
+    z-index:999999;
+    bottom:20px;
+    right:20px;
+  }
+  .showBigImg {
+    position: fixed;
+    left: 0;
+    top: 19%;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: #333;
+    z-index:9999999999;
+  }
+  .showBigImg img {
+    // margin-top: 10rem;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 37%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  ion-content {
+    top: 44px;
+  }
+  .fixed-content, .scroll-content {
+    margin-top: 0 !important;
+  }
+  .topTip{
+    position: fixed;
+    // top:44px;
+    left:0;
+    width:100%;
+    background: #fff;
+    height:34px;
+    line-height: 34px;
+    z-index: 100;
+    text-align: center;
+    color:#666;
+    white-space: nowrap;
+    overflow: auto;
+    small{
+      font-size:1.1rem;
+    }
+  }
+  .segment-ios .segment-button:not(:first-of-type) {
+    border-left-width: 2px !important;
+  }
+  .segment-ios .segment-button {
+    margin: 2% !important;
+    border-radius: 4px !important;
+    min-width: 46% !important;
+  }
+  .segment-ios .segment-button.segment-activated {
+    background: #fff;
+    color: #333;
+  }
+  .segment-ios .segment-button:hover:not(.segment-activated) {
+    background: #15B72E !important;
+    color: #fff;
+    border-color: #15B72E;
+  }
+  ion-segment {
+    justify-content: flex-start;
+    // margin: 0 0.2rem;
+  }
+  .segment-ios .segment-button {
+    width: auto !important;
+    border-radius: 0.4rem;
+    margin: 0 0.2rem;
+    border: 2px solid #3d3d3d;
+    padding: 0 0.1rem;
+    color: #3d3d3d;
+    display: inline;
+    flex: 0 !important;
+    min-width: 14rem;
+    &.segment-buttonSelect {
+      background: #15B72E;
+      color: #fff;
+      border: 1px solid #15B72E;
+    }
+  }
+  .hardcover_product {
+    width: 90%;
+    margin: 5%;
+  }
+  .hardcover_chooseh {
+    color: #E0157B;
+    padding: 0 1rem;
+    font-size: 1.6rem;
+    background: #ccc;
+    line-height: 3.5rem;
+    margin-bottom: 1rem;
+  }
+  .hardcover_contents {
+    position: relative;
+    padding: 0 1rem !important;
+    .hardcover_title {
+      font-size: 1.2rem !important;
+      text-align: center;
+    }
+    .selectedIcon {
+      font-size: 2.5rem;
+      color: #d4237a;
+      position: absolute;
+      right: 1px;
+      bottom: 2px;
+    }
+  }
+  .in_design_input {
+    width: 5rem;
+    height: 2.5rem;
+    margin: 0 0.3rem;
+    border: 1px solid #d9d9d9;
+    text-align: center;
+  }
+  .in_design_cost {
+    margin-top: -4px;
+    .item {
+      font-size: 1.3rem !important;
+    }
+  }
+
+  .hardButtona {
+    border: 0.06rem solid #333 !important;
+    background: transparent !important;
+    color: #333 !important;
+    font-size: 1.5rem !important;
+  }
+  .hardButtonb {
+    background: #33C429 !important;
+    border: 0.06rem solid #1BB215 !important;
+    font-size: 1.5rem !important;
+  }
+  .hardcover {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgba(102, 102, 102, 0.5);
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .hardcover_middle {
+      width: 80%;
+      height: auto;
+      position: absolute;
+      background: #fff;
+      .hardcover_title {
+        width: 100%;
+        height: 3rem;
+        background: #15B72E;
+        line-height: 3rem;
+        color: #fff;
+        h5 {
+          font-size: 1.5rem;
+          text-align: center;
+          line-height: 3rem;
+        }
+        .hardcover_close {
+          position: absolute;
+          // top:18.5rem;
+          right: 1rem;
+          font-size: 3rem !important;
+          margin-top: -2.8rem;
+        }
+      }
+      .hardcover_imgs {
+        height: auto;
+        padding-bottom: 0.8rem;
+        border-bottom: 0.05rem solid #d9d9d9;
+        padding: 1.3rem;
+        img {
+          width: 5.5rem;
+          height: 5.5rem;
+          float: left;
+          display: block;
+          margin-right: 0.7rem;
+        }
+      }
+    }
+    .hardcoverimgs {
+      padding: 1rem;
+    }
+
+  }
+  .hardwallimg {
+    height: 10rem !important;
+    object-fit: cover;
+  }
+  .hardcover_choosebox {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid #333;
+    border-radius: 50%;
+    margin: 0rem auto 1rem;
+  }
+
+}

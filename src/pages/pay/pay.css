@@ -1,0 +1,81 @@
+page-pay .container {
+  background-color: #f0f0f0; }
+page-pay .backColor {
+  width: 100%;
+  height: 0.9rem;
+  background-color: #f0f0f0; }
+page-pay .workerInfoContainer {
+  padding: 0px;
+  background: white; }
+page-pay .workerImg {
+  margin: 0rem auto; }
+page-pay .workerImg img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 5rem; }
+page-pay .workerNmae {
+  color: #56c1b0;
+  text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.2rem; }
+page-pay .money {
+  font-size: 1.28rem;
+  color: #d87f88;
+  text-align: center;
+  line-height: 5rem; }
+page-pay .serviceItem {
+  font-size: 1.5rem;
+  color: #777777; }
+page-pay .customer {
+  font-size: 0.8rem;
+  color: #56c1b0;
+  margin-top: 0.25rem; }
+page-pay .address {
+  font-size: 0.4rem;
+  color: #888888;
+  letter-spacing: 0.1rem;
+  margin-top: 0.25rem; }
+page-pay .date {
+  font-size: 0.3rem;
+  color: #888888;
+  margin-top: 0.25rem; }
+page-pay .payinfo {
+  margin: 0px;
+  padding: 0px;
+  background: white; }
+page-pay .payinfo ion-row {
+  border-bottom: 0.1rem #eeeeee solid; }
+page-pay .payinfo ion-col {
+  text-align: center; }
+page-pay .payinfo img {
+  width: 2.5rem;
+  height: 2.7rem; }
+page-pay .payItem {
+  text-align: left;
+  font-size: 1.7rem;
+  line-height: 3rem; }
+page-pay .togglePosi {
+  text-align: right; }
+page-pay .bankArr {
+  font-size: 3rem;
+  text-align: left;
+  padding-right: 3rem;
+  line-height: 3rem; }
+page-pay .aliWxin {
+  margin: 0px;
+  padding: 0px;
+  background: white; }
+page-pay .aliWxin img {
+  width: 2.5rem;
+  height: 2.7rem; }
+page-pay .aliwxText {
+  text-align: left;
+  font-size: 1.7rem;
+  line-height: 3rem; }
+page-pay .aliWxin ion-row:not(:last-child) {
+  border-bottom: 0.1rem #eeeeee solid; }
+page-pay .payTip {
+  width: 100%;
+  text-align: center;
+  color: #999999;
+  margin-bottom: 1.5rem; }

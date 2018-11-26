@@ -1,0 +1,28 @@
+page-tabs3 {
+  .tabs-ios .tabbar{
+    top:78px !important;
+    .tab-button-text{
+      font-size:1.5rem !important;
+    }
+    justify-content: initial;
+    overflow: auto;
+  }
+  .tabs-ios .tab-button{
+    min-width:130px !important;
+    white-space: nowrap;
+    padding:0 1rem;
+  }
+  ion-tabs{
+    overflow-x: auto;
+    ion-tab{
+      white-space: nowrap;
+    }
+  }
+  .tabs-ios .tab-button:hover:not(.disable-hover), .tabs-ios .tab-button[aria-selected=true]{
+    background:#2fc047 !important;
+    color:#fff !important;
+  }
+  .enable-hover a:hover{
+    opacity: 1 !important;
+  }
+}

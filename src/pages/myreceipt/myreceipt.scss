@@ -1,0 +1,104 @@
+page-myreceipt {
+  ion-content{
+    top:44px;
+  }
+  .button-outline-ios-secondary{
+    color:#333 !important;
+    border-color:#333 !important;
+    border-width:2px !important;
+  }
+  .button-ios-secondary{
+    color:#333 !important;
+    // font-weight: bold !important;
+    background:#48C82B !important;
+    border-color: #3AB21D !important;
+  }
+  .xiugaimima{
+    font-size: 1.8rem;
+    color: #333;
+    padding: 2rem 1rem 1rem;
+    text-align: center;
+    font-weight: 550;
+  }
+  .pageTitle{
+    text-align:center;
+    font-size:1.7rem;
+    padding:1rem 0;
+  }
+  .btnGroup{
+    background:#fff;
+    padding:1rem;
+    text-align:center;
+  }
+  .listBox{
+    width:100%;
+    margin-bottom:1rem;
+    font-size:1.6rem;
+    .listCell{
+      background: #fff;
+      margin-bottom:1rem;
+      padding:1rem 0;
+    }
+  }
+  .listBox .topInfo{
+    padding:0 1rem;
+    border-bottom:1px solid #ccc;
+  }
+  .listBox .topInfo p{
+    padding-bottom:1rem;
+  }
+  .listBox .topInfo p span:first-child{
+    float: left;
+    width:60%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .listBox .topInfo p span:last-child{
+    float: right;
+    font-size:1.5rem;
+    color:#9a9a9a;
+  }
+  .listBox .bottomInfo{
+    padding:1rem 1rem 0 1rem;
+
+  }
+  .listBox .bottomInfo .default{
+    float: left;
+  }
+  .listBox .bottomInfo .default img{
+    width:1.6rem;
+    height:1.6rem;
+    float: left;
+    margin-right:10px;
+  }
+  .listBox .bottomInfo .default .checked{
+    color:#d4237a
+  }
+  .listBox .bottomInfo .default .unchecked{
+    color:#999;
+  }
+  .listBox .bottomInfo .edit{
+    float:right;
+  }
+  .listBox .bottomInfo .edit .subEdit{
+    float: left;
+    margin-left:1rem;
+  }
+  .listBox .bottomInfo .edit .subEdit ion-icon{
+    font-size: 2.6rem;
+    color:#888;
+    float: left;
+    margin-right:0.2rem;
+    margin-top:-3px;
+  }
+  .listBox .bottomInfo p{
+    font-size: 1.4rem;
+    margin-bottom:1rem;
+    color:#888;
+  }
+  .subBtn{
+    margin-top:2rem;
+    padding:0 1rem;
+  }
+}

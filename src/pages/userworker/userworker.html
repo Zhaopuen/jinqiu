@@ -1,0 +1,47 @@
+<app-header title="金秋梦装饰"></app-header>
+<ion-content style="margin-top:44px;">
+  <div class="ddetail">用工管理</div>
+  <div class="user_workeradd">
+    <span>添加：</span>
+    <button (click)="cp.goto({view:'userworklist',type:3,id:this.workerGetId})">水电工</button>
+    <button (click)="cp.goto({view:'userworklist',type:4,id:this.workerGetId})">瓦工</button>
+    <button (click)="cp.goto({view:'userworklist',type:5,id:this.workerGetId})">木工</button>
+    <button (click)="cp.goto({view:'userworklist',type:6,id:this.workerGetId})">油工</button>
+    <button (click)="cp.goto({view:'userworklist',type:7,id:this.workerGetId})">小工</button>
+  </div>
+  <div class="user_worklist">
+    <div class="user_worker_listbox" *ngFor="let item of workListInfo,let i = index;">
+      <div class="list_one">
+        <span><em>工种：</em>{{item.type_text}}</span>
+        <span><em>姓名：</em>{{item.order.user.nickname}}</span>
+        <span><em>电话：</em>{{item.order.user.tel}}</span>
+      </div>
+      <div class="list_address">
+        <em>所在地区：</em>
+        <span>{{item.order.user.regionDistrict.region_name}}</span>
+      </div>
+      <div class="list_content">
+        <p>施工内容：</p>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+      </div>
+      <div class="list_price">
+        <div class="list_cost">
+          <em>施工费用：</em>
+          <input type="text">
+        </div>
+        <div class="list_comment">
+          <em>评价：</em>
+          <select name="" id="">
+            <option value="">好评</option>
+            <option value="">中评</option>
+            <option value="">差评</option>
+          </select>
+        </div>
+      </div>
+      <div class="list_delete">
+        <em>操作：</em>
+        <button (click)="workerListDelete(item.id)">删除</button>
+      </div>
+    </div>
+  </div>
+</ion-content>

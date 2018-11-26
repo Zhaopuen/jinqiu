@@ -1,0 +1,53 @@
+<ion-content class="bgwhite">
+  <ion-header>
+    <ion-navbar color="primary">
+      <ion-title>
+          金秋梦装饰
+        <button ion-button outline small color="white" (click)="switchCity()">
+            <small style="font-size: 10px">天津</small>
+          <ion-icon name="arrow-down"></ion-icon>
+        </button>
+      </ion-title>
+      <ion-buttons end>
+        <button ion-button (click)="cp.goto({view:'reg'})">
+          <small >注册</small>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  <form [formGroup]="pageForm">
+    <img src="./assets/imgs/dl_tt.png" class="img"/>
+    <div class="input-container password_forgetbox">
+      <ion-list class="password_forget">
+        <ion-item class="password_forgetlist">
+          <ion-icon name="ios-phone-portrait-outline" item-start class="item-icon-person"></ion-icon> 
+          <ion-input type="tel" formControlName="tel" placeholder="输入手机号"></ion-input>
+        </ion-item>
+        <ion-item class="tip" *ngIf="pageForm.controls.tel.touched && !pageForm.controls.tel.valid">
+            <ion-note color="primary">请正确输入手机号</ion-note>
+        </ion-item>
+        <ion-item class="password_forgetlist">
+          <ion-icon name="lock" item-start class="item-icon-person"></ion-icon> 
+          <ion-input type="password"  formControlName="pwd" placeholder="输入密码"></ion-input>
+        </ion-item>
+        <ion-item class="tip" *ngIf="pageForm.controls.pwd.touched && !pageForm.controls.pwd.valid">
+            <ion-note color="primary">请输入至少6位密码</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-note class="link" item-right (click)="findpwd()" style="color:#333">忘记密码？</ion-note>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div class="btn-container">
+      <p>
+        <button ion-button outline block round [disabled]="!pageForm.valid" (click)="sub(pageForm.value)" class="password_confirm">登 录</button>
+      </p>
+      <!-- <p *ngIf="wechatInstalled || cp.plt.is('android')">
+        <button ion-button block round (click)="wechatLogin()">微信一键登录</button>
+      </p> -->
+    </div>
+      <p text-center>
+        <ion-note color="gray">没有账号？<span (click)="cp.goto({view:'reg'})" class="freereg">去免费注册</span></ion-note>
+      </p>
+  </form>
+</ion-content>

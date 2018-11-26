@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons start>
+      <button ion-button icon-only (click)="this.viewCtrl.dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+      <ion-searchbar color="gray" [(ngModel)]="keyword" placeholder="搜索" (ionInput)="search()">
+      </ion-searchbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="location_now _row" border-bottom>当前:{{cp.settings.city_name}}</div>
+  <div class="_row row2">定位/最近访问</div>
+  <div class="_row" *ngIf="cp.settings.current_position&&cp.settings.current_position.province_name && cp.settings.current_position.city_name" margin-bottom>
+    <button ion-button outline class="location" color="primary" (click)="changeLocation(cp.settings.current_position)">
+      <ion-icon name="pin"></ion-icon>{{cp.settings.current_position.city_name}}
+    </button>
+  </div>
+  <ion-alpha-scroll
+                    [listData]="items"
+                    key="alpha"
+                    [currentPageClass]="currentPageClass">
+  </ion-alpha-scroll>
+
+</ion-content>

@@ -1,0 +1,43 @@
+page-user-contact {
+    .label-ios{
+        margin:0 !important;
+    }
+    .item-ios.item-block .item-inner{
+        padding-right:0 !important;
+    }
+    .phone_back{
+        width:2.2rem;
+        height:2.2rem;
+        border-radius:50%;
+        background:#FF006C;
+        display:flex;
+        align-items:center;/*垂直居中*/
+        justify-content: center;/*水平居中*/
+        float:left;
+        margin-right: 0.5rem;
+    }
+    .user_contactbox{
+        padding:1.2rem 0;  
+        margin-top:5rem;
+    }
+    .user_phone{
+        float:left;
+    }
+    .user_citycontact{
+        float:left;
+    }
+    .user_contactall{
+        line-height:2.8rem;
+        font-size:1.5rem;
+        height:auto;
+        overflow: hidden;
+        width:100%;
+        padding:0 1rem;
+        span{
+            color:#595959;
+        }
+        em{
+            color:#595959;
+        }
+    }
+}

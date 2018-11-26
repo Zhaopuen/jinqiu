@@ -1,0 +1,38 @@
+<app-header title="金秋梦装饰"></app-header>
+
+<ion-content padding>
+  <div style="width: 100%;height: 2rem;line-height: 2rem;text-align: center;background: #A9A9A9;margin-top: 3.7rem;">待收货订单详情</div>
+  <ion-card-content class="designOrderHeader">
+    <div>
+      <img src="./assets/imgs/address.jpg"/>
+      <p>地址</p>
+    </div>
+    <div>
+      <p>{{ address }}</p>
+      <p>{{ addressName }}  {{ addressTel }}</p>
+    </div>
+  </ion-card-content>
+  <div class="designMesige">
+      <h4>[顺丰快递]123456789123</h4>
+      <p>暂无派件员信息</p>
+      <p>2017-04-25 12:20 卖家已发货</p>
+      <p>2017-04-25 12:20 卖家已发货</p>
+      <p>2017-04-25 12:20 卖家已发货</p>
+    </div>
+  <div class="designOrderNum">
+    <p>订单编号：{{ designOrderNum }}</p>
+    <button ion-button color="#e80078" clear>退货退款</button>
+    <button ion-button color="#e80078" clear>确认收货</button>
+  </div>
+  <div class="designOrderTime">
+    <p>订单时间：{{ designOrderTime }}</p>
+  </div>
+  <div class="designOrderDetail">
+      <div>
+        需要你写的地方
+      </div>
+      <p><span>运费</span><span>￥0.00</span></p>
+      <p><span>活动优惠</span><span>-￥30.00</span></p>
+      <p><span>订单金额</span><span>￥467.00</span></p>
+  </div>
+</ion-content>

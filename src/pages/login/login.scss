@@ -1,0 +1,110 @@
+page-login {
+    .text-input::-webkit-input-placeholder {
+       color: #333 !important;
+    }
+  ion-navbar{
+    display: flex;
+    align-items: center;
+    ion-title{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .app_header_title{
+        display: flex;
+        align-items: center;
+        button{
+            height: 2rem;
+        }
+    }
+    .button-outline-ios-white{
+        height: 1.4rem;
+        padding: 0 0.1rem;
+        font-size: 1rem;
+    }
+    .toolbar-title{
+        display: flex;
+        align-items: center;   
+    }
+    .toolbar-title-ios{
+        font-size: 2rem;
+        padding-left: -1rem;
+    }
+    .button-inner{
+        width: 2rem;
+    }
+}
+
+.img{
+    width: 100%;
+    display: block;
+    margin-top: 4rem;
+  }
+  .input-container{
+    // margin-top: 5rem;
+    .list-ios > .item-block:last-child{ border-bottom: none;}
+  }
+  .btn-container{margin-top: -5px;}
+    .password_forgetbox{
+        margin:5rem 0 !important;
+        background: #fff;
+        .password_forget{
+            padding:1rem;
+            .password_forgetlist{
+                width:100%;
+                height:3.5rem;
+                border:1px solid #E6E6E6 !important;
+                line-height:3.5rem;
+                background: #ffe4f3;
+                border-radius:4px;
+                margin-bottom: 1rem;
+                color:#333;
+                .item-icon-person{
+                    float:left;
+                    width:15%;
+                    border-right:1px solid #E6E6E6;
+                    text-align: center;
+                }
+            }
+        }
+    }
+    .yanzhengma{
+        padding:0 1rem !important;
+        border-right: 1px solid #d9d9d9;
+    }
+    .btn-container{
+        width:90% !important;
+        margin:5% !important;
+    }
+    .password_confirm{
+        width:100%;
+        height:3.5rem;
+        background:linear-gradient(to right, #DF0371, #FA001B);
+        border-radius: 4px !important;
+        // opacity: 0.6 !important;
+        margin-bottom: 1rem;
+        color:#fff;
+        border:none;
+    }
+    .password_for{
+        width:100%;
+        height:3.5rem;
+        border:2px solid #EB0067;
+        background: transparent;
+        border-radius: 4px !important;
+        opacity: 1 !important;
+        color:linear-gradient(to right, #DF0371, #FA001B);
+    }
+    input:-webkit-autofill{
+        background:#fff !important;
+    }
+    input:-ms-input-placeholder{
+        color: #fff !important;
+    }
+    input::-webkit-input-placeholder{
+        color: #fff !important;
+    }
+    .freereg{
+        color:#EB0067 !important;
+    }
+}

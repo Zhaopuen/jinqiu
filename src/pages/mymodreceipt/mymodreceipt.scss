@@ -1,0 +1,68 @@
+page-mymodreceipt {
+  .xiugaimima{
+    font-size: 1.8rem;
+    color: #333;
+    padding: 2rem 1rem 1rem;
+    text-align: center;
+    font-weight: 550;
+  }
+  ion-content{
+    top:44px;
+  }
+  .infoBox{
+    margin:1rem 0;
+    padding:0 1rem 1rem;
+    background:#fff;
+    font-size:1.6rem;
+  }
+  .infoBox p{
+    width:100%;
+    margin-bottom:2rem;
+  }
+  .infoBox p span,
+  .infoBox .type span{
+    width:8rem;
+    float: left;
+  }
+  .infoBox p label{
+    margin-right:3rem;
+  }
+  .infoBox p label input,
+  .infoBox .type label input{
+    width:1.4rem;
+    height:1.4rem;
+    vertical-align: text-bottom;
+  }
+  .infoBox .labelBox{
+    float: left;
+    width:60%;
+    margin-bottom:1rem;
+  }
+  .infoBox .labelBox label{
+    float: left;
+    margin-bottom:1rem;
+  }
+  .infoBox p .inp{
+    width:60%;
+    border:1px solid #ccc;
+    height:34px;
+    text-indent: 0.5em;
+  }
+  .infoBox p .addr{
+    float: left;
+    margin:2.5rem 0 0 0;
+  }
+  .infoBox p textarea{
+    width:60%;
+    border:1px solid #ccc;
+    padding:1rem;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .subBtn{
+    // margin-top:2rem;
+    padding:0 1rem;
+    margin-bottom: 6rem;
+  }
+}

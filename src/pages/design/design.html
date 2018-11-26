@@ -1,0 +1,267 @@
+<link rel="stylesheet" href="/assets/icon/videogular.css">
+<app-header title="金秋梦装饰"></app-header>
+<p class="topTip"><small>免费量房+3D全景设计+一站式购物+免费送货+免费安装+上门售服务</small></p>
+<ion-content>
+  <!--<app-top></app-top>-->
+
+  <div style="padding:1rem 0;" class="designbox_tabs">
+    <ion-segment [(ngModel)]="pet">
+      <ion-segment-button value="kittens">
+        设计下单和介绍
+      </ion-segment-button>
+      <ion-segment-button value="puppies" (click)="doInfinite()">
+        指定设计师
+      </ion-segment-button>
+      <ion-segment-button value="qiang" (click)="selectStyle()">
+        选择地墙顶的造型
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div [ngSwitch]="pet">
+    <!-- 设计下单和介绍 -->
+    <ion-list *ngSwitchCase="'kittens'">
+      <div *ngIf="designOrderData">
+        <div class="design_imgsbox">
+          <img src="{{designOrderData.pic_url}}" *ngIf="!videoShow" (click)="showBigImgBlock(designOrderData.pic_url)" alt="" height="200px" width="100%">
+          <div class="quanjing" *ngIf="quanjingImg">
+            <a href="{{designOrderData.panorama}}">
+              <img src="../../assets/imgs/vr_icon_1.png" alt="">
+            </a>
+          </div>
+        </div>
+        <vg-player *ngIf="videoShow">
+            <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls style="height:20rem;">
+                <source src="{{designOrderData.video}}" type="video/mp4">
+            </video>
+        </vg-player>
+        <div class="recommend clearfix">
+          <span>推荐指数</span>
+          <div *ngIf="designOrderData.rec_star==1">
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+          </div>
+          <div *ngIf="designOrderData.rec_star==2">
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+          </div>
+          <div *ngIf="designOrderData.rec_star==3">
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+          </div>
+          <div *ngIf="designOrderData.rec_star==4">
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+          </div>
+          <div *ngIf="designOrderData.rec_star==5">
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+          </div>
+        </div>
+        <ion-item-group class="in_design_cost">
+          <ion-item *ngFor="let item of designOrderDataxs;let i = index" (click)="designradio(i,item)">
+            <ion-label>
+              <span class="design_span" [ngStyle]="{ 'background': i == designRadio ? '#E90254' : '#fff'}"></span>
+              每平米设计费单价
+              <span>{{item}}</span> 元
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              每平米设计费单价 
+              <input type="text " class="in_design_input" [(ngModel)]="designxzhi" (click)="getPrice()" disabled> 元
+              <span style="color:#FF006C;" (click)="forDesign()">（指定设计师）</span>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>待设计房屋面积<input type="text " class="in_design_input" [(ngModel)]="designping" maxlength="5"> 平米</ion-label>
+          </ion-item>
+          <ion-item *ngIf="houseList.length>0">
+            <ion-label>选择房屋</ion-label>
+            <ion-select interface="popover" [(ngModel)]="house">
+              <ion-option *ngFor="let h of houseList" value="{{h.id}}">{{h.name}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item *ngIf="houseList.length==0" class="clearfix">
+            <span style="float:left;">选择房屋</span>
+            <input style="float:right;border:0;text-align: right;" type="text" placeholder="请先提交量房预约" readonly>
+          </ion-item>
+          <!-- <ion-item>
+            <span style="color:#FF006C;">(指定设计师或地墙顶请点击上方选择)</span>
+          </ion-item> -->
+          <ion-item>
+            <ion-label>设计费合计
+              <span class="design_totalmoney" style="font-size: 1.7rem;color:#FF006C;"> {{(designxzhi*designping) || (designPlace*designping) || 0}}</span>元
+            </ion-label>
+          </ion-item>
+        </ion-item-group>
+        <h6 style="padding:1rem 2rem;line-height:2rem;white-space:normal;"><em style="color:#FF006C">友情提示：</em><br/>点击“加入购物车”之前，请您仔细阅读“设计介绍”里的全部内容。</h6>
+        <button ion-button style="width:90%;margin:0 5% 5%;background:linear-gradient(to right, #DF0371, #FA001B)" (click)="designaddShopping()">提交订单</button>
+        <!-- 设计介绍顾客评价切换 -->
+        <div padding style="background:#fff;">
+          <ion-segment [(ngModel)]="custom">
+            <ion-segment-button value="design">
+              设计介绍
+            </ion-segment-button>
+            <ion-segment-button value="comment" (click)="custormComment()">
+              顾客评价
+            </ion-segment-button>
+          </ion-segment>
+        </div>
+        <div [ngSwitch]="custom" style="background:#fff;">
+          <ion-list *ngSwitchCase="'design'" no-lines>
+            <div [innerHtml]="designOrderData.content" style="padding:1rem;white-space: normal;" class="work_content"></div>
+          </ion-list>
+          <ion-list *ngSwitchCase="'comment'" >
+            <ion-item style="margin-bottom:5rem;" no-lines padding>
+              <div class="nocomment" *ngIf="nocomment" style="text-align: center;">暂无评论~</div>
+              <div *ngFor="let item of cComment;let i=index;" class="commentlist">
+                <ion-thumbnail style="padding:0 3%;min-height: 3rem;">
+                  <div class="in_design_avatar">
+                    <img src="{{item.user.avatar}}" >
+                  </div>
+                  <span class="allname" >{{item.user.nickname}}</span>
+                  <span class="comment_times"><em>时间：</em>{{item.create_time}}</span>
+                </ion-thumbnail>
+                <div class="in_designtime">
+                  <div class="houseInfoArrss" *ngIf="item.order.house_info_arr">
+                      <span> 小区：{{item.order.house_info_arr.community}} </span>
+                      <span> 面积： {{item.order.house_info_arr.area}}</span>
+                  </div>
+                  <div *ngIf="!item.order.house_info_arr">暂无房屋信息</div>
+                </div>
+                
+                <!-- 评论评分 -->
+                <div class="in_design_xiaoguo" *ngIf="item.ratings_arr">
+                  <span>设计师服务：{{item.ratings_arr['设计师服务']}}分</span>
+                  <span>设计效果：{{item.ratings_arr['设计效果']}}分</span>
+                  <span>软件体验：{{item.ratings_arr['软件体验']}}分</span>
+                </div>
+                <h4 class="in_comment_content" [innerHtml]="item.content"></h4>
+                <div class="in_comment_imgbox">
+                  <img (click)="showBigImgBlock(items)" src="{{items}}" *ngFor="let items of cComment[i].pics_arr;let j=index;">
+                </div>
+              </div>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+    </ion-list>
+
+    <!-- 指定设计师 -->
+    <ion-list *ngSwitchCase="'puppies'" class="clearfix" style="margin-bottom:6rem;">
+      <div class="work-choose">
+        <p class="choose-title">
+          <span class="title-choose">已选</span>
+          <span class="title-con">城市：{{articleP}}{{articleC}} 性别：{{sex}}</span>
+          <!-- <span class="title-con">请选择城市</span> -->
+        </p>
+        <p class="choose-screen" (click)="chooseClick()">
+          <span>筛选</span>
+          <ion-icon name="menu"></ion-icon>
+        </p>
+        <div class="work_city" *ngIf="select">
+          <form [formGroup]="pageForm">
+            <ion-item style="padding:0">
+              <ion-label>所在城市</ion-label>
+              <ion-select formControlName="province" (ionChange)="change(pageForm.controls.province.value)"
+                          interface="popover" (ngModelChange)="cityChange">
+                <ion-option *ngFor="let item of provinces" value="{{item.region_id}}">{{item.region_name}}</ion-option>
+              </ion-select>
+              <ion-select formControlName="city" (ionChange)="change(pageForm.controls.city.value)" interface="popover"
+                          [hidden]="!pageForm.controls.province.value">
+                <ion-option *ngFor="let item of cities" value="{{item.region_id}}">{{item.region_name}}</ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-item style="padding:0">
+              <ion-label>性别</ion-label>
+              <ion-select formControlName="gender" interface="popover" (ionChange)="sexChange()" [(ngModel)]="sex">
+                <ion-option value="男">男</ion-option>
+                <ion-option value="女">女</ion-option>
+              </ion-select>
+            </ion-item>
+            <button ion-button (click)="designerSelect()">确认</button>
+          </form>
+        </div>
+      </div>
+      <div class="cardBox">
+        <div class="cardCell" *ngFor='let item of workListData;let i = index'
+             (click)="cp.goto({view:'design-detail',id:item.id})">
+          <img src="{{item.user_profile.photo_url}}"/>
+          <p>
+            <span>{{item.nickname}}</span>
+            <span>
+                <ion-icon name="pin" color="rose"></ion-icon>
+                {{item.province_text}}{{item.city_text}}
+              </span>
+          </p>
+        </div>
+        <ion-infinite-scroll (ionInfinite)="doInfinite()">
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </div>
+    </ion-list>
+
+    <!-- 选择地墙顶的造型 -->
+    <ion-list *ngSwitchCase="'qiang'">
+      <!-- <ion-item >
+        <div class="design_qiang">
+          <div *ngFor="let item of designandData;let i = index" class="design_wallbox">
+            <span class="design_wallspan">{{item.class}}：</span>
+            <div class="design_wallboxdiv">
+              <span ion-button color="dark" outline (click)="landClick(i,j)" [ngStyle]="{'background':items.landShow == true ? '#000' : 'transparent','color':items.landShow == true ? '#fff' : '#000','padding':'1.5rem 1rem','width':'7.8rem','font-size':'1.2rem'}" *ngFor="let items of item.landdetailData;let j = index">{{items.name}}</span>
+            </div>
+          </div>
+        </div>
+      </ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4 *ngFor="let item of designWallImg;let i = index;">
+              <div>
+                <img src="{{item.wallpic}}" alt="" class="design_zximg">
+                <div class="hardcover_wallimg">
+                    <span class="hardcover_choosebox" [ngStyle]="{ 'background': i == designrwall ? '#15B72E' : '#fff'}" (click)="hardSelected($event,i)"></span>
+                </div>
+              </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid> -->
+      <!--<ion-item >
+        <div class="design_qiang">
+          <div *ngFor="let item of selectValue;let i = index" class="design_wallbox">
+            <span class="design_wallspan">{{item.name}}：</span>
+            <div class="design_wallboxdiv">
+              <span ion-button color="dark" outline (click)="checkedImg(i,j)" [ngStyle]="{'background':items.landShow == true ? '#000' : 'transparent','color':items.landShow == true ? '#fff' : '#000','padding':'1.5rem 1rem','width':'7.8rem','font-size':'1.2rem'}" *ngFor="let items of item.value;let j = index">{{items}}</span>
+            </div>
+          </div>
+        </div>
+      </ion-item>-->
+      <div class="wallInfo">
+        <!--<p class="clearfix">
+          <span class="listTit">{{listArr[curIndex]}}:</span>
+          <button ion-button color="dark" outline small *ngFor="let item of selectValue[curIndex];let i=index" (click)="chooseTitle(i)" class="titleId==i?'btnSelected':''">{{item.value}}</button>
+        </p>-->
+        <ul class="imgList clearfix">
+          <li *ngFor="let item of selectValue[curIndex];let i=index" (click)="chooseImg(i)">
+            <img src="{{item.pic}}" alt="">
+            <p>{{item.value}}</p>
+            <ion-icon *ngIf="imgId==i" name="checkmark-circle" class="selected"></ion-icon>
+          </li>
+        </ul>
+      </div>
+      <button ion-button style="background:linear-gradient(to right, #DF0371, #FA001B)" class="design_imgsure" (click)="saveInfo()">{{btnVal}}</button>
+    </ion-list>
+  </div>
+  <!-- <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll> -->
+</ion-content>
+
+<div class="showBigImg" (click)="showBigImgNone()"
+      [ngStyle]="{'display': showBigImgNum == 0 ? 'none' : 'block'}">
+  <img src="{{ showBigImgSrc }}"/>
+</div>

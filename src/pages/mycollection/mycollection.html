@@ -1,0 +1,51 @@
+<app-header title="我的收藏"></app-header>
+
+<ion-content style="margin-top: 44px;">
+  <div class="xiugaimima">我的收藏商品</div>
+  <!-- <div class="collect_box">
+    <div class="collect_mid" *ngFor="let item of collectInfo">
+      <img src="{{item.goods.pic_url}}" alt="">
+      <div class="collect_title">
+        <span>{{item.goods.title}}</span>
+        <span style="float:right;color:#ff0066;">￥{{item.goods.price}}元</span>
+      </div>
+      <div class="collect_time">
+        <span>{{item.create_time}}</span>
+        <span style="float:right;" (click)="deleteCollect(item.collection_id)">删除</span>
+      </div>
+    </div>
+  </div> -->
+  <div class="collects_box">
+    <div class="collectios_mids" *ngFor="let item of collectInfo;let i = index">
+      <!-- <p class="top clearfix">
+          <label>
+            <input type="checkbox">
+            <i>√</i>
+          </label>
+      </p> -->
+      <div class="collections_img">
+        <img src="{{item.goods.pic_url}}" alt="">
+      </div>
+      <div class="collectios_title">
+        <span class="collect_title">{{item.goods.title}}</span>
+        <span class="collect_shuxing"></span>
+        <span class="collect_price">￥{{item.goods.price}}元</span>
+      </div>
+      <div class="collections_add">
+        <!-- <span class="addshop">加入购物车</span> -->
+        <span class="collect_delete" (click)="deleteCollect(item.collection_id)">删除</span>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="addshopAll">
+    <span class="all_select">
+    <p class="top clearfix" style="margin-right: 0.5rem;">
+      <label style="margin-top: 1rem;margin-right: 0.5rem;">
+        <input type="checkbox">
+        <i>√</i>
+      </label>
+    </p>全选</span>
+    <span class="delete_alls">删除</span>
+    <button>加入购物车</button>
+  </div> -->
+</ion-content>

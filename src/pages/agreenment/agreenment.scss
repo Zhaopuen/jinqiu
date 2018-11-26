@@ -1,0 +1,26 @@
+page-agreenment {
+  .agreenment_box{
+      width:94%;
+      height:auto;
+      overflow: hidden;
+      background:#fff;
+      margin:15% 3% 13%;
+      padding:16px;
+      h4{
+          text-align: center;
+          line-height: 3rem;
+          font-size: 2rem;
+          color:#111;
+          font-weight: 550;
+          border-bottom: 1px solid #d9d9d9;
+          padding-bottom: 0.5rem;
+      }
+      p{
+          white-space: normal;
+          line-height: 2.5rem;
+          color:#333;
+          font-size: 1.6rem;
+          padding-top:0.5rem;
+      }
+  }
+}

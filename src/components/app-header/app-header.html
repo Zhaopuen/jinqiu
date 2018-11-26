@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>
+      {{title}}
+      <button ion-button outline small color="white" (click)="switchCity()">
+        <small style="font-size: 10px;margin-right:0.3rem;">{{cp.global.city_name}}</small>
+        <ion-icon name="arrow-down"></ion-icon>
+      </button>
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="loginOrAccount()">
+        <small >{{cp.u.tel ? cp.u.tel : '登录/注册'}}</small>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>

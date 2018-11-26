@@ -1,0 +1,172 @@
+<app-header title="结算订单"></app-header>
+<ion-content>
+  <!--<div style="height:3.8rem;width:100%;"></div>-->
+  <!--地址-->
+  <ion-card-content class="designOrderHeader">
+    <div class="topDiv">
+      <img src="./assets/imgs/address.jpg"/>
+      <p>地址</p>
+    </div>
+    <div *ngIf="addressInfo.length>0">
+      <p class="address">{{province}}{{city}}{{district}}{{address}}</p>
+      <div class="address clearfix">
+        <span>{{name}}</span>
+        <span>{{mobile || tel}}</span>
+        <div class="edit" (click)="cp.goto({view:'myaddress',type:0})">
+          <ion-icon name="create"></ion-icon> 更换地址
+        </div>
+      </div>
+    </div>
+    <div *ngIf="addressInfo.length==0">
+      <div class="noAddress" (click)="cp.goto({view:'myaddress',type:0})">
+        暂无地址，请点击添加
+      </div>
+    </div>
+  </ion-card-content>
+  <!--购物车品牌订单-->
+  <div class="orderBox" *ngIf="brandList.length>0">
+    <div *ngFor="let item of brandList;let i = index">
+      
+      <ion-list class="listBox">
+        <div class="orderTit">订单信息</div>
+        <ion-item *ngFor="let brand of item;let j = index">
+          <ion-thumbnail item-start>
+            <img src="{{brand.goods.pic_url}}">
+          </ion-thumbnail>
+          <h2>{{brand.goods.title}}</h2>
+          <p class="type">
+            <span *ngFor="let type of brand.typeArr">{{type}}</span>
+          </p>
+          <p class="price clearfix">
+            <span>{{brand.goods.now_price}}</span>
+            <span>×{{brand.num}}</span>
+          </p>
+        </ion-item>
+      </ion-list>
+      <div class="orderInfo" style="margin-top:-1rem;">
+        <p class="priceRow">
+          <span>订单金额</span>
+          <span>￥{{total[i] | number:"0.2"}}</span>
+        </p>
+      </div>
+      <div class="msg">
+        <div>订单留言</div>
+        <ion-textarea class="txtarea" [(ngModel)]="brandVal['1_'+(i+1)]"></ion-textarea>
+      </div>
+    </div>
+  </div>
+  <!--待支付订单-->
+  <div class="orderBox" *ngIf="brandList1.length>0">
+    <div class="orderTit">订单信息</div>
+    <ion-list class="listBox">
+      <ion-item *ngFor="let brand of brandList1[0].order_goods;let i = index">
+        <ion-thumbnail item-start>
+          <img src="{{brand.goods_info_arr.pic_url}}">
+        </ion-thumbnail>
+        <h2>{{brand.goods_info_arr.title}}</h2>
+        <p class="type">
+          <span *ngFor="let type of brand.typeArr">{{type}}</span>
+        </p>
+        <p class="price clearfix">
+          <span>{{brandList1[0].price}}</span>
+          <span>×{{brand.num}}</span>
+        </p>
+      </ion-item>
+    </ion-list>
+    <div class="orderInfo" style="margin-top:-1rem;">
+      <p class="priceRow">
+        <span>订单金额</span>
+        <span>￥{{brandList1[0].price}}</span>
+      </p>
+    </div>
+  </div>
+
+  <!--其他订单-->
+  <div class="orderBox">
+    <div *ngIf="otherList.length>0">
+      <div *ngFor="let item of otherList;let i = index">
+        <ion-list *ngFor="let other of item,let j = index" class="listBox">
+          <p class="top">
+            <label *ngIf="other.subject_id==2">
+              <ion-icon name="home" class="icon"></ion-icon>
+              {{other.goods.title}}
+            </label>
+            <label *ngIf="other.subject_id==3">
+              <ion-icon name="pricetag" class="icon"></ion-icon>
+              {{other.goods.title}}
+            </label>
+            <label *ngIf="other.subject_id==4">
+              <ion-icon name="hammer" class="icon"></ion-icon>
+              {{other.goods.title}}
+            </label>
+          </p>
+          <div class="content">
+            <p class="set clearfix">
+              每平米单价<span class="orderCell">{{other.typeArr[0]}}</span>元
+            </p>
+            <p class="area">
+             待施工房屋面积<span class="orderCell">{{other.typeArr[1]}}</span>平方米
+            </p>
+          </div>
+          <div class="orderInfo priceOther">
+            <p class="priceRow">
+              <span>订单金额</span>
+              <span>￥{{other.typeArr[0]*other.typeArr[1] | number:"0.2"}}</span>
+            </p>
+          </div>
+          <div class="msg">
+            <div>订单留言</div>
+            <ion-textarea *ngIf="other.subject_id==2" class="txtarea" [(ngModel)]="otherVal['2_'+(j+1)]"></ion-textarea>
+            <ion-textarea *ngIf="other.subject_id==3" class="txtarea" [(ngModel)]="otherVal['3_'+(j+1)]"></ion-textarea>
+            <ion-textarea *ngIf="other.subject_id==4" class="txtarea" [(ngModel)]="otherVal['4_'+(j+1)]"></ion-textarea>
+          </div>
+        </ion-list>
+      </div>
+    </div>
+  </div>
+  <div class="total">
+    <span>总金额</span>
+    <span *ngIf="!showReceipt">￥{{totalPrice | number:"0.2"}}</span>
+    <span *ngIf="showReceipt">￥{{brandList1[0].price}}</span>
+  </div>
+  <div class="payType">
+    <div class="title">支付方式</div>
+    <p *ngFor="let item of payType" (click)="changePayType(item.id)">
+      <span>
+        <img class="leftImg" src="{{item.pic}}" alt=""> {{item.title}}
+      </span>
+      <span class="rightImg">
+        <img *ngIf="payId==item.id" src="{{item.checkedImg}}">
+        <img *ngIf="payId!==item.id" src="{{item.checkImg}}">
+      </span>
+    </p>
+  </div>
+  <ion-card-content class="receipt">
+    <p>
+      <label (click)="chooseReceipt()">
+        <img *ngIf="!isReceipt" src="./assets/imgs/check.png">
+        <img *ngIf="isReceipt" src="./assets/imgs/checked.png">
+        开具发票
+      </label>
+      <span *ngIf="isReceipt" (click)="cp.goto({view:'myreceipt'})">修改/添加</span>
+    </p>
+    <div *ngIf="isReceipt">
+      <p *ngIf="defaultReceipt">
+        <span>{{defaultReceipt.name}}</span>
+        <span *ngIf="defaultReceipt.type==0">个人</span>
+        <span *ngIf="defaultReceipt.type==1">公司</span>
+      </p>
+      <p *ngIf="!defaultReceipt" style="color:#999;">请先添加个人发票信息</p>
+    </div>
+  </ion-card-content>
+  <div class="btn">
+    <button *ngIf="!showReceipt" ion-button block  style="background:linear-gradient(to right, #DF0371, #FA001B)" (click)="orderPay()">确认并支付</button>
+    <button *ngIf="showReceipt" ion-button block  style="background:linear-gradient(to right, #DF0371, #FA001B)" (click)="toPay()">确认并支付</button>
+  </div>
+  <div *ngIf="showMask" class="mask" (click)="hideMask()">
+    <div class="code">
+      <img src="{{codeImg}}" alt="">
+      <p>请在微信或支付宝中识别二维码进行支付</p>
+    </div>
+  </div>
+</ion-content>

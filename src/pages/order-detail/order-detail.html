@@ -1,0 +1,111 @@
+<app-header title="我的订单"></app-header>
+<ion-content>
+  <div *ngIf="orderDetail.status==0 && orderDetail.pay_status==0" class="topTip">
+    <!-- <img src="./assets/imgs/od1.png" alt=""> -->
+    待付款订单详情
+  </div>
+  <div *ngIf="orderDetail.status==1 && orderDetail.pay_status==1 && orderDetail.shipping_status==0" class="topTip">
+    <!-- <img src="./assets/imgs/od2.png" alt=""> -->
+    待发货订单详情
+  </div>
+  <div *ngIf="orderDetail.status==1 && orderDetail.pay_status==1 && orderDetail.shipping_status==1"  class="topTip">
+    <!-- <img src="./assets/imgs/od3.png" alt=""> -->
+    待收货订单详情
+  </div>
+  <div *ngIf="orderDetail.status==4" class="topTip">
+    <!-- <img src="./assets/imgs/od4.png" alt=""> -->
+    待评价订单详情
+  </div>
+  <div *ngIf="orderDetail.status==3" class="topTip">
+    <!-- <img src="./assets/imgs/od4.png" alt=""> -->
+    已失效订单详情
+  </div>
+  <div *ngIf="orderDetail.status==5" class="topTip">
+    <!-- <img src="./assets/imgs/od5.png" alt=""> -->
+    交易已完成
+  </div>
+  <ion-card-content class="designOrderHeader">
+    <div>
+      <img src="./assets/imgs/address.jpg"/>
+      <p>地址</p>
+    </div>
+    <div class="shouhuoaddress">
+      <p>{{ orderDetail.address }}</p>
+      <p>{{ orderDetail.consignee }}  {{ orderDetail.mobile }}</p>
+    </div>
+  </ion-card-content>
+  <div class="logistics" *ngIf="flowList">
+    <div class="kd">
+      <label>[{{orderDetail.carrier}}] {{tracking_number}}</label>
+      <span>{{orderDetail.time}}</span>
+    </div>
+    <div class="logisticsList">
+      <!--<p class="courier clearfix">
+        <img src="./assets/imgs/user.png" alt="">
+        暂无派送员信息
+      </p>-->
+      <ul class="infoList" *ngFor="let item of flowList">
+        <li>{{item.time}}&nbsp;&nbsp;{{item.context}}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="logistics" *ngIf="!flowList">
+    <p style="color:#999;">暂无物流信息</p>
+  </div>
+  <div class="designOrderNum">
+    <p>订单编号：{{ orderDetail.order_sn }}</p>
+    <div class="btn clearfix">
+      <!-- 待付款 -->
+      <div *ngIf="orderDetail.status==0 && orderDetail.pay_status==0" class="btnBox">
+        <button ion-button outline color="rose" small (click)="cancelOrder(orderDetail.id)">取消订单</button>
+        <button ion-button outline color="rose" small>立即付款</button>
+      </div>
+      <!-- 待发货 -->
+      <div *ngIf="orderDetail.status==1 && orderDetail.pay_status==1 && orderDetail.shipping_status==0"  class="btnBox">
+        <button ion-button outline color="rose" small (click)="cancelOrder(orderDetail.id)">取消订单</button>
+        <button ion-button outline color="rose" small (click)="refund(orderDetail.id)">退款</button>
+      </div>
+      <!-- 待收货 -->
+      <div *ngIf="orderDetail.status==1 && orderDetail.pay_status==1 && orderDetail.shipping_status==1" class="btnBox">
+        <button ion-button outline color="rose" small (click)="returnGoods(orderDetail.id)">退货退款</button>
+        <button ion-button outline color="rose" small (click)="goodsReceived(orderDetail.id)">确认收货</button>
+      </div>
+      <!-- 待评价 -->
+      <div *ngIf="orderDetail.status==4" class="btnBox">
+        <button ion-button outline color="rose" small (click)="cp.goto({view:'user-contact'})">联系客服</button>
+        <button ion-button outline color="rose" small (click)="cp.goto({view:'myevaluate',id:item.id})">立即评价</button>
+      </div>
+      <!-- 已完成 -->
+      <div *ngIf="orderDetail.status==5" class="btnBox">
+        <button ion-button outline color="rose" small (click)="cp.goto({view:'user-contact'})">联系客服</button>
+      </div>
+    </div>
+  </div>
+  <div class="designOrderTime">
+    <p>订单时间：{{ orderDetail.time }}</p>
+  </div>
+  <ion-list class="orderList">
+    <ion-item *ngFor="let item of orderDetail.order_goods">
+      <ion-thumbnail item-start>
+        <img src="{{item.goods_info_arr.pic_url}}">
+      </ion-thumbnail>
+      <h2 class="listTit">{{item.goods_info_arr.title}}</h2>
+      <p class="first">
+        <span *ngFor="let type of item.typeArr">{{type}}</span>
+      </p>
+      <p class="second">
+        <span>￥{{item.goods_info_arr.price}}</span>
+        <span style="color:#333;">×{{item.num}}</span>
+      </p>
+    </ion-item>
+  </ion-list>
+  <div class="designOrderDetail">
+      <!--<p><span>运费</span><span>￥0.00</span></p>-->
+      <!--<p><span>活动优惠</span><span>-￥30.00</span></p>-->
+      <p class="orderPrice"><span>订单金额</span><span class="allPrice">￥{{orderDetail.price}}</span></p>
+  </div>
+ <!-- <div class="designer">
+      <h1>备注信息</h1>
+      <p>无</p>
+  </div>-->
+</ion-content>

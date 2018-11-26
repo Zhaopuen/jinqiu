@@ -1,0 +1,124 @@
+<app-header title="金秋梦装饰"></app-header>
+<p class="topTip"><small>免费量房+3D全景设计+一站式购物+免费送货+免费安装+上门售服务</small></p>
+<ion-content >
+  <!--<app-top></app-top>-->
+  
+  <div class="decorationmall_boxtabs">
+    <ion-segment [(ngModel)]="pet" style="overflow-x:scroll;">
+      <ion-segment-button [ngClass]="{'segment-buttonSelect':item.isSelect}" value="promotionmall" *ngFor="let item of mallClasstitle;let i = index" (click)='mallList(i)'>
+          {{item.name}}
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="pet">
+    <!-- 促销商品 -->
+    <ion-list *ngSwitchCase="'promotionmall'">
+      <ion-item>
+        <!-- <div class="pmall_search">
+          <ion-searchbar [(ngModel)]="inputVal"></ion-searchbar>
+          <button ion-button color="secondary" (click)="mallSearch(id)">搜索</button>
+        </div> -->
+        <div class="search_box">
+          <input type="text" [(ngModel)]="inputVal">
+          <button (click)="mallSearch(id)">搜索</button>
+        </div>
+        <div class="page-button">
+          <ion-item class="malldeshaixuan">
+              <button ion-button [ngClass]="{'color':isShow}" (click)="showClick()" class="classshaixuan">分类筛选</button>
+              <!-- <button ion-button [ngClass]="{'color':isShowtwo }" (click)="showClicktwo()" class="classshaixuan">条件筛选</button>
+              <button ion-button [ngClass]="{'color':isShowthree}" (click)="showClickthree()" class="classshaixuan">综合排序</button> -->
+          </ion-item>
+          <!-- 分类筛选 -->
+          <ion-card class="class_screen" *ngIf="isShow">
+            <ion-card-content>
+              <ion-list>
+                <p class="class_screenbox" *ngFor="let item of classification;let i = index">
+                  <em></em>
+                  <i>{{item.name}}：</i>
+                  <span (click)="aClick(i,j)" [ngStyle]="{'color':items.isShow == true ? 'rgb(190, 9, 102)' : '#000'}" *ngFor="let items of item.children;let j = index">{{ items.name }}</span>
+                </p>
+              </ion-list>
+              <button ion-button color="secondary" style="display:block;margin:0 auto;height:2.5rem;" (click)="mallSelected()">确定</button>
+            </ion-card-content>
+          </ion-card>
+          <!-- 条件筛选 -->
+          <ion-card class="condition_screen" *ngIf="isShowtwo">
+            <ion-card-content>
+              <ion-list>
+                <p class="condition_screenbox" *ngFor="let item of classData;let i = index">
+                  <i>{{item.class}}：</i>
+                  <span (click)="classClicks(i,j)" [ngStyle]="{'color':items.isShowtwo == true ? 'rgb(190, 9, 102)' : '#000'}" *ngFor="let items of item.classdetailData;let j = index">{{items.name}}</span>
+                </p>
+              </ion-list>
+              <button ion-button color="secondary" style="display:block;margin:0 auto;">确定</button>
+            </ion-card-content>
+          </ion-card>
+
+          <!-- 综合排序 -->
+          <ion-card class="order_screen" *ngIf="isShowthree">
+            <ion-card-content>
+              <ion-list *ngFor="let item of orderData;let i = index">
+                <p class="order_screenbox" [ngStyle]="{'color':i ==  orderStyle  ? '#be0966' : '#808080'}" (click)="orderClick($event, item,i)">{{item.order}}</p>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+        </div>
+        <div class="pmall_cardlist">
+          <ion-card class="pmall_cardlistbox" (click)="cp.goto({view:'decorationmalldetail',id:item.id})" *ngFor="let item of mallListData;let i = index">
+            <img src="{{item.pic_url}}"/>
+            <ion-card-content>
+              <ion-card-title>{{item.title}}</ion-card-title>
+              <div class="pmall_cardadd">
+                <span>玫瑰家装</span>
+                <span>江苏苏州</span>
+              </div>
+              <div class="pmall_cardprice">￥<span>{{item.price}}</span></div>
+              <div class="pmall_cardcircular" (click)="rightBuy(item.id);$event.stopPropagation();">
+                <ion-icon name="ios-cart-outline" class="pmall_icon_shopping"></ion-icon>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
+
+<!-- 加入购物车弹窗 -->
+<div class="rightBuy" *ngIf="isbuyShow">
+    <div class="rightBuy_middle">
+      <div class="rightBuy_imgs" *ngIf="addShopInfo">
+        <img src="{{addShopRightpicInfo[selectColorImg]}}" alt="">
+        <em>￥{{addShopInfo.price}}</em>
+        <span>库存{{addShopInfo.stock}}件</span>
+        <span>已选：{{mallColor}}</span>
+      </div>
+      <div class="rightBuy_colorcalss">
+        <h6>{{mallRightname}}</h6>
+        <span *ngFor="let item of addShopRightInfo;let i=index;" [ngStyle]="{'color':i ==  mallColorClick  ? '#be0966' : '#808080' }" (click)="mallColorStyle($event, item,i)">{{item}}</span>
+      </div>
+      <div class="rightBuy_size">
+        <h6>{{mallSizename}}</h6>
+        <span *ngFor="let item of addShopSizeInfo;let i = index" [ngStyle]="{'color':i ==  mallSizeClick  ? '#be0966' : '#808080' }" (click)="mallSizeStyle($event, item,i)">{{item}}</span>
+      </div>
+      <div class="rightbuy_material">
+        <h6>{{mallMaterialname}}</h6>
+        <span *ngFor="let item of addShopMaterialInfo;let i=index;" [ngStyle]="{'color':i ==  mallMaterialClick  ? '#be0966' : '#808080' }" (click)="mallMaterialStyle($event, item,i)">{{item}}</span>
+      </div>
+      <!-- <div class="rightBuy_colorcalss" *ngFor= "let item of mallValue;let i=index">
+        <h6>{{item.name}}</h6>
+        <span *ngFor="let items of item.value;let j=index;" [ngStyle]="{'color':j ==  mallColorClick  ? '#be0966' : '#808080' }" (click)="mallColorStyle($event, items,j)">{{items}}</span>
+      </div> -->
+      <div class="rightBuy_number">
+        <span>购买数量</span>
+        <div class="rightBuy_numberadd">
+          <button (click)="mallReduce(index)">-</button>
+          <em>{{mallNum}}</em>
+          <button (click)="mallAdd(index)">+</button>
+        </div>
+      </div>
+      <ion-icon name="ios-close" class="rightBuy_close" (click)="closerightBuy()"></ion-icon>
+      <button ion-button class="rightBuy_sure" (click)="addShopping(addShopInfo.id)">去购物车结算</button>
+    </div>
+  </div>

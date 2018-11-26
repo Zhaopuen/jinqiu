@@ -1,0 +1,78 @@
+page-myaddress {
+  .xiugaimima{
+    font-size: 1.8rem;
+    color: #333;
+    padding: 1rem 1rem 1rem;
+    text-align: center;
+    font-weight: 550;
+  }
+  ion-content{
+    top:44px;
+  }
+  .pageTitle{
+    text-align:center;
+    font-size:1.7rem;
+    padding:1rem 0;
+  }
+  .listBox{
+    width:100%;
+    background:#fff;
+    margin-bottom:1rem;
+    padding:1rem 0;
+    font-size:1.6rem;
+    .none{
+      text-align: center;
+    }
+  }
+  .listBox .topInfo{
+    padding:0 1rem;
+    border-bottom:1px solid #ccc;
+  }
+  .listBox .topInfo p{
+    padding-bottom:1rem;
+  }
+  .listBox .topInfo p span:first-child{
+    float: left;
+  }
+  .listBox .topInfo p span:last-child{
+    float: right;
+  }
+  .listBox .topInfo p.addr{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .listBox .bottomInfo{
+    padding:1rem 1rem 0 1rem;
+  }
+  .listBox .bottomInfo .default{
+    float: left;
+  }
+  .listBox .bottomInfo .default img{
+    width:1.6rem;
+    height:1.6rem;
+    float: left;
+    margin:1px 10px 0 0;
+  }
+  .listBox .bottomInfo .default .checked{
+    color:#d4237a
+  }
+  .listBox .bottomInfo .edit{
+    float:right;
+  }
+  .listBox .bottomInfo .edit .subEdit{
+    float: left;
+    margin-left:1rem;
+  }
+  .listBox .bottomInfo .edit .subEdit ion-icon{
+    font-size: 2.6rem;
+    color:#888;
+    float: left;
+    margin-right:0.2rem;
+    margin-top:-3px;
+  }
+  .subBtn{
+    margin:2rem 0 6rem;
+    padding:0 1rem;
+  }
+}

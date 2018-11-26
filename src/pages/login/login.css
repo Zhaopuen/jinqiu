@@ -1,0 +1,20 @@
+page-login .input-container .list-ios > .item-block:last-child {
+  border-bottom: none; }
+page-login .header-ios .toolbar-ios:last-child .toolbar-background-ios {
+  background: transparent; }
+page-login .header-ios .button-inner {
+  color: #fff; }
+page-login .btn-container {
+  margin-top: -5px; }
+page-login .header-ios .toolbar-ios:last-child .toolbar-background-ios {
+  border-width: 0; }
+page-login form {
+  padding: 2rem 2rem 0; }
+  page-login form .item-ios {
+    padding-left: 0; }
+  page-login form .list-ios .item-block:first-child {
+    border-top: none; }
+  page-login form .link.note.note-ios {
+    color: #488aff; }
+  page-login form .btn-container {
+    margin-bottom: 1rem; }

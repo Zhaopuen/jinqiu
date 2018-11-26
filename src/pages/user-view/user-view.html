@@ -1,0 +1,84 @@
+<app-header title="金秋梦装饰"></app-header>
+
+<ion-content>
+  <ion-card  class="userView_cards">
+    <ion-label class="user_viewstyle">投诉建议联系方式</ion-label>
+    <ion-list>
+      <ion-item class="user_viewnum">
+        <div class="phone_back">
+            <ion-icon name="ios-call" item-start style="margin:0;color:#fff;"></ion-icon>
+        </div>
+          电话<span>{{cp.global.sys_conf.feedback_mobile}}</span>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item class="user_viewnum" >
+        <div class="phone_back">
+          <ion-icon name="ios-mail" item-start style="margin:0;color:#fff;"></ion-icon>
+        </div>
+          邮箱<span>{{cp.global.sys_conf.feedback_email}}</span>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item class="user_viewnum">
+        <div class="phone_back">
+          <ion-icon name="ios-chatbubbles" item-start style="margin:0;color:#fff;"></ion-icon>
+        </div>
+          微信<span>{{cp.global.sys_conf.feedback_wechat}}</span>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  <ion-card  class="userView_cards" style="padding-bottom:1.5rem;">
+    <ion-list>
+      <div class="user_touxuaddBox">
+        <span class="user_tsdx">选择类别：</span>
+        <div class="user_tousubox" style="float:left;" *ngFor="let item of userViewAdress;let i=index;"  (click)="hardSelected(i)">
+            <span class="hardcover_choosebox" [ngStyle]="{ 'background': i == designrwall ? '#FF006C' : '#fff'}"></span>
+            <em class="hardcover_emem">{{item.name}}</em>
+        </div>
+      </div>
+    </ion-list>
+    <ion-list>
+      <div class="user_tousuduixiang">
+        <span class="user_tsdx">投诉建议对象：</span>
+        <div class="user_tousudxBox" *ngFor="let item of userObjectbox;let i = index;" (click)="userAdress($event,i)">
+            <span class="hardcover_choosebox" [ngStyle]="{ 'background': i == designradress ? '#FF006C' : '#fff'}" ></span>
+            <em class="hardcover_emem">{{item.name}}</em>
+        </div>
+      </div>
+    </ion-list>
+    <ion-list class="user_viewtitle">
+      <ion-title class="user_viewtitless">标题：</ion-title>
+      <textarea name="" id="" cols="30" rows="10" [(ngModel)]="suggestTitle"></textarea>
+    </ion-list>
+    <ion-list class="user_viewtitle">
+      <ion-title class="user_viewtitless">内容：</ion-title>
+      <textarea name="" id="" cols="30" rows="10" style="height:10rem;" [(ngModel)]="suggestContent"></textarea>
+    </ion-list>
+    <ion-list>
+      <!--图片-->
+      <ion-title class="user_viewtitless user_viewimgupload">图片：</ion-title>
+      <div class="photos" padding flex wrap flex-start>
+        <!--循环显示图片-->
+        <div class="photo" relative *ngFor="let photo of photos;">
+          <a class="close" (click)="deleteImg(photo)"></a>
+          <div class="img-container" absolute top left>
+            <img center absolute [src]="photo" [alt]="photo">
+          </div>
+        </div>
+        <!--添加图片-->
+        <div class="photo upload" relative *ngIf="photos.length<6" (click)="addImg()">
+          <div class="photo-body" flex absolute top left>
+            <ion-icon name="ios-add"></ion-icon>
+          </div>
+          <!--
+          <span>添加照片</span>-->
+          <form action="" #form>
+            <input type="file" name="file" accept="image/*" (change)="uploadImg($event)">
+          </form>
+        </div>
+      </div>
+    </ion-list>
+  </ion-card>
+  <button ion-button class="user_viewsubmit" (click)="indexCooperate()">提交完成</button>
+</ion-content>

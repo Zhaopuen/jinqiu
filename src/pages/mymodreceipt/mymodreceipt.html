@@ -1,0 +1,91 @@
+<app-header title="我的个人中心"></app-header>
+<ion-content style="background:#fff;">
+  <div class="xiugaimima">添加开票信息</div>
+  <div class="infoBox">
+    <p class="clearfix">
+      <span>开票对象</span>
+      <label (click)="showPersonal()">
+        <input value="0" type="radio" name="obj"  [checked]="showOne"> 个人
+      </label>
+      <label for="company" (click)="showPublic()">
+        <input value="1" type="radio" name="obj" id="company" [checked]="showTwo"> 企业
+      </label>
+    </p>
+    <div *ngIf="showOne">
+      <p>
+        <span>发票抬头</span>
+        <input type="text" [(ngModel)]="repTitle" class="inp">
+      </p>
+      <p class="clearfix">
+        <span class="addr">收票地址</span>
+        <textarea rows="3" [(ngModel)]="repAddr"></textarea>
+      </p>
+    </div>
+    <div *ngIf="showTwo">
+      <div class="type clearfix">
+        <span>开票类型</span>
+        <div class="labelBox">
+          <label for="normal" (click)="showNormal()">
+            <input type="radio" name="type" id="normal" [checked]="showPart1"> 增值税普通发票
+          </label>
+          <label for="special" (click)="showSpecial()">
+            <input type="radio" name="type" id="special" [checked]="showPart2"> 增值税专用发票
+          </label>
+        </div>
+      </div>
+      <div *ngIf="showPart1">
+        <p>
+          <span>发票抬头</span>
+          <input type="text" [(ngModel)]="repTitle" class="inp">
+        </p>
+        <p>
+          <span>公司税号</span>
+          <input type="text" [(ngModel)]="repNum" class="inp">
+        </p>
+        <p class="clearfix">
+          <span class="addr">收票地址</span>
+          <textarea rows="3" [(ngModel)]="repAddr"></textarea>
+        </p>
+      </div>
+      <div *ngIf="showPart2">
+        <p>
+          <span>发票抬头</span>
+          <input type="text" [(ngModel)]="repTitle" class="inp">
+        </p>
+        <p>
+          <span>公司税号</span>
+          <input type="text" [(ngModel)]="repNum" class="inp">
+        </p>
+        <p class="clearfix">
+          <span class="addr">公司地址</span>
+          <textarea rows="3" [(ngModel)]="compAddr"></textarea>
+        </p>
+        <p>
+          <span>公司电话</span>
+          <input type="text" [(ngModel)]="tel" class="inp">
+        </p>
+        <p>
+          <span>开户银行</span>
+          <input type="text" [(ngModel)]="bank" class="inp">
+        </p>
+        <p>
+          <span>银行账号</span>
+          <input type="text" [(ngModel)]="account" class="inp">
+        </p>
+        <p class="clearfix">
+          <span class="addr">收票地址</span>
+          <textarea rows="3" [(ngModel)]="repAddr"></textarea>
+        </p>
+      </div>
+    </div>
+  </div>
+  <p class="subBtn" *ngIf="pageType==0" (click)="changeInfo()">
+    <button ion-button block style="background:linear-gradient(to right, #DF0371, #FA001B)">确认修改</button>
+  </p>
+  <p class="subBtn" *ngIf="pageType==1" (click)="addInfo()">
+    <button ion-button block style="background:linear-gradient(to right, #DF0371, #FA001B)">确认添加</button>
+  </p>
+  <p class="subBtn" *ngIf="pageType==2" (click)="addInfo()">
+    <button ion-button block style="background:linear-gradient(to right, #DF0371, #FA001B)">确认添加</button>
+  </p>
+</ion-content>

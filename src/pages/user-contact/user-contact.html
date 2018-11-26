@@ -1,0 +1,91 @@
+<!-- 联系我们 -->
+<app-header title="金秋梦装饰"></app-header>
+<ion-content style="background:#FFE1ED">
+    <ion-card class="user_contactbox">
+      <div class="user_contactall">
+        <div class="phone_back">
+          <ion-icon name="podium" style="color:#fff;"></ion-icon>
+        </div>
+        <span>总部：</span>
+        <em>{{cp.global.sys_conf.headquarters}}</em>
+      </div>
+      <div class="user_contactall">
+          <div class="phone_back">
+            <ion-icon name="md-pin" style="color:#fff;"></ion-icon>
+          </div>
+        <span>地址：</span>
+        <em>{{cp.global.sys_conf.headquarters_address}}</em>
+      </div>
+    </ion-card>
+    <ion-card>
+      <ion-item style="padding:1rem 0;margin:0;">
+          <ion-list  style="padding:0;margin:0;">
+              <h2 style="line-height:2.5rem;padding-left:1rem;border-bottom:1px solid #d9d9d9;padding-bottom: 0.5rem;margin-bottom: 0.5rem;">顾客咨询联系方式：</h2>
+          </ion-list>
+          <div class="user_contactall" >
+            <div class="phone_back">
+              <ion-icon name="call" style="color:#fff;"></ion-icon>
+            </div>
+            <span>电话：</span>
+            <em>{{cp.global.sys_conf.customer_consulting_mobile}}</em>
+          </div>
+          <div class="user_contactall">
+            <div class="phone_back">
+              <ion-icon name="mail" style="color:#fff"></ion-icon>
+            </div>
+            <span>邮箱：</span>
+            <em>{{cp.global.sys_conf.customer_consulting_email}}</em>
+          </div>
+      </ion-item>
+    </ion-card>
+    <ion-card>
+      <ion-item style="padding:1rem 0;">
+        <ion-list style="padding:0;margin:0;">
+            <h2 style="line-height:2.5rem;padding-left:1rem;border-bottom:1px solid #d9d9d9;padding-bottom: 0.5rem;margin-bottom: 0.5rem;">厂商合作联系方式：</h2>
+        </ion-list>
+        <div class="user_contactall">
+          <div class="phone_back">
+            <ion-icon name="call" style="color:#fff;"></ion-icon>
+          </div>
+          <span>电话：</span>
+          <em>{{cp.global.sys_conf.manufacturer_cooperation_mobile}}</em>
+        </div>
+        <div class="user_contactall">
+          <div class="phone_back">
+            <ion-icon name="mail" style="color:#fff;"></ion-icon>
+          </div>
+          <span>邮箱：</span>
+          <em>{{cp.global.sys_conf.manufacturer_cooperation_email}}</em>
+        </div>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-item style="padding:1rem 0">
+        <ion-list>
+            <h2 style="line-height:2.5rem;padding-left: 1rem;">已开通城市联系方式：</h2>
+        </ion-list>
+        <div class="user_contactall" *ngFor="let item of contactsCity;let i = index;">
+          <div class="user_phone">{{item.region_city.region_name}}：</div>
+          <div class="user_citycontact">
+            <div class="user_contactall">
+              <span>联系人：</span>
+              <em>{{item.contact}}</em>
+            </div>
+            <div class="user_contactall">
+              <span>手机：</span>
+              <em>{{item.tel}}</em>
+            </div>
+            <div class="user_contactall">
+                <span>微信：</span>
+                <em>{{item.wechat_account}}</em>
+            </div>
+            <div class="user_contactall">
+              <span>负责区域：</span>
+              <em>{{item.area}}</em>
+            </div>
+          </div>
+        </div>
+      </ion-item>
+    </ion-card>
+</ion-content>

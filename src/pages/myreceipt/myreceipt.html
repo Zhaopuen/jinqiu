@@ -1,0 +1,74 @@
+<app-header title="我的个人中心"></app-header>
+<ion-content>
+  <div class="xiugaimima" style="background:#fff;">我的发票</div>
+  <ion-list style="margin-bottom: 1rem;">
+    <p class="btnGroup">
+      <button *ngIf="!showLeft" outline ion-button color="secondary" (click)="changeLeft()" style="height:3rem;">已开发票</button>
+      <button *ngIf="showLeft" ion-button color="secondary" style="height:3rem;">已开发票</button>
+      <button *ngIf="!showRight" outline ion-button color="secondary" (click)="changeRight()" style="height:3rem;">开票信息</button>
+      <button *ngIf="showRight" ion-button color="secondary" style="height:3rem;">开票信息</button>
+    </p>
+  </ion-list>
+  <div *ngIf="showLeft" class="listBox">
+    <div *ngIf="alreadyList.length>0">
+      <div class="listCell" *ngFor="let item of alreadyList">
+        <div class="topInfo">
+        <p class="name clearfix"><span>订单编号:{{item.order_sn}}</span><span>{{item.time}}</span></p>
+      </div>
+        <div class="bottomInfo clearfix">
+          <p>发票类型:增值税普通发票</p>
+          <p>发票抬头:xxx公司</p>
+        </div>
+      </div>
+      <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="loading">
+        <ion-infinite-scroll-content loadingText="努力加载中"></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+      <div *ngIf="showTip" style="text-align: center;color:#9a9a9a;">没有更多了</div>
+    </div>
+    <div *ngIf="alreadyList.length==0">
+      <p style="text-align: center;color:#999;">暂无已开发票</p>
+    </div>
+  </div>
+  <div *ngIf="showRight">
+    <div *ngIf="infoList.length>0" class="listBox">
+      <div class="listCell" *ngFor="let item of infoList">
+        <div class="topInfo">
+          <p class="name clearfix">
+            <span>{{item.name}}</span>
+            <span *ngIf="item.type==0">个人</span>
+            <span *ngIf="item.type==1">公司</span>
+          </p>
+        </div>
+        <div class="bottomInfo clearfix">
+          <div class="default" *ngIf="aid==item.id || default==item.id">
+            <img src="./assets/imgs/checked.png">
+            <span class="checked">默认抬头</span>
+          </div>
+          <div class="default" *ngIf="aid!=item.id && default!==item.id" (click)="setDefTit(item.id)">
+            <img src="./assets/imgs/check.png">
+            <span class="unchecked">设为默认抬头</span>
+          </div>
+          <div class="edit">
+            <div class="subEdit" (click)="cp.goto({view:'mymodreceipt',genre:0,aid:item.id})">
+              <ion-icon name='create'></ion-icon>
+              修改
+            </div>
+            <div class="subEdit" (click)="deleteRep(item.id)">
+              <ion-icon name='trash'></ion-icon>
+              删除
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="infoList.length==0" class="listBox">
+      <p style="text-align: center;color:#999;">暂无开票信息</p>
+    </div>
+    <p class="subBtn">
+      <button ion-button icon-start block style="background: linear-gradient(to right, #DF0371, #FA001B)" (click)="cp.goto({view:'mymodreceipt',genre:1,aid:-1})">
+        <ion-icon name="add-circle"></ion-icon>
+        添加开票信息
+      </button>
+    </p>
+  </div>
+</ion-content>

@@ -1,0 +1,96 @@
+<app-header title="金秋梦装饰"></app-header>
+<p class="topTip">
+  <small>免费量房+3D全景设计+一站式购物+免费送货+免费安装+上门售服务</small>
+</p>
+<ion-content>
+  <!--<app-top></app-top>-->
+  
+  <div *ngIf="hardInfo" style="margin-top:78px;">
+    <ion-segment [(ngModel)]="pet" style="padding:1rem 0.5rem;display: flex;flex-wrap: wrap;">
+      <ion-segment-button [ngClass]="{'segment-buttonSelect':item.isSelect}" value="promotionmall"
+                          *ngFor="let item of hardData;let i = index" (click)='mallList(item.id,i)'>
+        {{item.title}}
+      </ion-segment-button>
+    </ion-segment>
+    <div [ngSwitch]="pet">
+      <ion-list *ngSwitchCase="'promotionmall'" style="margin-bottom: 4rem;">
+        <!-- <div>
+          <img src="{{hardInfo.pic_url}}" alt="" style="width:100%;height:15rem;object-fit:cover;">
+        </div> -->
+        <div class="design_imgsbox" *ngIf="!videoShow" >
+          <img src="{{hardInfo.pic_url}}" alt="" height="200px" width="100%" (click)="showBigImgBlock(hardInfo.pic_url)">
+          <div class="quanjing" *ngIf="quanjingImg">
+            <a href="{{hardInfo.panorama}}">
+              <img src="../../assets/imgs/vr_icon_1.png" alt="">
+            </a>
+          </div>
+        </div>
+        <video src="{{hardInfo.video}}" *ngIf="videoShow" style="width:100%;height:20rem;"></video>
+        <ion-item-group class="in_design_cost">
+          <ion-item no-lines>
+            <!-- <ion-label>{{hardInfo.title}}每平米单价 <span>{{hardInfo.price}}</span> 元</ion-label> -->
+            <ion-label>{{hardInfo.title.slice(0,3)}}：<span>{{hardInfo.price}}</span> 元/平米</ion-label>
+          </ion-item>
+          <ion-item no-lines>
+            <ion-label>待施工房屋面积 <input type="text" class="in_design_input" [(ngModel)]="hardcoverping" maxlength="15"> 平方米</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>装修费合计<span class="design_totalmoney" style="font-size: 1.7rem;color:red;">{{hardcoverping*hardInfo.price || 0}}</span>元
+            </ion-label>
+          </ion-item>
+        </ion-item-group>
+        <!-- 套餐地顶墙造型选择 -->
+        <h4 class="hardcover_chooseh">{{hardInfo.title.slice(0,3)}}造型及材料选择：</h4>
+        <ion-grid *ngFor="let item of roomDetail.afterArr;let i = index">
+          <h2 style="padding:0 1rem;">{{item[0].name}}</h2>
+          <ion-row>
+            <ion-col col-6 *ngFor="let every of item;let j = index;">
+              <ion-card (click)="checkedImg(i,j)" style="border:1px solid #999;width:100%;margin:4px 0;">
+                <img src="{{every.pic}}" class="hardwallimg"/>
+                <ion-card-content class="hardcover_contents">
+                  <ion-card-title class="hardcover_title">
+                    {{every.value}}
+                  </ion-card-title>
+                  <ion-icon *ngIf="roomDetail.afterArr[i][j].checked" name="checkmark-circle"
+                            class="selectedIcon"></ion-icon>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <!--<button ion-button color="danger" class="hardcover_product">选项提交完成</button>-->
+
+        <h6 style="padding:1rem 2rem;line-height:2rem;white-space: normal;color:#FF006C">友情提示：<br/>点击“加入购物车”之前，请您仔细阅读“套餐介绍”里的全部内容。</h6>
+        <button ion-button style="width:90%;margin:0 5% 1rem;background:linear-gradient(to right, #DF0371, #FA001B)"
+                (click)="designaddShopping()">提交订单
+        </button>
+        <h1></h1>
+        <button ion-button class="hardcover_product" style="background:linear-gradient(to right, #DF0371, #FA001B)"
+                (click)="hardcoverClick()">套餐介绍
+        </button>
+      </ion-list>
+    </div>
+
+  </div>
+</ion-content>
+
+
+<!-- 套餐介绍弹窗 -->
+<div class="hardcover" *ngIf="ishardShow">
+  <div class="hardcover_middle">
+    <div class="hardcover_title">
+      <h5>套餐介绍</h5>
+      <ion-icon name="ios-close" class="hardcover_close" (click)="hardcoverClick()"></ion-icon>
+    </div>
+
+    <div class="hardcoverimgs" [innerHtml]="hardContent" style="white-space: normal;">
+      <!-- {{hardContent}} -->
+    </div>
+
+  </div>
+</div>
+
+<div class="showBigImg" (click)="showBigImgNone()"
+      [ngStyle]="{'display': showBigImgNum == 0 ? 'none' : 'block'}">
+  <img src="{{ showBigImgSrc }}"/>
+</div>

@@ -1,0 +1,49 @@
+<app-header title="我的个人中心"></app-header>
+
+<ion-content>
+  <div class="xiugaimima">编辑收货地址</div>
+  <p class="tip">(手机和座机号码至少填一项，其余都是必填项)</p>
+  <ion-list>
+    <ion-item>
+      <ion-label fixed>收货人：</ion-label>
+      <ion-input type="text" [(ngModel)]="uname" placeholder="请输入收货人真实姓名"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>手机号码：</ion-label>
+      <ion-input type="tel" [(ngModel)]="mobile" placeholder="请输入收货人联系电话"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>座机号码：</ion-label>
+      <ion-input type="text" [(ngModel)]="tel" placeholder="区号-电话号码-分机"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>所在地区：</ion-label>
+      <ion-select [(ngModel)]="province" cancelText="取消" okText="确定" placeholder="{{province}}" (ngModelChange)="chooseProvince()">
+        <ion-option *ngFor="let item of provinces" value="{{item.region_id}}">{{item.region_name}}</ion-option>
+      </ion-select>
+      <ion-select [(ngModel)]="city" cancelText="取消" okText="确定" placeholder="{{city}}" (ngModelChange)="chooseCity()">
+        <ion-option *ngFor="let item of cities" value="{{item.region_id}}">{{item.region_name}}</ion-option>
+      </ion-select>
+      <ion-select [(ngModel)]="district" cancelText="取消" okText="确定" placeholder="{{district}}">
+        <ion-option *ngFor="let item of districts" value="{{item.region_id}}">{{item.region_name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>详细地址：</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-textarea type="text" [(ngModel)]="addrDetails" placeholder="请填写详细地址"></ion-textarea>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-label>设为默认地址：</ion-label>
+      <ion-toggle></ion-toggle>
+    </ion-item>
+  </ion-list>
+  <p class="subBtn">
+    <button ion-button block (click)="subMsg()" style="background: linear-gradient(to right, #DF0371, #FA001B)">
+      保存
+    </button>
+  </p>
+</ion-content>

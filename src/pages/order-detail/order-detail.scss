@@ -1,0 +1,229 @@
+page-order-detail {
+  img{
+    object-fit: cover;
+  }
+  ion-content{
+    top:44px;
+  }
+  ion-app.ios [padding] .scroll-content {
+    padding: 0;
+    margin: 0;
+  }
+  .shouhuoaddress p{
+    font-size: 1.5rem !important;
+
+  }
+  .topTip {
+    width: 100%;
+    line-height: 2rem;
+    text-align: center;
+    // background: #A9A9A9;
+    //margin-top: 3.7rem;
+    padding: 1rem 0;
+    color: #333;
+    font-size: 1.7rem;
+    border-bottom: 1px solid #999;
+    img{
+      width:1.5rem;
+      height:1.5rem;
+      display: inline-block;
+      margin:0 8px -3px 0;
+    }
+  }
+  .logistics{
+    background:#fff;
+  }
+  .designOrderHeader {
+    width: 100%;
+    background: #fff;
+    color: #333;
+    padding: 1rem;
+    display: flex;
+    align-content: center;
+    div:nth-child(1) {
+      width: 4rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      border-right: 1px solid #999;
+      margin-right: 1rem;
+      img {
+        width: 2rem;
+        height: 2rem;
+      }
+      p {
+        font-size: 1.4rem;
+        margin-top: 0.5rem;
+      }
+    }
+    div:nth-child(2) {
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      p {
+        font-size: 1.4rem;
+        line-height: 2rem;
+      }
+      p:nth-child(1) {
+        padding-bottom: 0.5rem;
+      }
+    }
+  }
+  .logistics{
+    padding:1rem;
+    background:#fff;
+    .kd{
+      //border-top:1px solid #eaeaea;
+      display: flex;
+      flex-direction:row;
+      justify-content: space-between;
+      span{
+        color:#9a9a9a;
+      }
+      padding-bottom:1rem;
+    }
+    .logisticsList{
+      p.courier{
+        padding:1rem 0;
+        height:4.4rem;
+        line-height: 2.4rem;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        border-top:1px solid #eaeaea;
+        font-size:1.6rem;
+        img{
+          float: left;
+          width:2.4rem;
+          height:2.4rem;
+          margin:-2px 10px 0 0;
+        }
+      }
+      .infoList{
+        margin-top:1rem;
+        li{
+          margin-bottom:0.8rem;
+          color:#777;
+        }
+      }
+    }
+  }
+  .designOrderNum {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+    background: #fff;
+    font-size: 1.5rem;
+    div.btn{
+      margin-top:1rem;
+      .btnBox{
+        float: right;
+        .button-outline-ios{
+          border-width:2px !important;
+        }
+      }
+    }
+  }
+  .designOrderTime {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.5rem;
+    background: #FFEFF5;
+  }
+  .orderList {
+    margin-bottom: 0;
+  }
+  .orderList h2:first-child{
+    margin-top:0;
+    font-size:1.5rem;
+  }
+  .orderList p.first span{
+    margin-right:0.8rem;
+  }
+  .orderList p.second span{
+    margin-right:1.5rem;
+    font-size:1.5rem;
+    color:#d4237a;
+  }
+  .designOrderDetail {
+    width: 100%;
+    height: auto;
+    background: #fff;
+    padding: 1rem;
+    margin-bottom:5rem;
+    p {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom:1rem;
+      font-size:1.5rem;
+    }
+    p.orderPrice{
+      border-top:1px solid #f1f1f1;
+      padding:1rem 0 0 0;
+      font-size:1.7rem;
+    }
+    p.orderPrice .allPrice{
+      color:#d4237a;
+    }
+  }
+  .designer {
+    width: 100%;
+    background: #fff;
+    margin-top: 1rem;
+    height: auto;
+    padding:1rem;
+    h1{
+      font-size:1.7rem;
+    }
+    p {
+      height: auto;
+      line-height: 2rem;
+      margin-top:0.8rem;
+      color:#999;
+    }
+  }
+  .designImg {
+    width: 100%;
+    background: #fff;
+    margin-top: 1rem;
+    h4 {
+      border-bottom: 1px solid #d9d9d9;
+      padding-left: 1rem;
+      height: 3rem;
+      line-height: 3rem;
+    }
+    div {
+      padding: 1rem 1rem;
+      img {
+        width: 8rem;
+        height: 8rem;
+      }
+    }
+  }
+  .designMesige {
+    width: 100%;
+    background: #fff;
+    margin-top: 1rem;
+    h4 {
+      border-bottom: 1px solid #d9d9d9;
+      padding-left: 1rem;
+      height: 3rem;
+      line-height: 3rem;
+    }
+    p {
+      height: auto;
+      line-height: 2rem;
+      padding: 0 1rem;
+    }
+    div {
+      padding: 1rem 1rem;
+      img {
+        width: 8rem;
+        height: 8rem;
+      }
+    }
+  }
+}

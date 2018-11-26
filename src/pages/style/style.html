@@ -1,0 +1,142 @@
+<app-header title="金秋梦装饰"></app-header>
+<p class="topTip"><small>免费量房+3D全景设计+一站式购物+免费送货+免费安装+上门售服务</small></p>
+<ion-content class="topIon" style="background: #f1f1f1;">
+  <!--<app-top></app-top>-->
+  
+  <ion-toolbar no-border-top class="styleSegment">
+    <ion-segment [(ngModel)]="zstyle" class="styleButoons">
+      <ion-segment-button value="3D">
+        3D全景图集
+      </ion-segment-button>
+      <ion-segment-button value="plane">
+        平面效果图集
+      </ion-segment-button>
+      <ion-segment-button value="styleAbout">
+        风格介绍
+      </ion-segment-button>
+      <ion-segment-button value="testLike">
+        测试你喜欢的风格
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+  <ion-content id="ion_content" style="background:#f1f1f1;margin-bottom: 45px;">
+    <div [ngSwitch]="zstyle">
+      <ion-list *ngSwitchCase="'3D'" style="margin:0.8rem 0 0 0;">
+        <h4 class="ion3D_h4">
+          <span *ngIf=type style="font-size:1.6rem;"><em style="color:#EA0073">已选</em> | 户型：{{ type }} ; 风格：{{ style }}</span>
+          <span *ngIf=!type style="font-size:1.6rem;">未选 | 请选择户型</span>
+          <div class="model" [ngStyle]="{'display': 1 ==  displayClick3D  ? 'block' : 'none' }">
+            <p>
+              <i>户型：</i>
+              <span *ngFor="let item of items;let i = index" [ngStyle]="{'color':i ==  typeClick  ? '#be0966' : '#808080' }" (click)="typeStyle($event,item.name, item.id,i)">{{item.name}}</span>
+            </p>
+            <p>
+              <i style="height: 3rem;">风格：</i>
+              <span *ngFor="let item of itemStyle;let i = index" [ngStyle]="{'color':i ==  styleClick  ? '#be0966' : '#808080' }" (click)="clickStyle($event,item.name,item.id,i)">{{item.name}}</span>
+            </p>
+            <button class="modelbun" ion-button color="secondary" (click)="modelNone3D()">确认</button>
+          </div>
+        </h4>
+        <button class="styleSelectButton" (click)="modelBlock3D()" ion-button small color="secondary"  style="font-size:1.6rem;padding-right:0;">筛选<ion-icon name="menu" style="margin-left: 0.5rem;"></ion-icon></button>
+        <!--3d全集图景-->
+        <ion-list *ngIf=!nothreeImgList class="ion_content" style="background:#f1f1f1;margin:0;">
+          <ion-item class="ion_item" *ngFor="let item of threeImgList;let i = index">
+            <div>
+              <a (click)="viewCount(item.photo.id)" href="{{item.photo.extra_arr['全景链接'] || item.extra_arr['全景链接']}}">
+                <img src="{{ item.pic_url || item.photo.pic_url }}"/>
+              </a>
+            </div>
+           
+            <p class="styleTxtPfirst"><span>{{ item.name || item.photo.name   }}</span><span>装修总价{{ item.photo.extra_arr['总价'] || item.extra_arr['总价'] }}万</span>
+            </p>
+            <p class="styleTxtPsecond">
+              <span>{{ item.photo.extra_arr['面积'] || item.extra_arr['面积'] }}平米</span>
+              <span>{{ item.photo.extra_arr['户型'] || item.extra_arr['户型'] }}</span>
+              <span><ion-icon name="md-eye" style="margin-right: 0.3rem;"></ion-icon>{{ item.photo.view_count }}</span>
+            </p>
+          </ion-item>
+        </ion-list>
+        <div *ngIf=nothreeImgList class="plane_list">
+          <p style="height: 5rem;line-height: 5rem;text-align: center;">暂无数据哦~</p>
+        </div>
+      </ion-list>
+      <!--平面效果图集-->
+      <ion-list *ngSwitchCase="'plane'"  style="margin:0.8rem 0 0 0;background:#f1f1f1;">
+        <h4 class="ion3D_h4" style="">
+          <span *ngIf=planeArea style="font-size:1.6rem;"><em style="color:#EA0073">已选</em> |  风格：{{ planeStyle }};区域：{{ planeArea }}</span>
+          <span *ngIf=!planeArea style="font-size:1.6rem;">未选 请选择区域</span>
+          <div class="model" [ngStyle]="{'display': 1 ==  displayClick  ? 'block' : 'none' }">
+            <p>
+              <i>风格</i>
+              <span *ngFor="let item of planeStyleList;let i = index" [ngStyle]="{'color':i ==  planeStyleClick  ? '#be0966' : '#808080' }" (click)="planetypeStyle($event, item.name,i)">{{item.name}}</span>
+            </p>
+            <p>
+              <i style="height: 3rem;">区域</i>
+              <span *ngFor="let item of planeAreaList;let i = index" [ngStyle]="{'color':i ==  planeAreaClick  ? '#be0966' : '#808080' }" (click)="planeclickStyle($event, item.name,i)">{{item.name}}</span>
+            </p>
+            <button class="modelbun" ion-button color="secondary" (click)="modelNone()">确认</button>
+          </div>
+        </h4>
+        <button class="styleSelectButton" (click)="modelBlock()" ion-button small color="secondary" style="font-size:1.6rem;padding-right:0;">筛选<ion-icon name="menu" style="margin-left: 0.5rem;"></ion-icon></button>
+        <ion-list class="plane_list" style="margin:0 0 0.8rem 0;">
+          <ion-item class="plane_item" *ngFor="let item of planeContentImgList;let i = index" style="border:1px solid #d9d9d9;">
+            <img src="{{ item.photo.pic_url }}" (click)="showBigImgBlock(item.photo.pic_url)"/>
+            <p>{{ item.photo.name }}</p>
+          </ion-item>
+        </ion-list>
+
+      </ion-list>
+      <!--风格介绍-->
+      <ion-list class="styleAboutList" *ngSwitchCase="'styleAbout'">
+        <ion-item class="styleAboutItem" *ngFor="let item of bottonList;let i = index">
+          <button ion-button [color]="i == ButtonClickNum ? 'secondary' : 'dark'" small
+                  (click)="buttonStyleAbout(i)">{{ item }}
+          </button>
+        </ion-item>
+        <div class="styleAboutDiv">
+          <!--<img style="width: 100%;height: auto;" src="{{ styleAboutArticleF.pic_url }}"/>-->
+          <div [innerHtml]="styleAboutArticleF.content"></div>
+        </div>
+      </ion-list>
+      <!--测试你喜欢的风格-->
+      <ion-list *ngSwitchCase="'testLike'" class="testLikeStyleBun" style="background:#f1f1f1;">
+        <div *ngIf=submit>
+          <p class="testLikeHeader">选择你喜欢的：</p>
+          <h4 class="testLikeH4">{{ itemImgNum+1 }}、{{testLikeStyleImg[itemImgNum].name}}(点击图片可放大)</h4>
+          <ion-grid class="testLikecon">
+            <ion-col col-6 class="no-border testLikeItem flex" *ngFor="let item of itemImgFirst;let i = index"
+                     (click)="listLike($event, item,i)">
+              <ion-row style="border:1px solid #d9d9d9;">
+                <img (click)="showBigImgBlock(item.pic_url)" style="height: 10rem;width:100%;border:1px solid #d9d9d9;" src="{{item.pic_url}}"/>
+                <p class="iontestLike_p">
+                  <i [ngStyle]="{'background':i ==  radio  ? '#E20368' : '#fff' }" class="radio"></i>
+                  <span *ngIf=" i != radio ">{{testLikeStyleImg[itemImgNum].name}}</span>
+                  <span *ngIf=" i == radio " style="color:#E20368">{{ item.name }}</span>
+                </p>
+              </ion-row>
+            </ion-col>
+          </ion-grid>
+          <button (click)="toNext()" ion-button block>{{ Button }}</button>
+        </div>
+        <div *ngIf=submitT>
+          <span style="margin-left:1rem;">你的选择：</span>
+          <ion-grid class="testLikecon">
+            <ion-col col-6 class="no-border testLikeItem flex" *ngFor="let item of itemImgSecond;let i = index"
+                     (click)="listLike($event, item,i)">
+              <ion-row>
+                <p class="iontestLike_p" style="width: 100%">{{testLikeStyleImg[i].name}}:<span>{{item.name}}</span></p>
+                <img style="height: 10rem;width:100%;margin-bottom: 0.3rem;" src="{{item.pic}}"/>
+              </ion-row>
+            </ion-col>
+          </ion-grid>
+          <!--<button ion-button block>确定</button>-->
+        </div>
+        
+      </ion-list>
+    </div>
+  </ion-content>
+</ion-content>
+<div class="showBigImg" (click)="showBigImgNone()"
+      [ngStyle]="{'display': showBigImgNum == 0 ? 'none' : 'block'}">
+  <img src="{{ showBigImgSrc }}"/>
+</div>

@@ -1,0 +1,37 @@
+<app-header title="金秋梦装饰"></app-header>
+<p class="topTip"><small>免费量房+3D全景设计+一站式购物+免费送货+免费安装+上门售服务</small></p>
+<ion-content style="background:#FFE1ED;">
+  <!--<app-top></app-top>-->
+  <!-- <ion-searchbar class="cooperateSearch" (ionInput)="getItems($event)"></ion-searchbar> -->
+  
+  <div class="search_box clearfix">
+    <div>
+      <input type="text" [(ngModel)]="inputVal">
+      <button (click)="getItems()">搜索</button>
+    </div>
+  </div>
+  <div class="serchcalss clearfix">
+    <button class="cooperateButton" ion-button color="secondary" (click)="showAlert(1)"  [ngClass]="{'first':(classFlag==1?true:false)}">申明</button>
+    <button class="cooperateButton" ion-button color="secondary" (click)="allQuestion(2)" [ngClass]="{'first':(classFlag==2?true:false)}">全部</button>
+    <button class="cooperateButton" ion-button color="secondary" (click)="allQuestionbefore(3)" [ngClass]="{'first':(classFlag==3?true:false)}">装修前</button>
+    <button class="cooperateButton" ion-button color="secondary" (click)="allQuestionIng(4)" [ngClass]="{'first':(classFlag==4?true:false)}">装修中</button>
+    <button class="cooperateButton" ion-button color="secondary" (click)="allQuestionAfter(5)" [ngClass]="{'first':(classFlag==5?true:false)}">装修后</button>
+  </div>
+    <ion-card *ngFor="let item of question;let i = index">
+      <ion-card-header (click)="toggle(i)"> <span style="color:#e00472;">00{{i+1 }}问：</span> {{item.question}}
+        <ion-icon float-right [name]="i == questionIndex? 'arrow-up' : 'arrow-down'"></ion-icon>
+      </ion-card-header>
+      <ion-card-content [hidden]="i != questionIndex" style="white-space: normal;">
+        {{ item.answer }}
+      </ion-card-content>
+    </ion-card>
+</ion-content>
+<!-- 弹出申明 -->
+<div *ngIf="showAlertTxt" class="showAlertCoo">
+  <div class="showAlertmid">
+    <p class="showAlert_p" style="height: 180rpx;">{{ showAlertArticle.title }}</p>
+    <div [innerHtml]="showAlertArticle.content" class="showarticle_content"></div>
+    <p class="showAlertTrue" (click)="showAlertFalse()">确定</p>
+  </div>
+</div>
+

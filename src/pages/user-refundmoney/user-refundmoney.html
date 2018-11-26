@@ -1,0 +1,28 @@
+<!--
+  Generated template for the UserRefundmoneyPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>user-refundmoney</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list class="userRefundbox">
+    <ion-item>退款金额 <span>￥300</span></ion-item>
+    <ion-item>
+      <ion-label>请选择退款原因</ion-label>
+      <ion-select  interface="popover" >
+        <ion-option *ngFor="let item of userRefund">{{item}}</ion-option>
+      </ion-select> 
+    </ion-item> 
+    <textarea name="" id="" cols="30" rows="10" class="user_refundtext" placeholder="请具体描述退款原因"></textarea>
+  </ion-list>
+  <button ion-button class="user_refundsubmit">提交</button>
+</ion-content>

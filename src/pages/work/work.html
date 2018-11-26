@@ -1,0 +1,153 @@
+<link rel="stylesheet" href="/assets/icon/videogular.css">
+<app-header title="金秋梦装饰"></app-header>
+<p class="topTip"><small>免费量房+3D全景设计+一站式购物+免费送货+免费安装+上门售服务</small></p>
+<ion-content>
+  <!--<app-top></app-top>-->
+  
+  <div style="margin-top:95px;">
+    <ion-segment [(ngModel)]="work">
+      <ion-segment-button value="workproduct">施工下单和介绍</ion-segment-button>
+      <ion-segment-button value="workleader" (click)="doInfinite()">施工长</ion-segment-button>
+      <ion-segment-button value="workmonitor">远程监控</ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="work">
+    <!-- 施工下单和介绍 -->
+    <ion-list *ngSwitchCase="'workproduct'" style="margin-top:2rem;">
+      <div *ngIf="workInfo">
+        <div class="design_imgsbox">
+          <img src="{{workInfo.pic_url}}" *ngIf="!videoShow" (click)="showBigImgBlock(workInfo.pic_url)" alt="" height="200px" width="100%" style="object-fit: cover;">
+          <div class="quanjing" *ngIf="quanjingImg">
+            <a href="{{workInfo.panorama}}">
+              <img src="../../assets/imgs/vr_icon_1.png" alt="">
+            </a>
+          </div>
+        </div>
+        <vg-player *ngIf="videoShow">
+            <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls style="height:20rem;">
+                <source src="{{workInfo.video}}" type="video/mp4">
+            </video>
+        </vg-player>
+        <div class="recommend clearfix">
+          <span>推荐指数</span>
+          <div *ngIf="workInfo.rec_star==1">
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+          </div>
+          <div *ngIf="workInfo.rec_star==2">
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+          </div>
+          <div *ngIf="workInfo.rec_star==3">
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+          </div>
+          <div *ngIf="workInfo.rec_star==4">
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+          </div>
+          <div *ngIf="workInfo.rec_star==5">
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+            <ion-icon ios="ios-star" md="md-star"></ion-icon>
+          </div>
+        </div>
+        <ion-item-group class="in_design_cost">
+          <ion-item>
+              <ion-label style="color:#FF006C;font-size: 1.3rem;">全国每一户工地都按照同样的工艺标准进行施工作业。</ion-label>
+          </ion-item>
+          <ion-item   *ngFor="let item of workxjs;let i =index" (click)="designradio(i,item)">
+            <ion-label><span class="design_span" [ngStyle]="{ 'background': i == designRadio ? '#f66' : '#fff'}"></span>每平米施工费单价 <span >{{item}}</span> 元</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>待施工房屋 <input type="text" class="in_design_input" [(ngModel)]="inputx" maxlength="5">  平米</ion-label>
+          </ion-item>
+          <ion-item *ngIf="houseList.length>0">
+          <ion-label>选择房屋</ion-label>
+          <ion-select interface="popover" [(ngModel)]="house">
+            <ion-option *ngFor="let h of houseList" value="{{h.id}}">{{h.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+          <ion-item *ngIf="houseList.length==0" class="clearfix">
+            <span style="float:left;">选择房屋</span>
+            <input style="float:right;border:0;text-align: right;" type="text" placeholder="请先提交量房预约" readonly>
+          </ion-item>
+          <ion-item>
+            <ion-label>施工费合计<span class="design_totalmoney" style="font-size: 1.7rem;color:red;">{{designPlace*inputx || 0}} </span>元</ion-label>
+          </ion-item>
+        </ion-item-group>
+        <h6 style="padding:1rem 2rem;line-height:2rem;white-space: normal;"><em style="color:#FF006C">友情提示：</em><br/>点击“加入购物车”之前，请您仔细阅读“施工介绍”里的全部内容。</h6>
+        <button ion-button style="background:linear-gradient(to right, #DF0371, #FA001B);width:90%;margin:0 5%;" (click)="workaddShopping()">提交订单</button>
+        <!-- <button ion-button color="secondary" style="width:90%;margin:2rem 5% 0;">施工介绍</button> -->
+        <div class="work_introduce">施工介绍</div>
+        <div style="padding:1rem;white-space: normal;" [innerHtml]="workInfo.content" class="work_content">
+        </div>
+      </div>
+    </ion-list>
+
+    <!-- 施工长 -->
+    <ion-list *ngSwitchCase="'workleader'" style="margin-bottom: 5rem;">
+      <div class="work-choose">
+        <p class="choose-title">
+          <span class="title-choose">已选</span>
+          <span class="title-con">所在城市：{{articleP}}{{articleC}};性别：{{sex}};</span>
+          <!-- <span>暂无选择</span> -->
+        </p>
+        <p class="choose-screen" (click)="chooseClick()">
+          <span>筛选</span>
+          <ion-icon name="menu"></ion-icon>
+        </p>
+        <div class="work_city"  *ngIf="select">
+          <form [formGroup]="pageForm">
+            <ion-item style="padding:0">
+              <ion-label>所在城市</ion-label>
+              <ion-select formControlName="province" (ionChange)="change(pageForm.controls.province.value)" interface="popover">
+                <ion-option *ngFor="let item of provinces" value="{{item.region_id}}" >{{item.region_name}}</ion-option>
+              </ion-select>
+              <ion-select formControlName="city" (ionChange)="change(pageForm.controls.city.value)" interface="popover" [hidden]="!pageForm.controls.province.value">
+                <ion-option *ngFor="let item of cities" value="{{item.region_id}}">{{item.region_name}}</ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-item style="padding:0">
+              <ion-label>性别</ion-label>
+              <ion-select formControlName="gender" interface="popover" (ionChange)="sexChange()" [(ngModel)]="sex">
+                <ion-option value="男">男</ion-option>
+                <ion-option value="女">女</ion-option>
+              </ion-select>
+            </ion-item>
+            <button ion-button (click)="workerSelected()">确认</button>
+          </form>
+        </div>
+      </div>
+      <div class="cardBox">
+        <div class="cardCell" *ngFor='let item of workerListData;let i = index' (click)="cp.goto({view:'work-detail',id:item.id})">
+          <img src="{{item.user_profile.photo_url}}"/>
+          <p>
+            <span>{{item.nickname}}</span>
+            <span>
+                <ion-icon name="pin" color="rose"></ion-icon>
+                {{item.province_text}}{{item.city_text}}
+              </span>
+          </p>
+        </div>
+      </div>
+    </ion-list>
+
+    <!-- 远程监控 -->
+    <ion-list *ngSwitchCase="'workmonitor'">
+      <ion-item>
+          <img src="./assets/imgs/about.jpg" alt="" (click)="workVideoAlert()">
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
+
+<div class="showBigImg" (click)="showBigImgNone()"
+      [ngStyle]="{'display': showBigImgNum == 0 ? 'none' : 'block'}">
+  <img src="{{ showBigImgSrc }}"/>
+</div>

@@ -1,0 +1,208 @@
+page-design-detail {
+  .pmalldetail_crumbs{
+    padding:1.5rem;
+  }
+  .list-ios{
+    margin: -1px 0 0px !important;
+  }
+  ion-content {
+    top: 44px;
+  }
+  img{
+    object-fit: cover;
+  }
+  .commentlist{
+    width:100%;
+    height:auto;
+    overflow: hidden;
+    margin:2% 0 5%;
+    background:#fff;
+    padding:5%;
+  }
+  .fixed-content, .scroll-content {
+    margin-top: 0 !important;
+    margin-bottom: 3rem;
+  }
+  .topTip {
+    position: fixed;
+    // top: 44px;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    height: 34px;
+    line-height: 34px;
+    z-index: 100;
+    text-align: center;
+    color: #666;
+    white-space: nowrap;
+    overflow: auto;
+    small {
+      font-size: 1.1rem;
+    }
+  }
+  .work-detail {
+    width: 100%;
+    overflow: hidden;
+    background: #fff;
+    img {
+      width: 100%;
+      display: block;
+    }
+    .detail-con {
+      margin: 1rem 1rem 0;
+      height: 3rem;
+      line-height: 3rem;
+      font-size: 1.5rem;
+      overflow: hidden;
+      color: #333;
+      span {
+        display: block;
+        width: 50%;
+        height: 3rem;
+        line-height: 3rem;
+      }
+      .con-name {
+        float: left;
+        text-align: left;
+      }
+      .con-redress {
+        float: right;
+        text-align: right;
+        font-size: 1rem;
+        color: #666;
+      }
+    }
+    .detail-good {
+      margin: 1rem 1rem 1rem;
+      height: 3rem;
+      line-height: 3rem;
+      .good {
+        margin-right: 0.5rem;
+      }
+      .good-title {
+        padding: 0.5rem;
+        color: #12b72d;
+      }
+    }
+  }
+  .detail-resume {
+    width: 100%;
+    overflow: hidden;
+    .resume-title {
+      width: 100%;
+      height: 3.5rem;
+      line-height: 3.5rem;
+      text-align: center;
+      background: #3d3d3d;
+      font-size: 1.6rem;
+      color: #fff;
+      font-weight: 500;
+    }
+  }
+  // 评论列表
+  .in_designtime {
+    font-size: 1.4rem;
+    line-height: 3rem;
+    height: 3rem;
+    color: #9D9D9D;
+    span {
+      display: block;
+      float: left;
+      margin-right: 1rem;
+    }
+  }
+  .label-ios {
+    margin: 0;
+  }
+  .item-ios.item-block .item-inner {
+    padding-right: 0 !important;
+  }
+  .in_design_xiaoguo {
+    font-size: 1.4rem;
+    background: #f8f8f8;
+    height: 3.5rem;
+    line-height: 3.5rem;
+    width: 100%;
+    color: #595959;
+    span {
+      width: 33.3%;
+      display: block;
+      float: left;
+    }
+  }
+  .in_comment_content {
+    width: 100%;
+    font-size: 1.7rem;
+    white-space: normal;
+    color: #333;
+    line-height: 2.5rem;
+  }
+  .item-ios ion-thumbnail {
+    padding: 0.5rem 1.7rem;
+  }
+  .in_comment_imgbox {
+    img {
+      width: 30%;
+      height: 10rem;
+      float: left;
+      margin-right: 3.3%;
+    }
+  }
+  .page-design .scroll-content .item-ios ion-thumbn {
+    padding: 1.7rem !important;
+  }
+  .in_design_avatar {
+    display: inline-block !important;
+    width: 3rem !important;
+    height: 3rem !important;
+    border-radius: 50%;
+  }
+  .ion-app.ios [padding] .scroll-content {
+    padding: 0;
+  }
+  .segment-ios .segment-button.segment-activated {
+    background: #15B72E !important;
+    border-color: #15B72E;
+    color: #fff;
+  }
+  .segment-ios .segment-button {
+    border-color: #3d3d3d;
+    color: #333;
+  }
+  .design_detailli {
+    padding: 1rem;
+    li {
+      line-height: 2.6rem;
+      font-size: 1.4rem;
+      position: relative;
+      white-space: normal !important;
+      button {
+        position: absolute;
+        right: 1rem;
+        top: 0;
+      }
+    }
+
+  }
+  .design_exprice {
+    width: 97%;
+    height: auto;
+    padding: 1rem;
+    border: 1px solid #d9d9d9;
+    margin-bottom: 1rem;
+    p {
+      white-space: normal !important;
+      line-height: 3rem !important;
+      span {
+        color: #333;
+        font-size: 1.5rem;
+      }
+    }
+  }
+  .designimg {
+    width: 48%;
+    height: 15rem;
+    float: left;
+    margin: 1%;
+  }
+}

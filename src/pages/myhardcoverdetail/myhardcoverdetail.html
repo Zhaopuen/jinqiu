@@ -1,0 +1,100 @@
+<app-header title="我的订单"></app-header>
+<ion-content padding>
+  <div class="ddetail">精装套餐订单详情</div>
+  <div *ngFor="let item of hardCoverInfo,let key = index">
+    <ion-card-content class="designOrderHeader">
+      <div>
+        <img src="./assets/imgs/address.jpg"/>
+        <p>地址</p>
+      </div>
+      <div>
+        <p>{{ item.address }}</p>
+        <p>{{ item.consignee }}  {{ item.mobile }}</p>
+      </div>
+    </ion-card-content>
+    <div class="my_designorderbox">
+      <div class="my_designordernum clearfix">
+        <span>订单编号：{{item.order_sn}}</span>
+        <button ion-button outline color="rose" small (click)="goodsReceived(item.id,item.subject_id)">确认并完成评价</button>
+      </div>
+      <div class="my_designtuime">
+        <span>订单时间：{{item.time}}</span>
+      </div>
+      <div class="my_designmoney">
+        <p>{{item.order_goods[0].goods_info_arr.title}}&nbsp;&nbsp;<span>￥{{item.price}}</span></p>
+        <h4><em>{{item.order_goods[0].goods_info_arr.title}}每平米单价：</em>{{item.order_goods[0].typeArr[0]}}元；</h4>
+        <h4><em>待施工房屋面积：</em>{{item.order_goods[0].typeArr[1]}}平方米</h4>
+        <h4><em>项目内容：</em><span *ngFor="let pro of item.order_goods[0].typeArr[2]">{{pro.name}},</span></h4>
+        <ul class="picList">
+          <li *ngFor="let pro1 of item.order_goods[0].typeArr[2]">
+            <img src="{{pro1.pic}}" alt="">
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="designerbox" *ngIf="item.order_staff.length>0">
+      <div *ngFor="let staff of item.order_staff">
+        <h2 *ngIf="staff.type==1">设计师</h2>
+        <h2 *ngIf="staff.type==2">施工长</h2>
+        <h2 *ngIf="staff.type==3">水电工</h2>
+        <h2 *ngIf="staff.type==4">瓦工</h2>
+        <h2 *ngIf="staff.type==5">木工</h2>
+        <h2 *ngIf="staff.type==6">油工</h2>
+        <h2 *ngIf="staff.type==7">小工</h2>
+        <h2 *ngIf="staff.type==8">合作公司</h2>
+        <div class="designerInfomation">
+          <span>姓名</span>
+          <em>{{staff.user.nickname}}</em>
+        </div>
+        <div class="designerInfomation">
+          <span>联系方式</span>
+          <em>手机 {{staff.user.tel}}</em>
+          <!--<em>微信号  1452057654</em>-->
+        </div>
+      </div>
+    </div>
+    <div class="designerbox1">
+      <ion-list class="designImg">
+        <button ion-item>
+          设计图全景
+        </button>
+      </ion-list>
+      <!--<ion-list class="designImg">
+        <button ion-item>
+          硬装全景
+        </button>
+      </ion-list>-->
+    </div>
+    <!--<div>
+      <div class="designerbox">
+        <h2>量房预留信息</h2>
+        <div class="designerinfo">
+          <p>您的姓氏：{{item.house_info_arr.last_name}}</p>
+          <p>您的名字：{{item.house_info_arr.first_name}}</p>
+          <p>您的性别：{{gender}}</p>
+          <p>待量房屋地址：{{item.house_info_arr.address}}</p>
+          <p>待量房屋面积：{{item.house_info_arr.area}}平方米</p>
+          <p>装修类型：{{item.house_info_arr.type==0?'新房':'装修'}}</p>
+          <p>期望装修风格：{{item.house_info_arr.style_text}}</p>
+          <p>您的装修费用预算：{{item.house_info_arr.budget_lower_limit}}万元-{{item.house_info_arr.budget_upper_limit}}万元</p>
+          <p>计划开始时间：{{item.house_info_arr.decoration_date_start}}-{{item.house_info_arr.decoration_date_end}}</p>
+          <p>希望入住时间：{{item.house_info_arr.checkin_date_start}}-{{item.house_info_arr.checkin_date_end}}</p>
+          <p>您是通过什么方式知道我们平台：{{item.house_info_arr.source_from}}</p>
+          <p>您对房屋的装修有什么要求和期待：{{item.house_info_arr.remark}}</p>
+          <p>户型图</p>
+          <ul class="picList clearfix">
+            <li *ngFor="let pic1 of item.house_info_arr.apartment_layout_pics_arr">
+              <img src="{{pic1}}" alt="">
+            </li>
+          </ul>
+          <p>您喜欢或期待的装修效果图</p>
+          <ul class="picList clearfix">
+            <li *ngFor="let pic2 of item.house_info_arr.decoration_effect_pics_arr">
+              <img src="{{pic2}}" alt="">
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>-->
+  </div>
+</ion-content>

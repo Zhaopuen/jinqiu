@@ -1,0 +1,408 @@
+<app-header title="我的订单"></app-header>
+<ion-content>
+  <div class="box orderboxall">
+    <ion-segment color="secondary" mode="ios" [(ngModel)]="order">
+      <ion-segment-button *ngFor="let item of titleList" value="{{item.value}}" (click)="getOthers(item.sid)">
+        {{item.name}}
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div [ngSwitch]="order">
+    <div *ngSwitchCase="0">
+      <div class="box types orderboxs">
+        <ion-segment color="rose" mode="md" [(ngModel)]="all">
+          <ion-segment-button  value="0" (click)="getProducts(0)">
+            全部
+            <div class="bolder-sm"></div>
+          </ion-segment-button>
+          <ion-segment-button  value="1" (click)="getProducts(1)">
+            待付款
+            <div class="bolder-sm"></div>
+          </ion-segment-button>
+          <ion-segment-button  value="2" (click)="getProducts(2)">
+            待发货
+            <div class="bolder-sm"></div>
+          </ion-segment-button>
+          <ion-segment-button  value="3" (click)="getProducts(3)">
+            待收货
+            <div class="bolder-sm"></div>
+          </ion-segment-button>
+          <ion-segment-button  value="4" (click)="getProducts(4)">
+            待评价
+            <div class="bolder-sm"></div>
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+      <div  [ngSwitch]="all">
+        <!--全部订单-->
+        <div *ngSwitchCase="'0'">
+          <!--订单列表-->
+          <div *ngIf="brandList.length>0">
+            <div class="orderCell" *ngFor="let item of brandList">
+              <p class="orderDetails clearfix">
+                <span>订单编号：{{item.order_sn}}</span>
+                <button ion-button outline small class="btnDet" (click)="cp.goto({view:'order-detail',id:item.id})">订单详情</button>
+              </p>
+              <p class="complete clearfix">
+                
+                <span>订单时间：{{item.time}}</span>
+                <span *ngIf="item.status==0 && item.pay_status==0" class="rightSpan">待付款</span>
+                <span *ngIf="item.status==1 && item.pay_status==1 && item.shipping_status==0" class="rightSpan">待发货</span>
+                <span *ngIf="item.status==1 && item.pay_status==1 && item.shipping_status==1" class="rightSpan">待收货</span>
+                <span *ngIf="item.status==1 && item.pay_status==1 && item.shipping_status==2" class="rightSpan">已收货</span>
+                <span *ngIf="item.status==3" class="rightSpan" style="color:#999;">已失效</span>
+                <span *ngIf="item.status==4" class="rightSpan">待评价</span>
+                <span *ngIf="item.status==5" class="rightSpan">已完成</span>
+              </p>
+              <ion-list class="noMargin">
+                <ion-item *ngFor="let brand of item.order_goods">
+                  <ion-thumbnail item-start>
+                    <img src="{{brand.goods_info_arr.pic_url}}">
+                  </ion-thumbnail>
+                  <h2 class="listTit">{{brand.goods_info_arr.title}}</h2>
+                  <p><span *ngFor="let type of brand.typeArr">{{type}}</span></p>
+                  <p>
+                    <span class="price">￥{{brand.goods_info_arr.price}}</span>
+                    <!--<del class="del">￥260</del>-->
+                    <span style="color:#333;">×<em>{{brand.num}}</em></span>
+                  </p>
+                </ion-item>
+              </ion-list>
+              <div class="allPrice clearfix">
+                <div class="subAllPrice">
+                  <span>共<em>{{item.order_goods.length}}</em>件商品</span>
+                  <span>合计：<em>￥{{item.price}}</em></span>
+                </div>
+              </div>
+              <div class="allPrice clearfix">
+                <!-- 待付款 -->
+                <div *ngIf="item.status==0 && item.pay_status==0" class="btnBox">
+                  <button ion-button outline color="rose" small (click)="cancelOrder(item.id)">取消订单</button>
+                  <button ion-button outline color="rose" small (click)="cp.goto({view:'user-contact'})">联系客服</button>
+                  <button ion-button outline color="rose" small (click)="pay(item.id)">立即付款</button>
+                </div>
+                <!-- 待发货 -->
+                <div *ngIf="item.status==1 && item.pay_status==1 && item.shipping_status==0"  class="btnBox">
+                  <button ion-button outline color="rose" small (click)="cancelOrder(item.id)">取消订单</button>
+                  <button ion-button outline color="rose" small (click)="cp.goto({view:'user-contact'})">联系客服</button>
+                  <button ion-button outline color="rose" small (click)="refund(item.id)">退款</button>
+                </div>
+                <!-- 待收货 -->
+                <div *ngIf="item.status==1 && item.pay_status==1 && item.shipping_status==1" class="btnBox">
+                  <button ion-button outline color="rose" small (click)="cp.goto({view:'myviewflow',id:item.id,no:item.tracking_number})">查看物流</button>
+                  <button ion-button outline color="rose" small (click)="returnGoods(item.id)">退货退款</button>
+                  <button ion-button outline color="rose" small (click)="cp.goto({view:'user-contact'})">联系客服</button>
+                  <button ion-button outline color="rose" small (click)="goodsReceived(item.id,item.subject_id)">确认收货</button>
+                </div>
+                <!-- 待评价 -->
+                <div *ngIf="item.status==4" class="btnBox">
+                  <button ion-button outline color="rose" small (click)="cp.goto({view:'user-contact'})">联系客服</button>
+                  <button ion-button outline color="rose" small (click)="cp.goto({view:'myevaluate',id:item.id,subject_id:1})">立即评价</button>
+                </div>
+                <!-- 已完成 -->
+                <div *ngIf="item.status==5" class="btnBox">
+                  <button ion-button outline color="rose" small (click)="cp.goto({view:'user-contact'})">联系客服</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="brandList.length==0">
+            <p class="none">您还没有相关的订单哦~</p>
+          </div>
+        </div>
+        <!--待付款-->
+        <div *ngSwitchCase="'1'">
+          <!--订单列表-->
+          <div *ngIf="brandList.length>0">
+            <div class="orderCell" *ngFor="let item of brandList">
+              <p class="orderDetails clearfix">
+                <span>订单时间：{{item.time}}</span>
+                <button ion-button outline small class="btnDet" (click)="cp.goto({view:'order-detail',id:item.id})">订单详情</button>
+              </p>
+              <p class="complete clearfix">
+                <span>订单编号：{{item.order_sn}}</span>
+                <span class="rightSpan">待付款</span>
+              </p>
+              <ion-list class="noMargin">
+                <ion-item *ngFor="let brand of item.order_goods">
+                  <ion-thumbnail item-start>
+                    <img src="{{brand.goods_info_arr.pic_url}}">
+                  </ion-thumbnail>
+                  <h2 class="listTit">{{brand.goods_info_arr.title}}</h2>
+                  <p><span *ngFor="let type of brand.typeArr">{{type}}</span></p>
+                  <p>
+                    <span class="price">￥{{brand.goods_info_arr.price}}</span>
+                    <!--<del class="del">￥260</del>-->
+                    <span style="color:#333;">×<em>{{brand.num}}</em></span>
+                  </p>
+                </ion-item>
+              </ion-list>
+              <div class="allPrice clearfix">
+                <div class="subAllPrice">
+                  <span>共<em>{{item.order_goods.length}}</em>件商品</span>
+                  <span>合计：<em>￥{{item.price}}</em></span>
+                </div>
+              </div>
+              <div class="allPrice clearfix">
+                <!-- 待付款 -->
+                <div class="btnBox">
+                  <button ion-button outline color="rose" small (click)="cancelOrder(item.id)">取消订单</button>
+                  <button ion-button outline color="rose" small (click)="cp.goto({view:'user-contact'})">联系客服</button>
+                  <button ion-button outline color="rose" small (click)="pay(item.id)">立即付款</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="brandList.length==0">
+            <p class="none">您还没有相关的订单哦~</p>
+          </div>
+        </div>
+        <!--待发货-->
+        <div *ngSwitchCase="'2'">
+          <!--订单列表-->
+          <div *ngIf="brandList.length>0">
+            <div class="orderCell" *ngFor="let item of brandList">
+              <p class="orderDetails clearfix">
+                <span>订单时间：{{item.time}}</span>
+                <button ion-button outline small class="btnDet" (click)="cp.goto({view:'order-detail',id:item.id})">订单详情</button>
+              </p>
+              <p class="complete clearfix">
+                <span>订单编号：{{item.order_sn}}</span>
+                <span class="rightSpan">待发货</span>
+              </p>
+              <ion-list class="noMargin">
+                <ion-item *ngFor="let brand of item.order_goods">
+                  <ion-thumbnail item-start>
+                    <img src="{{brand.goods_info_arr.pic_url}}">
+                  </ion-thumbnail>
+                  <h2 class="listTit">{{brand.goods_info_arr.title}}</h2>
+                  <p><span *ngFor="let type of brand.typeArr">{{type}}</span></p>
+                  <p>
+                    <span class="price">￥{{brand.goods_info_arr.price}}</span>
+                    <!--<del class="del">￥260</del>-->
+                    <span style="color:#333;">×<em>{{brand.num}}</em></span>
+                  </p>
+                </ion-item>
+              </ion-list>
+              <div class="allPrice clearfix">
+                <div class="subAllPrice">
+                  <span>共<em>{{item.order_goods.length}}</em>件商品</span>
+                  <span>合计：<em>￥{{item.price}}</em></span>
+                </div>
+              </div>
+              <div class="allPrice clearfix">
+                <!-- 待发货 -->
+                <div class="btnBox">
+                  <button ion-button outline color="rose" small (click)="cancelOrder(item.id)">取消订单</button>
+                  <button ion-button outline color="rose" small (click)="cp.goto({view:'user-contact'})">联系客服</button>
+                  <button ion-button outline color="rose" small (click)="refund(item.id)">退款</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="brandList.length==0">
+            <p class="none">您还没有相关的订单哦~</p>
+          </div>
+        </div>
+        <!--待收货-->
+        <div *ngSwitchCase="'3'">
+          <!--订单列表-->
+          <div *ngIf="brandList.length>0">
+            <div class="orderCell" *ngFor="let item of brandList">
+              <p class="orderDetails clearfix">
+                <span>订单时间：{{item.time}}</span>
+                <button ion-button outline small class="btnDet" (click)="cp.goto({view:'order-detail',id:item.id})">订单详情</button>
+              </p>
+              <p class="complete clearfix">
+                <span>订单编号：{{item.order_sn}}</span>
+                <span class="rightSpan">待收货</span>
+              </p>
+              <ion-list class="noMargin">
+                <ion-item *ngFor="let brand of item.order_goods">
+                  <ion-thumbnail item-start>
+                    <img src="{{brand.goods_info_arr.pic_url}}">
+                  </ion-thumbnail>
+                  <h2 class="listTit">{{brand.goods_info_arr.title}}</h2>
+                  <p><span *ngFor="let type of brand.typeArr">{{type}}</span></p>
+                  <p>
+                    <span class="price">￥{{brand.goods_info_arr.price}}</span>
+                    <!--<del class="del">￥260</del>-->
+                    <span style="color:#333;">×<em>{{brand.num}}</em></span>
+                  </p>
+                </ion-item>
+              </ion-list>
+              <div class="allPrice clearfix">
+                <div class="subAllPrice">
+                  <span>共<em>{{item.order_goods.length}}</em>件商品</span>
+                  <span>合计：<em>￥{{item.price}}</em></span>
+                </div>
+              </div>
+              <div class="allPrice clearfix">
+                <!-- 待收货 -->
+                <div class="btnBox">
+                  <button ion-button outline color="rose" small (click)="cp.goto({view:'myviewflow',id:item.id,no:item.tracking_number})">查看物流</button>
+                  <button ion-button outline color="rose" small (click)="returnGoods(item.id)">退货退款</button>
+                  <button ion-button outline color="rose" small (click)="cp.goto({view:'user-contact'})">联系客服</button>
+                  <button ion-button outline color="rose" small (click)="goodsReceived(item.id,item.subject_id)">确认收货</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="brandList.length==0">
+            <p class="none">您还没有相关的订单哦~</p>
+          </div>
+        </div>
+        <!--待评价-->
+        <div *ngSwitchCase="'4'">
+          <!--订单列表-->
+          <div *ngIf="brandList.length>0">
+            <div class="orderCell" *ngFor="let item of brandList">
+              <p class="orderDetails clearfix">
+                <span>订单时间：{{item.time}}</span>
+                <button ion-button outline small class="btnDet" (click)="cp.goto({view:'order-detail',id:item.id})">订单详情</button>
+              </p>
+              <p class="complete clearfix">
+                <span>订单编号：{{item.order_sn}}</span>
+                <span class="rightSpan">待评价</span>
+              </p>
+              <ion-list class="noMargin">
+                <ion-item *ngFor="let brand of item.order_goods">
+                  <ion-thumbnail item-start>
+                    <img src="{{brand.goods_info_arr.pic_url}}">
+                  </ion-thumbnail>
+                  <h2 class="listTit">{{brand.goods_info_arr.title}}</h2>
+                  <p><span *ngFor="let type of brand.typeArr">{{type}}</span></p>
+                  <p>
+                    <span class="price">￥{{brand.goods_info_arr.price}}</span>
+                    <!--<del class="del">￥260</del>-->
+                    <span style="color:#333;">×<em>{{brand.num}}</em></span>
+                  </p>
+                </ion-item>
+              </ion-list>
+              <div class="allPrice clearfix">
+                <div class="subAllPrice">
+                  <span>共<em>{{item.order_goods.length}}</em>件商品</span>
+                  <span>合计：<em>￥{{item.price}}</em></span>
+                </div>
+              </div>
+              <div class="allPrice clearfix">
+                <!-- 待评价 -->
+                <div *ngIf="item.status==4" class="btnBox">
+                  <button ion-button outline color="rose" small (click)="cp.goto({view:'user-contact'})">联系客服</button>
+                  <button ion-button outline color="rose" small (click)="cp.goto({view:'myevaluate',id:item.id,subject_id:1})">立即评价</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="brandList.length==0">
+            <p class="none">您还没有相关的订单哦~</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--设计订单-->
+    <div *ngSwitchCase="'1'">
+      <div *ngIf="otherList.length>0">
+        <div *ngFor="let item of otherList">
+          <div class="designOrderNum design">
+            <p>订单编号：{{item.order_sn}}</p>
+            <button ion-button color="rose" outline small (click)="cp.goto({view:'mydesigndetail',id:item.id})">订单详情</button>
+          </div>
+          <div class="designOrderTime">
+            <p>订单时间：{{item.time}}</p>
+          </div>
+          <div class="designOrderDetail">
+            <p class="first">设计费：<span>￥{{item.price}}</span></p>
+            <p><em>设计师：</em>{{item.order_staff.name?item.order_staff.name:'未指定'}}</p>
+            <p><em>设计师手机号：</em>{{item.order_staff.tel?item.order_staff.tel:'无'}}</p>
+            <p><em>每平米设计费单价：</em>{{item.order_goods[0].typeArr[0]}}元</p>
+            <p><em>待设计房屋面积：</em>{{item.order_goods[0].typeArr[1]}}平方米</p>
+            <p><em>待量房屋地址：</em>{{item.address}}</p>
+            <p class="allPrice">合计：<span class="pSpan">￥{{item.price}}</span></p>
+            <div class="btns clearfix">
+              <p>
+                <!-- <a href="{{item.design_panorama}}"> -->
+                    <button ion-button color="rose" outline small>设计全景图</button>
+                <!-- </a> -->
+                <button *ngIf="item.status!=5" ion-button color="rose" outline small (click)="goodsReceived(item.id,item.subject_id)">{{btnVal}}</button>
+                <!-- <button *ngIf="item.status==4" ion-button color="rose" outline small (click)="{view:'myevaluate',id:item.id,subject_id:item.subject_id}">{{btnVal}}</button> -->
+                <button *ngIf="item.status==5" ion-button color="rose" outline small (click)="{view:'myevaluate',id:item.id,subject_id:item.subject_id}">已完成</button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="otherList.length==0">
+        <p class="none">您还没有相关的订单哦~</p>
+      </div>
+    </div>
+    <!--施工订单-->
+    <div *ngSwitchCase="'2'">
+      <div *ngIf="otherList.length>0">
+        <div *ngFor="let item of otherList">
+          <div class="designOrderNum design">
+            <p>订单编号：{{item.order_sn}}</p>
+            <button ion-button color="rose" outline small (click)="cp.goto({view:'myworkdetail',id:item.id})">订单详情</button>
+          </div>
+          <div class="designOrderTime">
+            <p>订单时间：{{item.time}}</p>
+          </div>
+          <div class="designOrderDetail">
+            <p class="first">施工费：<span>￥{{item.price}}</span></p>
+            <p><em>施工长：</em>{{item.order_staff.name?item.order_staff.name:'未指定'}};</p>
+            <p><em>施工长手机号：</em>{{item.order_staff.tel?item.order_staff.tel:'无'}}</p>
+            <p><em>每平米施工费单价：</em>{{item.order_goods[0].typeArr[0]}}元</p>
+            <p><em>待施工房屋面积：</em>{{item.order_goods[0].typeArr[1]}}平方米</p>
+            <p><em>待量房屋地址：</em>{{item.address}}</p>
+            <p class="allPrice">合计：<span class="pSpan">￥{{item.price}}</span></p>
+            <div class="btns clearfix">
+              <p>
+                <button ion-button color="rose" outline small>3D全景</button>
+                <button *ngIf="item.status!=5" ion-button color="rose" outline small (click)="goodsReceived(item.id,item.subject_id)">{{btnVal}}</button>
+                <!-- <button *ngIf="item.status==4" ion-button color="rose" outline small (click)="{view:'myevaluate',id:item.id,subject_id:item.subject_id}">{{btnVal}}</button> -->
+                <button *ngIf="item.status==5" ion-button color="rose" outline small (click)="{view:'myevaluate',id:item.id,subject_id:item.subject_id}">已完成</button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="otherList.length==0">
+        <p class="none">您还没有相关的订单哦~</p>
+      </div>
+    </div>
+    <!--精装套餐-->
+    <div *ngSwitchCase="'3'">
+      <div *ngIf="otherList.length>0">
+        <div *ngFor="let item of otherList">
+          <div class="designOrderNum design">
+            <p>订单编号：{{item.order_sn}}</p>
+            <button ion-button color="rose" outline small (click)="cp.goto({view:'myhardcoverdetail',id:item.id})">订单详情</button>
+          </div>
+          <div class="designOrderTime">
+            <p>订单时间：{{item.time}}</p>
+          </div>
+          <div class="designOrderDetail" *ngFor="let desItem of item.order_goods">
+            <p class="first">{{desItem.goods_info_arr.title}}<span>￥{{item.price}}</span></p>
+            <p><em>{{desItem.goods_info_arr.title}}每平米单价：</em>{{desItem.typeArr[0]}}元</p>
+            <p><em>待设计房屋面积：</em>{{desItem.typeArr[1]}}平方米</p>
+            <p [innerHtml]="item.content"></p>
+            <p class="allPrice">合计：<span>￥{{item.price}}</span></p>
+            <div class="btns clearfix">
+              <p>
+                <button ion-button color="rose" outline small (click)="goodsReceived(item.id,item.subject_id)">确认并完成评价</button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="otherList==0">
+        <p class="none">您还没有相关的订单哦~</p>
+      </div>
+    </div>
+  </div>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+
+

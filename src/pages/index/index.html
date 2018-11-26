@@ -1,0 +1,53 @@
+<app-header title="金秋梦装饰"></app-header>
+<ion-content class="ionTop" style="background:#fff;">
+  <p class="topTip"><small>免费量房+3D全景设计+一站式购物+免费送货+免费安装+上门售服务</small></p>
+  <ion-toolbar no-border-top class="index_segment" style="background:#fff;">
+    <ion-segment [(ngModel)]="frofile">
+      <ion-segment-button value="main">
+        关于我们
+      </ion-segment-button>
+      <ion-segment-button value="cooperate">
+        合作品牌
+      </ion-segment-button>
+      <ion-segment-button value="company">
+        公司证照
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+  <ion-content id="ion_content">
+    <div [ngSwitch]="frofile">
+      <!--公司证照-->
+      <ion-list *ngSwitchCase="'company'" style="margin-top:1.5rem;">
+        <div class="frofileMainImg">
+          <img src={{mainImg}} style="border: 1px solid #d9d9d9;"/>
+          <span (click)="mainImgLeft()"><img src="./assets/imgs/zuo.png" alt="" class="jiantouimg"></span>
+          <span (click)="mainImgRight()"><img src="./assets/imgs/you.png" alt="" class="jiantouimg"></span>
+        </div>
+        <ion-scroll scrollX="true" style="height: 8rem;width: 100%;">
+          <ion-grid>
+            <ion-row style="flex-wrap: nowrap;justify-content: center;">
+              <ion-col col-3 *ngFor="let item of compantyimg;let i = index">
+                <img (click)="mainImgclick($event, item.photo.pic_url,i)" src={{item.photo.pic_url}} style="height:8rem;border:1px solid #d9d9d9;"></ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-scroll>
+      </ion-list>
+      <!--合作品牌-->
+      <ion-list *ngSwitchCase="'cooperate'" style="background:#fff;">
+        <ion-item id="ion_listimg" style="padding:0;background:#fff;">
+          <div [innerHtml]="cooperate.content" class="hezuoimg"></div>
+        </ion-item>
+      </ion-list>
+      <!--关于我们-->
+      <ion-list *ngSwitchCase="'main'">
+        <ion-item style="margin: 0;padding: 0 ;width: 100%;white-space:normal;">
+          <ion-title style="height: 4rem;width:100%">{{company.title}}</ion-title>
+          <div class="companyHtml" [innerHtml]="company.content"></div>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
+</ion-content>
+
+
+

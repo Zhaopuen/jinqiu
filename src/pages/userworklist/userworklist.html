@@ -1,0 +1,32 @@
+<app-header title="金秋梦装饰"></app-header>
+
+<ion-content style="margin-top:44px;">
+  <div class="choosew">选择{{usertypeName}}：</div>
+  <!-- <form [formGroup]="pageForm">
+    <ion-list>
+      <ion-item>
+        <ion-label>所在地区</ion-label>
+        <ion-select formControlName="province" (ionChange)="change(pageForm.controls.province.value)" interface="popover">
+          <ion-option *ngFor="let item of provinces" value="{{item.region_id}}">{{item.region_name}}</ion-option>
+        </ion-select>
+        <ion-select formControlName="city" (ionChange)="change(pageForm.controls.city.value)" interface="popover" [hidden]="!pageForm.controls.province.value">
+          <ion-option *ngFor="let item of cities" value="{{item.region_id}}">{{item.region_name}}</ion-option>
+        </ion-select>
+        <button>搜索</button>
+      </ion-item>
+    </ion-list>
+  </form> -->
+  <div class="cardBox">
+      <!-- (click)="cp.goto({view:'userwokerdetail',id:item.id})" -->
+    <div class="cardCell" *ngFor='let item of userTypeInfo;let i = index' (click)="workerListAdd(item.id)">
+      <img src="{{item.user_profile.photo_url}}"/>
+      <p>
+        <span>{{item.nickname}}</span>
+        <span>
+          <ion-icon name="pin" color="rose"></ion-icon>
+          {{item.province_text}}{{item.city_text}}
+        </span>
+      </p>
+    </div>
+  </div>
+</ion-content>

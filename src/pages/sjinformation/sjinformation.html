@@ -1,0 +1,29 @@
+<!--
+  Generated template for the SjinformationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<app-header title="我的个人中心"></app-header>
+<ion-content style="top:3.7rem;">
+    <div class="information" *ngIf="shejiInformation">
+      <div class="information-con">
+        <div class="con-customer"><p class="customer-all">顾客资料：</p></div>
+        <div class="con-all">
+          <p class="con-sty"><span>业主姓氏:</span>{{shejiInformation.last_name}}</p>
+          <p class="con-sty"><span>业主名字:</span>{{shejiInformation.name}}</p>
+          <p class="con-sty"><span>业主性别:</span>男</p>
+          <p class="con-sty"><span>待量房屋地址:</span>{{shejiInformation.address}}</p>
+          <p class="con-sty"><span>待量房屋面积:</span>{{shejiInformation.area}}平方米</p>
+          <p class="con-sty" *ngIf="shejiInfo"><span>装修类型:</span>{{shejiInfo}}</p>
+          <p class="con-sty"><span>期望装修风格:</span>{{shejiInformation.style_text}}</p>
+          <p class="con-sty"><span>业主装修费用预算:</span>{{shejiInformation.budget_lower_limit}}-{{shejiInformation.budget_upper_limit}}万</p>
+          <p class="con-sty"><span>计划开始时间:</span>{{shejiInformation.decoration_date_start}}-{{shejiInformation.decoration_date_end}}</p>
+          <p class="con-sty"><span>希望入住时间:</span>{{shejiInformation.checkin_date_start}}-{{shejiInformation.checkin_date_end}}</p>
+          <p class="con-sty"><span> 业主是通过什么方式知道我们平台:</span>广告</p>
+          <p class="con-sty"><span>业主房屋的装修有什么要求和期待:</span>{{shejiInformation.remark}}</p>
+          <div class="huxingtu">户型图</div>
+        </div>
+      </div>
+    </div>
+</ion-content>

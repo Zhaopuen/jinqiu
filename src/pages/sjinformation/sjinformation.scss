@@ -1,0 +1,53 @@
+page-sjinformation {
+  .information{
+    width: 100%;
+    height:auto;
+    overflow: hidden;
+    background: #f1f1f1;
+    .information-con{
+      width: 100%;
+      height:auto;
+      overflow: hidden;
+      overflow: hidden;
+      .con-customer{
+        width: 100%;
+        height: 4rem;
+        background: #ffffff;
+        border-bottom: 1px solid #e2e2e2;
+        border-top: 1px solid #e2e2e2;
+        box-sizing: border-box;
+        margin: 1rem 0 0;
+        .customer-all{
+          margin: 0 1rem;
+          line-height: 4rem;
+          font-size: 1.6rem;
+        }
+      }
+      .con-all{
+        width: 100%;
+        overflow: hidden;
+        background: #fff;
+        .huxingtu{
+          margin: 0 1rem;
+          line-height: 4rem;
+          font-size:1.6rem;
+          color:#989898;
+        }
+        .con-sty{
+          margin: 0 1rem;
+          height: auto;
+          line-height: 3rem;
+          font-size:1.6rem;
+          color:#666;
+          span{
+            margin-right: 0.3rem;
+            font-size:1.6rem;
+            color:#222;
+          }
+        }
+        
+      }
+    }
+
+  }
+}

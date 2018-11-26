@@ -1,0 +1,42 @@
+<app-header title="我的个人中心"></app-header>
+<ion-content>
+  <div class="xiugaimima">我的收获地址</div>
+  <div *ngIf="list.length==0" class="listBox">
+    <p class="none">您未添加收货地址</p>
+  </div>
+  <div *ngIf="list.length>0">
+    <div class="listBox" *ngFor="let item of list">
+      <div class="topInfo">
+        <p class="name clearfix"><span>{{item.consignee}}</span><span>{{item.mobile==''?item.tel:item.mobile}}</span></p>
+        <p class="addr">{{item.region_province.region_name}}{{item.region_city.region_name}}{{item.region_district.region_name}}</p>
+      </div>
+      <div class="bottomInfo clearfix">
+        <div class="default" *ngIf="aid==item.id || uaId==item.id">
+          <img src="./assets/imgs/checked.png">
+          <span class="checked">默认地址</span>
+        </div>
+        <div class="default" *ngIf="aid!==item.id &&  uaId!==item.id" (click)="setDefault(item.id)">
+          <img src="./assets/imgs/check.png">
+          <span class="unchecked">设为默认地址</span>
+        </div>
+        <div class="edit">
+          <div class="subEdit" (click)="cp.goto({view:'mymodifyaddress',aid:item.id})">
+            <ion-icon name='create'></ion-icon>
+            修改
+          </div>
+          <div class="subEdit" (click)="delete(item.id)">
+            <ion-icon name='trash'></ion-icon>
+            删除
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="subBtn">
+    <button ion-button icon-start block  style="background:linear-gradient(to right, #DF0371, #FA001B)" (click)="cp.goto({view:'myaddnewaddress'})">
+        <ion-icon name="add-circle"></ion-icon>
+        添加新地址
+    </button>
+  </p>
+</ion-content>

@@ -1,0 +1,16 @@
+<app-header title="金秋梦装饰"></app-header>
+
+<ion-content>
+  <div class="topInfo">
+    <!--<p class="first">物流状态 <span>暂无物流信息</span></p>-->
+    <p>承运公司：<span>{{carrier}}</span></p>
+    <p>运单编号：<span>{{tracking_num}}</span></p>
+  </div>
+  <!--<div class="courierInfo">-->
+    <!--<ion-icon class="courierIon" name="contact"></ion-icon>-->
+    <!--<span>暂无派送员信息</span>-->
+  <!--</div>-->
+  <div class="flowInfo">
+    <p *ngFor="let item of flowList">{{item.time}}  {{item.context}}</p>
+  </div>
+</ion-content>

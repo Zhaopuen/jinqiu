@@ -1,0 +1,65 @@
+app-top {
+  padding: 0;
+  p {
+    padding: 1rem;
+    color: #555;
+    font-size: 1.4rem;
+    text-align: center;
+    overflow: auto;
+    white-space: nowrap;
+    margin-top: 44px;
+  }
+  ion-scroll {
+    background-color: black;
+    color: white;
+    height: 3.2rem;
+    padding: 0;
+    margin: 0;
+    line-height: 1.7rem;
+    .row {
+      flex-wrap: nowrap;
+    }
+    ion-col {
+      text-align: center;
+      font-size: 1.4rem;
+      height: 3.2rem;
+      line-height: 2.4rem;
+    }
+    ion-col.active {
+      background: #2fc047;
+    }
+    .grid {
+      padding: 0;
+    }
+  }
+
+  .imc-tabs {
+    display: flex;
+    position: absolute;
+    top: 44px;
+    height: 44px;
+    width: 100%;
+  }
+  .imc-tab-item {
+    flex: 1;
+    text-align: center;
+    height: 44px;
+    line-height: 44px;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    border-bottom: 1px solid #f8f8f8;
+  }
+  .imc-tab-item.selected {
+    border-bottom: 1px solid white;
+    border-left: 1px solid #f8f8f8;
+    border-right: 1px solid #f8f8f8;
+  }
+
+  // 处理iOS显示相对android上移了20px的问题
+  // [详情参看文档] (http://ionicframework.com/docs/platform-customization/)
+  .platform-ios.platform-cordova .imc-sub-header {
+    top: 64px;
+  }
+
+
+}

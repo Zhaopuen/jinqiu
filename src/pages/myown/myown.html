@@ -1,0 +1,190 @@
+<app-header title="金秋梦装饰"></app-header>
+<ion-content class="measure_all" >
+  
+  <ion-content class="measure_content">
+      <div class="xiugaimima">编辑房屋信息</div>
+    <!-- <ion-card-content>
+      <p style="margin-top:0;font-size:1.6rem;">
+        {{tel}} 您好！<span class="color">(带*号为必填项)</span>
+      </p>
+    </ion-card-content> -->
+    <ion-list class="measure_list_item" style="margin-bottom:0;background:#fff;">
+      <ion-item>
+        <ion-label><span class="color">*</span>房屋名称</ion-label>
+        <ion-input type="text" [(ngModel)]="houseName" value="" placeholder="房屋名称"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label><span class="color">*</span>您的姓氏</ion-label>
+        <ion-input type="text" [(ngModel)]="firstname" value="" placeholder="姓氏"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label><span class="color">*</span>您的名字</ion-label>
+        <ion-input type="text" [(ngModel)]="lastname" value="" placeholder="名字"></ion-input>
+      </ion-item>
+      <form [formGroup]="pageForm">
+        <ion-item>
+          <ion-label><span class="color">*</span>您的性别</ion-label>
+          <ion-select formControlName="gender" interface="popover">
+            <ion-option value="0">男</ion-option>
+            <ion-option value="1">女</ion-option>
+          </ion-select>
+        </ion-item>
+        <!-- <ion-item>
+          <ion-label>地区</ion-label>
+          <ion-select formControlName="province" (ionChange)="change(pageForm.controls.province.value)" interface="popover">
+            <ion-option *ngFor="let item of provinces" value="{{item.region_id}}">{{item.region_name}}</ion-option>
+          </ion-select>
+          <ion-select formControlName="city" (ionChange)="change(pageForm.controls.city.value)" interface="popover" [hidden]="!pageForm.controls.province.value">
+            <ion-option *ngFor="let item of cities" value="{{item.region_id}}">{{item.region_name}}</ion-option>
+          </ion-select>
+          <ion-select formControlName="district" interface="popover" [hidden]="!pageForm.controls.city.value">
+            <ion-option *ngFor="let item of districts" value="{{item.region_id}}">{{item.region_name}}</ion-option>
+          </ion-select>
+        </ion-item> -->
+      </form>
+      <ion-item>
+          <ion-label><span class="color">*</span>小区名字</ion-label>
+          <ion-input type="text" [(ngModel)]="villageName" value="" placeholder="请输入小区名字"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label><span class="color">*</span>详细 地址</ion-label>
+        <ion-input type="text" [(ngModel)]="address" value="" placeholder="xx楼xx室"></ion-input>
+      </ion-item>
+      <ion-item style="position: relative;">
+        <ion-label><span class="color">*</span>带装修房屋面积</ion-label>
+        <ion-input type="number" [(ngModel)]="area" value="" placeholder="面积  平米"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label><span class="color">*</span>装修类型</ion-label>
+        <ion-select interface="popover" [(ngModel)]="houseType">
+          <ion-option value="0">新房</ion-option>
+          <ion-option value="1">翻新</ion-option>
+        </ion-select>
+      </ion-item>
+      <div class="style">
+        <div class="subStyle">
+          <ion-label><span class="color">*</span>期望装修风格</ion-label>
+          <button class="styleBtn" [ngStyle]="{'background': buttonClickStyle[i] == i ? '#15b72e':'#fff','color':buttonClickStyle[i] == i ? '#fff':'#333'}" *ngFor="let item of styleTabs;let i = index" (click)="selectedBtn(i,item)" >{{item}}</button>
+        </div>
+      </div>
+      <div class="style">
+        <div class="subStyle" style="padding-bottom:10px;">
+          <ion-label>您的装修费用预算<em style="font-size:1.4rem;">(不含家具软装及家电)</em></ion-label>
+          <input class="inp" type="number" [(ngModel)]="startMoney"> 万元 <i style="margin:0 10px;">~</i> <input class="inp" type="number" [(ngModel)]="endMoney"> 万元
+        </div>
+      </div>
+      <ion-item>
+        <ion-label><span class="color">*</span>计划装修时间</ion-label>
+        <ion-datetime displayFormat="MM/YYYY" [(ngModel)]="myDate" placeholder="{{this.myDate}}" min="2018" max="2025-12-31" cancelText="取消" doneText="确定" placehoder="2018/01">
+          <!-- <div class="datetime-text">1680</div> -->
+        </ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label><span class="color">*</span>至</ion-label>
+        <ion-datetime displayFormat="MM/YYYY" [(ngModel)]="myDateend" min="2018" placeholder="{{this.myDateend}}" max="2030-12-31" cancelText="取消" doneText="确定">222222</ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label><span class="color">*</span>计划入住时间</ion-label>
+        <ion-datetime displayFormat="MM/YYYY" [(ngModel)]="myDatelive" min="2018" placeholder="{{this.myDatelive}}" max="2025-12-31" cancelText="取消" doneText="确定">33333333</ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label><span class="color">*</span>至</ion-label>
+        <ion-datetime displayFormat="MM/YYYY" [(ngModel)]="myDateendlive" placeholder="{{this.myDateendlive}}" min="2018" max="2030-12-31" cancelText="取消" doneText="确定">444444444</ion-datetime>
+      </ion-item>
+    </ion-list>
+    <ion-list style="margin-bottom:0;background:#fff;" radio-group [(ngModel)]="type" class="house_stylebox">
+      <!-- <ion-item>
+        <ion-label><span class="color">*</span>您是通过什么方式知道我们</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>搜索引擎</ion-label>
+        <ion-radio value="type1" checked="checked"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>广告</ion-label>
+        <ion-radio value="type2"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>装修公司</ion-label>
+        <ion-radio value="type3"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>设计师</ion-label>
+        <ion-radio value="type4"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>施工长</ion-label>
+        <ion-radio value="type5"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>本地客服</ion-label>
+        <ion-radio value="type6"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>朋友介绍</ion-label>
+        <ion-radio value="type7"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>宣传单</ion-label>
+        <ion-radio value="type8"></ion-radio>
+      </ion-item> -->
+      <ion-item>
+        <ion-label><span class="color">*</span>您对房屋的装修有什么要求和期待(10字以上)</ion-label>
+      </ion-item>
+      <div class="style" style="padding:2px 16px 10px 16px;">
+        <ion-textarea class="suggestion" rows="3" [(ngModel)]="expect" placeholder="请输入10字以上的信息"></ion-textarea>
+      </div>
+    </ion-list>
+    <div class="evaluateBox clearfix">
+      <!--图片-->
+      <ion-card-title>上传户型图</ion-card-title>
+      <p style="margin-bottom:1rem;">(可以手机拍照上传，能看清标注的尺寸)</p>
+      <div class="imgBox">
+        <ion-row class="stylephotos">
+          <ion-col col-4 col-sm-4 col-md-20 class="photo_container" *ngFor="let photo of photos">
+            <div class="photo">
+              <ion-icon ios="ios-close" md="md-close" class="close" (click)="deleteImg(photo)"></ion-icon>
+              <img [src]="photo" [alt]="photo">
+            </div>
+          </ion-col>
+          <ion-col col-4 col-sm-4 col-md-20 class="photo_container" align-items-center>
+            <div class="photo upload" (click)="addImg()">
+              <ion-icon name="md-camera"></ion-icon>
+              <span>添加照片</span>
+              <form action="" #form>
+                <input type="file" name="file" id="fileid" accept="image/*" (change)="uploadImg($event)">
+              </form>
+            </div>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+
+    <div class="evaluateBox clearfix">
+      <ion-card-title>上传您几张喜欢的或期待的装修效果图</ion-card-title>
+      <p style="margin-bottom:1rem;">(最多允许上传10张图片)</p>
+      <div class="imgBox">
+        <ion-row class="stylephotos">
+          <ion-col col-4 col-sm-4 col-md-20 class="photo_container" *ngFor="let photo of stylephotos;">
+            <div class="photo">
+              <ion-icon ios="ios-close" md="md-close" class="close" (click)="styledeleteImg(photo)"></ion-icon>
+              <img [src]="photo" [alt]="photo">
+            </div>
+          </ion-col>
+          <ion-col col-4 col-sm-4 col-md-20 class="photo_container" align-items-center>
+            <div class="photo upload" (click)="styleaddImg()">
+              <ion-icon name="md-camera"></ion-icon>
+              <span>添加照片</span>
+              <form action="" #form1>
+                <input type="file" name="file" id="fileid" accept="image/*" (change)="styleuploadImg($event)">
+              </form>
+            </div>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+    <p class="subBtn">
+      <!-- (click)="measureHouseFn()" -->
+      <button ion-button block style="background:linear-gradient(to right, #DF0371, #FA001B);width:90%;margin:0 5%;" (click)="measureHouseFn()">保存</button>
+    </p>
+</ion-content>

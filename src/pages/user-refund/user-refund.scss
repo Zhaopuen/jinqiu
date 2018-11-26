@@ -1,0 +1,21 @@
+page-user-refund {
+    .user_refundtext{
+        width:100%;
+        border:none;
+        height:10rem;
+        padding:1rem;
+    }
+    .user_refundsubmit{
+        width:90%;
+        margin:8rem 5% 0;
+        background:#E90076 !important;
+    }
+    .userRefundbox{
+        .item-ios{
+            padding:0 !important;
+            .label-ios{
+                padding:0 1.5rem;
+            }
+        }
+    }
+}

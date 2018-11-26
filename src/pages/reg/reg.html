@@ -1,0 +1,147 @@
+<app-header title="金秋梦装饰"></app-header>
+<ion-content class="bgwhite">
+  <!-- <ion-header>
+    <ion-navbar color="primary">
+      <ion-title>
+          金秋梦装饰
+        <button ion-button outline small color="white" (click)="switchCity()">
+            <small style="font-size: 10px">天津</small>
+          <ion-icon name="arrow-down"></ion-icon>
+        </button>
+      </ion-title>
+      <ion-buttons end>
+        <button ion-button (click)="cp.goto({view:'login'})">
+          <small >登录</small>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header> -->
+  <form [formGroup]="pageForm">
+   <img src="./assets/imgs/dl_tt.png" class="img"/>
+    <div class="input-container">
+      <div class="card-all">
+        <div class="card-item">
+          <div class="item-icon">
+              <ion-icon name="ios-phone-portrait-outline" item-start class="item-icon-person"></ion-icon> 
+          </div>
+          <div class="item-input">
+            <ion-input type="text" placeholder="请输入你的手机号" class="inpue-mm" formControlName="tel"></ion-input>
+          </div>
+        </div>
+        <div class="card-item-yzm">
+          <div class="item-icon-yzm">
+            <div class="item-input-yzm">
+              <ion-input type="text" placeholder="请输入你的验证码" class="inpue-mm-zym" formControlName='captcha'></ion-input>
+            </div>
+           <p class="yzm" (click)="captcha($event)">获取验证码</p>
+          </div>
+        </div>
+        <div class="card-item">
+          <div class="item-icon">
+            <ion-icon name="lock" item-start class="item-icon-person"></ion-icon>
+          </div>
+          <div class="item-input">
+            <ion-input type="password" placeholder="请输入你的密码" class="inpue-mm" formControlName="pwd"></ion-input>
+          </div>
+        </div>
+        <div class="card-item">
+          <div class="item-icon">
+            <ion-icon name="lock" item-start class="item-icon-person"></ion-icon>
+          </div>
+          <div class="item-input">
+            <ion-input type="password" placeholder="请再次输入你的密码" class="inpue-mm" formControlName="confirm_pwd"></ion-input>
+          </div>
+        </div>
+      </div>
+      <ion-item>
+        <ion-label>所在城市</ion-label>
+        <ion-select formControlName="province" (ionChange)="change(pageForm.controls.province.value)" interface="popover">
+          <ion-option *ngFor="let item of provinces" value="{{item.region_id}}">{{item.region_name}}</ion-option>
+        </ion-select>
+        <ion-select formControlName="city" (ionChange)="change(pageForm.controls.city.value)" interface="popover" [hidden]="!pageForm.controls.province.value">
+          <ion-option *ngFor="let item of cities" value="{{item.region_id}}">{{item.region_name}}</ion-option>
+        </ion-select>
+        <ion-select formControlName="district" (ionChange)="change(pageForm.controls.district.value)" interface="popover" [hidden]="!pageForm.controls.city.value">
+          <ion-option *ngFor="let item of districts" value="{{item.region_id}}">{{item.region_name}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="radio">
+        <div class="radio-gk" (click)="regselect(0)">
+          <input name="sex" value="顾客注册" type="radio"/>
+          <span>顾客注册</span>
+        </div>
+        <div class="radio-gk">
+          <input name="sex" value="顾客注册" type="radio" (click)="modelblock()"/>
+          <span>请选择注册身份</span>
+        </div>
+      </ion-item>
+      <ion-item class="xy">
+        <ion-icon name="checkmark-circle" *ngIf="isShow" (click)='changeIs()'></ion-icon>
+        <ion-icon name="checkmark-circle-outline"  *ngIf="!isShow" (click)='changeIs()'></ion-icon>
+        <span class="agreenxieyi">我已阅读并同意<em (click)="cp.goto({view:'agreenment'})">“协议内容”</em></span>
+      </ion-item>
+      <button ion-button full class="btn"  (click)="sub()" style="background:linear-gradient(to right, #DF0371, #FA001B)">立即注册</button>
+      <ion-item class="bottom">
+        <span>已有账号?</span>
+        <span class="msdl" (click)="cp.goto({view:'login'})"> 马上登录</span>
+      </ion-item>
+
+
+
+      
+
+      <!--<ion-list>-->
+        <!--<ion-item *ngIf="!cp.global.auth">-->
+          <!--<ion-input type="text" formControlName="auth" placeholder="邀请码"></ion-input>-->
+          <!--<button ion-button clear item-end class="link" (click)="cp.goto({view:'article',id:10})">如何获取？</button>-->
+        <!--</ion-item>-->
+        <!--<ion-item>-->
+          <!--<ion-input type="tel" formControlName="tel" placeholder="输入手机号"></ion-input>-->
+        <!--</ion-item>-->
+        <!--<ion-item class="tip" *ngIf="pageForm.controls.tel.touched && !pageForm.controls.tel.valid">-->
+            <!--<ion-note color="primary">请正确输入手机号</ion-note>-->
+        <!--</ion-item>-->
+        <!--<ion-item>-->
+          <!--<ion-input type="number" formControlName="captcha" placeholder="短信验证码"></ion-input>-->
+          <!--<button ion-button clear item-end class="link" (click)="captcha($event)">获取验证码</button>-->
+        <!--</ion-item>-->
+        <!--<ion-item>-->
+          <!--<ion-input type="password"  formControlName="pwd" placeholder="输入密码"></ion-input>-->
+        <!--</ion-item>-->
+        <!--<ion-item class="tip" *ngIf="pageForm.controls.pwd.touched && !pageForm.controls.pwd.valid">-->
+            <!--<ion-note color="primary">请输入至少6位密码</ion-note>-->
+        <!--</ion-item>-->
+        <!--<ion-item>-->
+          <!--<ion-input type="password"  formControlName="confirm_pwd" placeholder="确认密码"></ion-input>-->
+        <!--</ion-item>-->
+        <!--<ion-item class="tip" *ngIf="pageForm.controls.confirm_pwd.touched && pageForm.hasError('mismatchedPasswords') && pageForm.controls.pwd.valid">-->
+            <!--<ion-note color="primary">两次输入密码不一致</ion-note>-->
+        <!--</ion-item>-->
+      <!--</ion-list>-->
+    </div>
+
+  </form>
+
+</ion-content>
+
+<!-- 弹窗显示注册方式 -->
+<div class="registerModle" *ngIf="regModel">
+  <div class="reg_div">
+    <header>
+      <span></span>
+      <span>选择注册身份</span>
+      <span (click)="regNone()">x</span>
+    </header>
+    <div style="padding-bottom: 20px;">
+      <p>您好，您尚未完成信息录入，请选择您的身份开始提交资料。</p>
+      <button class="button button-balanced" (click)=regselect(1)>内部设计师注册</button>
+      <button class="button button-balanced" (click)=regselect(2)>内部施工长注册</button>
+      <button class="button button-balanced" (click)=regselect(3)>内部水电工注册</button>
+      <button class="button button-balanced" (click)=regselect(4)>内部瓦工注册</button>
+      <button class="button button-balanced" (click)=regselect(5)>内部木工注册</button>
+      <button class="button button-balanced" (click)=regselect(6)>内部油工注册</button>
+      <button class="button button-balanced" (click)=regselect(7)>内部小工注册</button>
+      <button class="button button-balanced" (click)=regselect(8)>其他员工中心注册</button>
+    </div>
+  </div>
+</div>

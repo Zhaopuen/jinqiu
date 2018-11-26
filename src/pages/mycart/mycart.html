@@ -1,0 +1,120 @@
+<app-header title="我的购物车"></app-header>
+
+<ion-content>
+  <div class="none" *ngIf="list[0]==''">
+    购物车暂无东西哦，赶快去添加吧~
+  </div>
+  <div *ngIf="brandList.length>0">
+    <ion-list *ngFor="let item of brandList;let i = index" class="listBox">
+      <p class="top clearfix">
+        <label for="brand">
+          <img *ngIf="checkedTop[i]" src="./assets/imgs/checked.png" alt="">
+          <img *ngIf="!checkedTop[i]" src="./assets/imgs/check.png" alt="">
+          <input type="checkbox" id="brand" (click)="checkBrand(i,checkedTop[i])" [(ngModel)]="checkedTop[i]"> 品牌
+        </label>
+        <span class="contact" (click)="cp.goto({view:'user-contact'})">联系客服</span>
+      </p>
+      <ion-item *ngFor="let brand of item;let j = index" class="listCell">
+        <img class="checkImg" *ngIf="brand.checked" src="./assets/imgs/checked.png" alt="">
+        <img class="checkImg" *ngIf="!brand.checked" src="./assets/imgs/check.png" alt="">
+        <input class="inpBtn" type="checkbox" [(ngModel)]="brand.checked" (click)="brandCheck(i,j)">
+        <ion-thumbnail class="thumbnail">
+          <img src="{{brand.goods.pic_url}}">
+        </ion-thumbnail>
+        <div class="rightInfo">
+          <div class="clearfix">
+            <span class="ptitle">{{brand.goods.title}}</span>
+            <div class="rightBtn">
+              <span class="add" (click)="reduce(i,j,brand.id,brand.num)">-</span>
+              <input type="number" [(ngModel)]="brand.num" (blur)="changeNum(i,j,brand.id,brand.num)">
+              <span class="add" (click)="add(i,j,brand.id,brand.num)">+</span>
+            </div>
+          </div>
+          <p class="type">
+            <span *ngFor="let type of brand.typeArr">{{type}}</span>
+          </p>
+          <p class="clearfix">
+            <span class="price">{{brand.goods.now_price}}</span>
+            <!--<del *ngIf="item.goods.now_price">{{item.goods.price}}</del>-->
+            <span class="price">×{{brand.num}}</span>
+            <span class="del" (click)="delList(brand.id)">删除</span>
+          </p>
+        </div>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div *ngIf="otherList.length>0">
+    <div *ngFor="let item of otherList;let i = index;">
+      <ion-list *ngFor="let other of item;let j = index" class="listBox">
+        <p class="top clearfix">
+          <label *ngIf="other.subject_id==2">
+            <img *ngIf="other.checked" src="./assets/imgs/checked.png" alt="">
+            <img *ngIf="!other.checked" src="./assets/imgs/check.png" alt="">
+            <input type="checkbox" [(ngModel)]="other.checked" (click)="otherCheck(i,j)">
+            <ion-icon name="home" class="icon"></ion-icon>
+            {{other.goods.title}}
+          </label>
+          <label *ngIf="other.subject_id==3">
+            <img *ngIf="other.checked" src="./assets/imgs/checked.png" alt="">
+            <img *ngIf="!other.checked" src="./assets/imgs/check.png" alt="">
+            <input type="checkbox" [(ngModel)]="other.checked" (click)="otherCheck(i,j)">
+            <ion-icon name="pricetag" class="icon"></ion-icon>
+            {{other.goods.title}}
+          </label>
+          <label *ngIf="other.subject_id==4">
+            <img *ngIf="other.checked" src="./assets/imgs/checked.png" alt="">
+            <img *ngIf="!other.checked" src="./assets/imgs/check.png" alt="">
+            <input type="checkbox" [(ngModel)]="other.checked" (click)="otherCheck(i,j)">
+            <ion-icon name="hammer" class="icon"></ion-icon>
+            {{other.goods.title}}
+          </label>
+          <span class="contact">￥<em>{{other.typeArr[0]*other.typeArr[1] | number:"0.2"}}</em></span>
+          <!--<input type="hidden" [(ngModel)]="other.typeArr[0]*other.typeArr[1]">-->
+        </p>
+        <div class="content">
+          <p *ngIf="other.subject_id==3 && other.staff.nickname">指定设计师:{{other.staff.nickname}}</p>
+          <p *ngIf="other.subject_id==3 && other.staff.tel">联系方式:{{other.staff.tel}}</p>
+          <p *ngIf="other.subject_id==4 && other.staff.nickname">指定施工长:{{other.staff.nickname}}</p>
+          <p *ngIf="other.subject_id==4 && other.staff.tel">联系方式:{{other.staff.tel}}</p>
+          <p class="set clearfix">
+            <span>{{other.goods.title}}每平米单价</span><span>{{other.typeArr[0]}} 元</span>
+            <span class="contact" (click)="cp.goto({view:'user-contact'})">联系客服</span>
+          </p>
+          <p class="area">
+            <span *ngIf="other.subject_id==2">待施工房屋面积</span>
+            <span *ngIf="other.subject_id==3">待设计房屋面积</span>
+            <span *ngIf="other.subject_id==4">待施工房屋面积</span>
+            <label>
+              <input type="number" [(ngModel)]="other.typeArr[1]" value="{{other.typeArr[1]}}" (blur)="changeArea(i,j,other.id,other.typeArr[1])"> 平方米
+            </label>
+            <span class="delete" (click)="delList(other.id)">删除</span>
+          </p>
+          <div *ngIf="other.subject_id==2" class="describe">
+            <div class="topDescribe clearfix">
+              <p class="{{other.id==oId?'':'overflow'}}">
+                <span *ngFor="let t of other.typeArr[2]">{{t.name}}，</span>
+              </p>
+              <button ion-button outline small color="rose" (click)="open(other.id)">{{btnVal}}</button>
+            </div>
+            <ul class="pics clearfix" *ngIf="other.id == oId">
+              <li *ngFor="let pics of other.typeArr[2]"><img src="{{pics.pic}}" alt=""></li>
+            </ul>
+          </div>
+        </div>
+      </ion-list>
+    </div>
+  </div>
+  <div style="height:7rem;"></div>
+  <div class="footer">
+    <label>
+      <img *ngIf="checkedAll" src="./assets/imgs/checked.png" alt="">
+      <img *ngIf="!checkedAll" src="./assets/imgs/check.png" alt="">
+      <input type="checkbox" (click)="checkAll(checkedAll)" [(ngModel)]="checkedAll"> 全选
+    </label>
+    <span class="delSelected" (click)="delSelected()">删除</span>
+    <div class="rightBtn">
+      <span class="total">合计:<em>￥{{total | number:"0.2"}}</em></span>
+      <span class="pay" (click)="compute()">结算({{len}})</span>
+    </div>
+  </div>
+</ion-content>

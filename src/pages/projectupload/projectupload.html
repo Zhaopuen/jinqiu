@@ -1,0 +1,27 @@
+<app-header title="我的订单"></app-header>
+
+<ion-content padding style="margin-top: 44px;">
+  <div class="ddetale">上传工程隐蔽图片：</div>
+  <div class="project_upload">
+    <p class="project_uploadtitle">1、厨房前后墙面（前后左右上下以人站在门口面向室内为视角）</p>
+    <div class="imgBox">
+      <ion-row class="stylephotos">
+        <ion-col col-4 col-sm-4 col-md-20 class="photo_container" *ngFor="let photo of photos;">
+          <div class="photo">
+            <a class="close" (click)="deleteImg(photo)"></a>
+            <img [src]="photo" [alt]="photo">
+          </div>
+        </ion-col>
+        <ion-col col-4 col-sm-4 col-md-20 class="photo_container" align-items-center>
+          <div class="photo upload" (click)="addImg()">
+            <ion-icon name="md-camera"></ion-icon>
+            <span>添加照片</span>
+            <form action="" #form>
+              <input type="file" name="file" accept="image/*" (change)="uploadImg($event)">
+            </form>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>

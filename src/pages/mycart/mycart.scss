@@ -1,0 +1,281 @@
+page-mycart {
+  img{
+    object-fit: cover;
+  }
+  ion-content{
+    top:44px;
+  }
+  .none{
+    padding:2rem 1rem;
+    font-size:1.5rem;
+    color:#9a9a9a;
+    text-align: center;
+  }
+  .top{
+    padding:10px 1rem;
+    background: #fff;
+    font-size:1.5rem;
+    border-bottom: 1px solid #ccc;
+  }
+  .top label{
+    float: left;
+    position: relative;
+    font-size: 1.7rem;
+  }
+  .top img{
+    width:20px;
+    height:20px;
+    margin-right:10px;
+    float: left;
+  }
+  .top input{
+    width:20px;
+    height:20px;
+    position: absolute;
+    top:0;
+    left:0;
+    opacity: 0;
+  }
+  .top .contact{
+    float: right;
+    color:#FF339A;
+    font-size: 1.4rem;
+  }
+  .top .icon{
+    color:#999;
+    font-size: 2rem;
+  }
+  .listBox,.listCell{
+    background: #FFEFF5;
+  }
+  .listBox{
+    margin-bottom:1.5rem;
+  }
+  .listCell{
+    padding-left:1rem;
+    position: relative;
+    .checkImg{
+      width:20px;
+      height:20px;
+      float: left;
+      margin:22px 6px 0 0;
+    }
+    // .item-inner{
+    //   border-bottom:3px solid #D9D9D9 !important;
+    // }
+    // .item-inner:last-child{
+    //   border-bottom:0px solid #D9D9D9 !important;
+    // }
+  }
+  .label-ios{
+    margin-right:0;
+  }
+  .listCell .inpBtn{
+    width:20px;
+    height:20px;
+    position: absolute;
+    top:33px;
+    left:1rem;
+    opacity: 0;
+  }
+  .listCell .thumbnail{
+    float: left;
+    margin-right:8px;
+  }
+  .listCell .rightInfo{
+    display: flex;
+    height:63px;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  .item-ios ion-thumbnail ion-img,
+  .item-ios ion-thumbnail img{
+    width:63px;
+    height:63px;
+  }
+  .listCell .rightInfo .ptitle{
+    font-size:1.5rem;
+    color:#000;
+    float: left;
+    width:112px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .listCell .rightInfo .rightBtn{
+    float: right;
+  }
+  .listCell .rightInfo .rightBtn span{
+    float: left;
+    width:18px;
+    height:18px;
+    border:1px solid #FF339A;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 15px;
+    color:#FF339A;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 1.4rem;
+  }
+  .listCell .rightInfo .rightBtn input{
+    float: left;
+    width:2.5rem;
+    height:18px;
+    background: none;
+    text-align: center;
+    font-size:1.4rem;
+    margin:0 5px;
+    border:0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+  }
+  .listCell .rightInfo .type{
+    width:100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom:0;
+  }
+  .listCell .rightInfo .type span{
+    margin-right:10px;
+  }
+  .listCell .rightInfo .price{
+    color:#FF339A;
+    font-size: 1.5rem;
+    float: left;
+    margin-right:1rem;
+  }
+  .listCell .rightInfo del{
+    float: left;
+    width:50px;
+  }
+  .listCell .rightInfo .del{
+    float: right;
+    color:#FF339A;
+  }
+  .content{
+    padding:1rem 1rem 0 1rem;
+    font-size:1.5rem;
+    p{
+      margin-bottom:1rem;
+    }
+  }
+  /*.set{
+    padding-bottom:1rem;
+  }*/
+  .set span{
+    margin-right:10px;
+  }
+  .set .contact{
+    float: right;
+    color:#FF339A;
+    margin:0;
+  }
+  .area{
+    padding-bottom:1rem;
+  }
+  .area .delete{
+    float: right;
+    color:#FF339A;
+    margin:1px 0 0 10px;
+    font-size: 1.4rem;
+  }
+  .area input{
+    width:80px;
+    height:26px;
+    text-align: center;
+    border:1px solid #ccc;
+    margin:0 5px;
+  }
+  .describe .topDescribe{
+    margin-bottom:1rem;
+  }
+  .describe .topDescribe p{
+    width:74%;
+    float: left;
+    line-height: 2rem;
+  }
+  .describe .topDescribe button{
+    float: right;
+    margin-top:-0.3rem;
+  }
+  .describe .pics{
+    width:100%;
+  }
+  .describe .pics li{
+    width:25%;
+    height:7rem;
+    float: left;
+    margin-bottom:1rem;
+  }
+  .describe .pics li img{
+    width:90%;
+    height:90%;
+  }
+  .describe .topDescribe .overflow{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
+  }
+  .footer{
+    position: fixed;
+    bottom:45px;
+    left:0;
+    width:100%;
+    background:#fff;
+    border-top:1px solid #ccc;
+    padding-left:1rem;
+    height:46px;
+  }
+  .footer label{
+    float: left;
+    margin-top:12px;
+    position: relative;
+    img{
+      width:20px;
+      height:20px;
+      margin-right: 10px;
+      float: left;
+    }
+  }
+  .footer label input{
+    width:20px;
+    height:20px;
+    position: absolute;
+    top:0;
+    left:0;
+    opacity:0;
+  }
+  .footer .rightBtn{
+    float: right;
+    line-height: 45px;
+  }
+  .footer .rightBtn .total{
+    float: left;
+  }
+  .footer .rightBtn .total em{
+    color:#FF339A;
+  }
+  .footer .rightBtn .pay{
+    float: left;
+    width:100px;
+    height:45px;
+    background: #FF339A;
+    color:#fff;
+    text-align: center;
+    line-height: 45px;
+    margin-left:15px;
+  }
+}
+.footer .delSelected{
+  float: left;
+  font-size:1.4rem;
+  color:#FF339A;
+  line-height: 45px;
+  margin-left:1.3rem;
+}

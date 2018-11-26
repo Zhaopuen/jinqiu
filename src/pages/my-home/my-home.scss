@@ -1,0 +1,25 @@
+page-my-home {
+  ion-content{
+    top:44px;
+  }
+  .fixed-content, .scroll-content {
+    margin-top: 0 !important;
+  }
+  .topTip {
+    position: fixed;
+    // top:44px;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    height: 34px;
+    line-height: 34px;
+    z-index: 100;
+    text-align: center;
+    color: #666;
+    white-space: nowrap;
+    overflow: auto;
+    small {
+      font-size: 1.1rem;
+    }
+  }
+}

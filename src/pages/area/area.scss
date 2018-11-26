@@ -1,0 +1,25 @@
+page-area {
+  ._row {
+    padding-left: $item-ios-padding-left;
+    height: 4rem;
+    line-height: 4rem;
+    font-size: 1.6rem;
+  }
+  .row2 {
+    color: color($colors, gray);
+  }
+  .location_now {
+    background-color: #fff;
+    border-bottom: 0.55px solid #ddd;
+  }
+  .location {
+    margin: 0;
+    padding-left: 1rem;
+    border: 0.55px solid #ddd;
+    background-color: #fff;
+    vertical-align: baseline;
+    ion-icon {
+      margin-right: 0.5rem;
+    }
+  }
+}

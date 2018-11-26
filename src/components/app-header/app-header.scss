@@ -1,0 +1,51 @@
+//app-header + ion-content{ padding-top: 44px;}
+app-header {
+  .bar-buttons-ios[end]{
+    margin-right:0 !important;
+  }
+    height:44px;
+    display: block;
+    ion-navbar{
+        display: flex;
+        align-items: center;
+        ion-title{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .app_header_title{
+            display: flex;
+            align-items: center;
+            button{
+                height: 2rem;
+            }
+        }
+        .button-outline-ios-white{
+            height: 1.8rem;
+            padding: 0 0.8rem;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+        .toolbar-title{
+            display: flex;
+            align-items: center;
+        }
+        .toolbar-title-ios{
+            font-size: 2rem;
+            padding-left: -1rem;
+        }
+        .title .button-inner{
+            width: 2.6rem;
+        }
+    }
+
+}
+.bar-buttons-ios[end]{
+    margin-right:1.2rem;
+}
+.toolbar-ios-primary .toolbar-background-ios{
+    background: #15B72E;
+}
+.toolbar-ios-secondary .toolbar-background-ios {
+    background: #2fc047;
+}

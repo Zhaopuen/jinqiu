@@ -1,0 +1,260 @@
+page-myconfirmorder {
+  ion-content{
+    top:44px;
+  }
+  .designOrderHeader {
+    width: 100%;
+    background: #fff;
+    color: #9a9a9a;
+    padding: 1rem;
+    display: flex;
+    align-content: center;
+    margin-bottom: 1rem;
+    /*.address{
+      width:100%;
+      overflow: hidden;
+      -ms-text-overflow: ellipsis;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }*/
+    div:nth-child(1) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      border-right: 1px solid #999;
+      margin-right: 1rem;
+      img {
+        width: 2rem;
+        height: 2rem;
+      }
+      p {
+        font-size: 1.4rem;
+        margin-top: 0.5rem;
+      }
+    }
+    div.topDiv{
+      width: 4rem;
+    }
+    div.bottomDiv{
+      width: 8rem;
+    }
+    div:nth-child(2) {
+      width:100%;
+      p {
+        font-size: 1.4rem;
+        line-height: 2rem;
+        padding-bottom: 0.5rem;
+      }
+      .address{
+        width:100%;
+        span{
+          float: left;
+          margin-right:1rem;
+        }
+        .edit{
+          float: right;
+        }
+      }
+      .noAddress{
+        border-right:0;
+        margin-top:1.4rem;
+        color: #1781ff;
+      }
+    }
+  }
+  .orderBox{
+    width:100%;
+    margin-bottom:1rem;
+    .orderTit{
+      padding:1rem;
+      font-size:1.8rem;
+      border-bottom:1px solid #d9d9d9;
+    }
+    .listBox{
+      margin-bottom:1rem;
+      //border-bottom:1px solid #e5e5e5;
+      background: #fff;
+    }
+    p.type span{
+      margin-right:1rem;
+    }
+    p.price span,
+    p.price del{
+      float: left;
+      margin-right:2rem;
+    }
+    p.price span:nth-child(1){
+      font-size: 1.5rem;
+      color:#d4237a;
+    }
+    .orderInfo{
+      padding:1rem;
+      background: #fff;
+      p{
+        margin-bottom:1rem;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+      }
+      p.priceRow{
+        font-size:1.7rem;
+        span:last-child{
+          color:#d4237a;
+        }
+        margin-bottom: 0;
+        //padding-top:1rem;
+        //border-top:1px solid #eaeaea;
+      }
+    }
+    .priceOther{
+      border-top:1px solid #eaeaea;
+    }
+    .msg{
+      border-top:1px solid #f1f1f1;
+      padding:1rem;
+      background: #fff;
+      div{
+        font-size:1.7rem;
+        padding-bottom:1rem;
+      }
+      .txtarea{
+        border:1px solid #eaeaea;
+        padding:0 1rem;
+        height:7rem;
+      }
+      .txtarea textarea{
+        height:7rem;
+      }
+    }
+    .top{
+      width:100%;
+      padding:1rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      label{
+        font-size: 1.7rem;
+        .icon{
+          color:#999;
+          font-size:2rem;
+          margin-right:0.5rem;
+        }
+
+      }
+      .orderCell{
+        color:#d4237a;
+        font-size: 1.7rem;
+      }
+    }
+    .content{
+      padding:0 1rem 1rem 1rem;
+      .set{
+        padding-bottom:1rem;
+      }
+      .orderCell{
+        color:#d4237a;
+      }
+    }
+  }
+  .total{
+    display: flex;
+    justify-content: space-between;
+    white-space: nowrap;
+    background: #fff;
+    margin-top:1rem;
+    padding:1rem;
+    font-size:1.8rem;
+    span:last-child{
+      color:#d4237a;
+    }
+  }
+  .payType{
+    width:100%;
+    background:#fff;
+    padding:0 1rem;
+    margin-top:1rem;
+    .title{
+      padding:1rem 0;
+      font-size:1.8rem;
+    }
+    p{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      white-space:nowrap;
+      padding:1rem 0;
+      border-top:1px solid #eaeaea;
+      font-size:1.5rem;
+      line-height: 30px;
+      .leftImg{
+        width:30px;
+        height:30px;
+        margin-right:1rem;
+        float: left;
+      }
+      .rightImg{
+        width:20px;
+        height:20px;
+        float: left;
+        margin-top:5px;
+      }
+    }
+  }
+  .receipt{
+    margin-top:1rem;
+    padding:0 1rem;
+    background: #fff;
+    p{
+      display: flex;
+      justify-content: space-between;
+      white-space: nowrap;
+      padding:1rem 0;
+      img{
+        width:20px;
+        height:20px;
+        float: left;
+        margin-right:1rem;
+      }
+      label:last-child ion-icon{
+        font-size:2rem;
+      }
+      font-size:1.5rem;
+    }
+    p:last-child{
+      border-top:1px solid #eaeaea;
+    }
+  }
+  .btn{
+    margin: 0rem 0 4rem;
+    padding:1rem;
+  }
+  .mask{
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    .code{
+      text-align: center;
+      height:20rem;
+      width:16rem;
+      position: absolute;
+      padding-top:1rem;
+      top:50%;
+      left:50%;
+      margin-top:-8rem;
+      margin-left:-8rem;
+      background: #fff;
+      img{
+        width:14rem;
+        height:14rem;
+      }
+      p{
+        padding-top:1rem;
+        color:#666;
+      }
+    }
+  }
+}

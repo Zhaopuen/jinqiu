@@ -1,0 +1,4 @@
+page-qa {
+    .card-ios{ margin-left: 0; margin-right: 0; width: 100%; box-shadow: none;}
+    .card-header-ios + .card-content-ios:not([hidden]){ border-top: 0.55px solid $list-border-color;}
+}

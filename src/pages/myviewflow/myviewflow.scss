@@ -1,0 +1,37 @@
+page-myviewflow {
+  .topInfo{
+    padding:1rem 1rem 0 1rem;
+    margin-top:44px;
+    background:#fff;
+    p{
+      padding-bottom: 1rem;
+    }
+    p.first{
+      font-size:1.6rem;
+      span{
+        color:#1BB215;
+      }
+    }
+  }
+  .courierInfo{
+    margin-top:1rem;
+    background: #fff;
+    padding:1rem;
+    .courierIon{
+      font-size:2.4rem;
+      color:#999;
+      float: left;
+      margin:-3px 5px 0 0;
+    }
+  }
+  .flowInfo{
+    margin-top:1rem;
+    background:#fff;
+    padding:1rem;
+    p{
+      margin-bottom:1rem;
+      line-height: 2.2rem;
+      color:#444;
+    }
+  }
+}

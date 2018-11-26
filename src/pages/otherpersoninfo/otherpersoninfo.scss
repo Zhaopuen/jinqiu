@@ -1,0 +1,27 @@
+page-otherpersoninfo {
+    ion-content{
+        top:44px;
+    }
+    ion-icon{
+      color:#bbb;
+    }
+    ion-item{
+      color:#333;
+    }
+    .iconstyles{
+      color:#333;
+      font-size: 2.3rem;
+      display: block;
+      float: left;
+      margin-right: 0.5rem;
+    }
+    .item-ios ion-icon[item-end]{
+      margin:0 !important;
+    }
+    .item-ios [item-end]{
+      margin:0 !important;
+    }
+    .item-inner > ion-icon{
+      min-height:0 !important;
+    }
+}

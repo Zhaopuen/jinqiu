@@ -1,0 +1,76 @@
+<app-header title="我的个人中心"></app-header>
+<ion-content hide-tabs>
+  <ion-list>
+    <div style="padding-bottom:1.2rem;">
+      <ion-item (click)="cp.goto({view:'account'})">
+        <!-- <ion-icon name="person" item-start></ion-icon> -->
+        <ion-icon class="iconfont icon-my iconstyles"></ion-icon>
+        我的个人资料
+        <ion-icon class="iconfont icon-jiantouright iconstyles" item-end></ion-icon>
+      </ion-item>
+      <ion-item *ngIf="cp.u.type!=0" (click)="yuangong()">
+        <ion-icon class="iconfont icon-information iconstyles"></ion-icon>
+        员工信息
+        <ion-icon  class="iconfont icon-jiantouright iconstyles" item-end></ion-icon>
+      </ion-item>
+      <ion-item (click)="cp.goto({view:'workuserpassword'})">
+        <ion-icon class="iconfont icon-editpassword iconstyles"></ion-icon>
+        修改密码
+        <ion-icon  class="iconfont icon-jiantouright iconstyles" item-end></ion-icon>
+      </ion-item>
+      <ion-item (click)="cp.goto({view:'myaddress'})">
+        <ion-icon class="iconfont icon-address iconstyles"></ion-icon>
+        我的收货地址
+        <ion-icon  class="iconfont icon-jiantouright iconstyles" item-end></ion-icon>
+      </ion-item>
+      <ion-item (click)="cp.goto({view:'mycollection'})">
+        <ion-icon class="iconfont icon-star iconstyles"></ion-icon>
+        我的收藏商品
+        <ion-icon  class="iconfont icon-jiantouright iconstyles" item-end></ion-icon>
+      </ion-item>
+      <ion-item (click)="cp.goto({view:'houselist'})">
+        <ion-icon class="iconfont icon-house iconstyles"></ion-icon>
+        我的房屋信息
+        <ion-icon  class="iconfont icon-jiantouright iconstyles" item-end></ion-icon>
+      </ion-item>
+      <ion-item (click)="cp.goto({view:'myreceipt'})">
+        <ion-icon class="iconfont icon-recipet iconstyles"></ion-icon>
+        我的发票
+        <ion-icon  class="iconfont icon-jiantouright iconstyles" item-end></ion-icon>
+      </ion-item>
+      <ion-item (click)="cp.goto({view:'mycart'})">
+        <ion-icon class="iconfont icon-cart iconstyles"></ion-icon>
+        我的购物车
+        <ion-icon  class="iconfont icon-jiantouright iconstyles" item-end></ion-icon>
+      </ion-item>
+      <ion-item (click)="cp.goto({view:'myorder'})">
+        <ion-icon class="iconfont icon-order iconstyles"></ion-icon>
+        我的订单
+        <ion-icon  class="iconfont icon-jiantouright iconstyles" item-end></ion-icon>
+      </ion-item>
+      <ion-item (click)="cp.goto({view:'sysmsg'})">
+        <ion-icon class="iconfont icon-noice iconstyles"></ion-icon>
+        我的消息
+        <ion-icon  class="iconfont icon-jiantouright iconstyles" item-end></ion-icon>
+      </ion-item>
+      <ion-item (click)="cp.goto({view:'user-view'})">
+        <ion-icon  class="iconfont icon-view iconstyles"></ion-icon>
+        我的建议投诉
+        <ion-icon  class="iconfont icon-jiantouright iconstyles" item-end></ion-icon>
+      </ion-item>
+      <ion-item (click)="cp.goto({view:'popularize'})">
+        <ion-icon class="iconfont icon-weweima iconstyles"></ion-icon>
+        推广二维码
+        <ion-icon  class="iconfont icon-jiantouright iconstyles" item-end></ion-icon>
+      </ion-item>
+
+      <ion-item (click)="logout()">
+        <ion-icon class="iconfont icon-loginout iconstyles"></ion-icon>
+        退出登录
+        <ion-icon class="iconfont icon-jiantouright iconstyles" item-end></ion-icon>
+      </ion-item>
+    </div>
+
+  </ion-list>
+
+</ion-content>

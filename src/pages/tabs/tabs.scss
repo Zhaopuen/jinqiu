@@ -1,0 +1,16 @@
+.tabs-ios .tabbar{
+    background: #333 !important;
+}
+.tabs-ios .tab-button{
+    color:#fff !important;
+}
+.tabs-ios .tab-button:hover:not(.disable-hover), .tabs-ios .tab-button[aria-selected=true]{
+    color:rgb(47, 192, 71) !important;
+}
+.tabs-ios .tab-button-icon{
+    color:#fff !important;
+    margin-top:0 !important;
+}
+.tabs-ios .tab-button[aria-selected=true] .tab-button-icon{
+    color:rgb(47, 192, 71) !important;
+}

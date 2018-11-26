@@ -1,0 +1,295 @@
+// http://ionicframework.com/docs/theming/
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+@font-face {
+  font-family: 'iconfont';  /* project id 912096 */
+  src: url('//at.alicdn.com/t/font_912096_xh6bpax3f9m.eot');
+  src: url('//at.alicdn.com/t/font_912096_xh6bpax3f9m.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_912096_xh6bpax3f9m.woff') format('woff'),
+  url('//at.alicdn.com/t/font_912096_xh6bpax3f9m.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_912096_xh6bpax3f9m.svg#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:60rpx;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*本项目使用的图标 */
+.icon-my:before{content: '\e649';}
+.icon-information:before{content:'\e764'}
+.icon-editpassword:before{content:'\e684'}
+.icon-loginout:before{content:'\e647'}
+.icon-weweima:before{content:'\e630'}
+.icon-view:before{content:'\e625'}
+.icon-noice:before{content:'\e616'}
+.icon-order:before{content:'\e611'}
+.icon-cart:before{content:'\e601'}
+.icon-recipet:before{content:'\e645'}
+.icon-house:before{content:'\e636'}
+.icon-star:before{content:'\e60c'}
+.icon-address:before{content:'\e63e'}
+.icon-jiantouright:before{content:'\e64c'}
+.icon-uploaddesign:before{content:'\e696'}
+.icon-finished:before{content:'\e612'}
+.icon-queren:before{content:'\e60e'}
+.icon-work:before{content:'\e697'}
+@media screen and (max-width:320px) {
+  html {
+    font-size: 9px;
+  }
+}
+
+@media screen and (min-width:321px) and (max-width:375px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+@media screen and (min-width:376px) and (max-width:414px) {
+  html {
+    font-size: 11px;
+  }
+}
+
+@media screen and (min-width:415px) and (max-width:639px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width:640px) and (max-width:719px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width:720px) and (max-width:749px) {
+  html {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width:750px) and (max-width:799px) {
+  html {
+    font-size: 22.5px;
+  }
+}
+
+@media screen and (min-width:800px) {
+  html {
+    font-size: 23.5px
+  }
+}
+
+// 做ipad兼容  ionic的以下样式 默认只在<768时生效 但ipad也要用到以下样式
+@media only screen and (min-width: 768px) {
+  .ios .modal-wrapper>.ion-page>ion-header>.toolbar.statusbar-padding:first-child ion-segment,
+  .ios .modal-wrapper>.ion-page>ion-header>.toolbar.statusbar-padding:first-child ion-title {
+    padding-top: 20px;
+    padding-top: constant(safe-area-inset-top);
+    padding-top: env(safe-area-inset-top);
+    height: calc(44px + 20px);
+    height: calc(44px + constant(safe-area-inset-top));
+    height: calc(44px + env(safe-area-inset-top));
+    min-height: calc(44px + 20px);
+    min-height: calc(44px + constant(safe-area-inset-top));
+    min-height: calc(44px + env(safe-area-inset-top));
+  }
+}
+
+// ipad 适配
+.back-button-ios {
+  min-height: 32px;
+}
+
+.back-button-icon-ios {
+  font-size: 34px;
+}
+
+.bar-buttons-ios {
+  font-size: 14px;
+}
+
+.header .searchbar-ios .searchbar-input {
+  font-size: 16px;
+  height: 30px;
+  padding-right: 10px;
+}
+
+.header .searchbar-ios .searchbar-search-icon {
+  height: 12px;
+  width: 12px;
+  left: 9px;
+  top: 9px;
+}
+
+ion-modal {
+  .modal-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// 设置全局
+.bar-buttons-ios[end] {
+  margin-right: 4px;
+}
+
+.slide_bg {
+  img {
+    -webkit-touch-callout: default
+  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: black;
+  z-index: 10000;
+}
+
+.content-ios {
+  background: #f1f1f1;
+}
+
+.bgwhite {
+  background: white;
+}
+
+.bar-button-default-ios:hover:not(.disable-hover) {
+  color: #fff;
+}
+
+//全局 列表没数据时 显示默认图片
+.no_records {
+  background-color: white;
+  padding: 10rem 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.no_records_inline {
+  background-color: white;
+}
+.no_records,
+.no_records_inline {
+  p {
+    text-align: center;
+    margin: 0;
+    padding: $space;
+    font-size: 1.5rem;
+    color: color($colors, gray);
+  }
+  p:first-child {
+    height: 18rem;
+    background: url("../assets/imgs/no_records.png") no-repeat center;
+    background-size: contain;
+  }
+  p span {
+    background-color: color($colors, primary);
+    border-radius: 5px;
+    color: white;
+    padding: 5px 10px;
+  }
+}
+
+// flex 布局
+.flex {
+  display: flex;
+  align-items: center;
+  .flex1 {
+    flex: 1;
+  }
+}
+
+// 强制无底边（ion-list的ion-item项亦生效）
+.no-border{
+    border-bottom: none!important;
+    .item-inner{border-bottom: none!important;}
+  }
+
+// 将头部设置透明
+.transheader{
+    position: relative;
+    > img{ width: 100%; display: block;}
+    .toolbar-title-ios{ color:rgba(0,0,0,0);}
+    .toolbar-background-ios{ background-color: transparent;}
+    .header-ios .toolbar-background-ios{ border-color: rgba(0,0,0,0);}
+    .bar-button-default-ios,.bar-button-default-ios:hover:not(.disable-hover){ color: white;}
+  }
+  // 让transheader下的statusbar-padding生效
+  .ios .header .statusbar-padding:first-child{
+    padding-top: calc(20px + 4px);padding-top: calc(constant(safe-area-inset-top) + 4px);padding-top: calc(env(safe-area-inset-top) + 4px);min-height: calc(44px + 20px);min-height: calc(44px + constant(safe-area-inset-top));min-height: calc(44px + env(safe-area-inset-top));
+  }
+  // android手机设置了全屏（statusbar overlay）兼容
+  .platform-cordova.platform-android .header .toolbar:first-child  {padding-top: 24px;}
+  .platform-cordova.platform-android .ion-page .header ion-title{padding-top: 20px;}
+
+  /*
+  .ios ion-tab > .ion-page > .content.statusbar-padding:first-child .scroll-content{ padding-top: 0;}
+  .platform-ios > .ion-page .toolbar-ios ion-title{padding-top: calc(20px + 4px);padding-top: calc(constant(safe-area-inset-top) + 4px);padding-top: calc(env(safe-area-inset-top) + 4px);}
+  */
+
+  // login & reg
+  .input-container{
+    margin: 32px;
+    .item-ios{ padding-left: 0;}
+    .list-ios > .item-block:first-child{ border-top: none;}
+  }
+  .btn-container{ width: 60%;margin-left: 20%;}
+
+  // tooltip
+  [_nghost-c0]{ max-width: 90%; z-index: 100000;}
+  .has-arrow.arrow-top[_nghost-c0]:before{ top: -9px!important; right: 10px;}
+
+  // floated download icon
+  .dl{
+      position: fixed; bottom: 59px; right: 10px;
+      img{ width: 72px;}
+  }
+
+//   标签公用样式
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin:0;padding:0;}
+table {border-collapse:collapse;border-spacing:0;}
+fieldset,img {border:0}
+address,caption,cite,code,dfn,em,strong,th,var {font-style:normal;font-weight:normal}
+ol,ul {list-style:none}
+caption,th {text-align:left}
+h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight:normal}
+q:before,q:after {content:''}
+abbr,acronym { border:0}
+//清浮动
+.clearfix:after{
+  content:"";
+  display: block;
+  clear: both;
+}
+body{
+  color:#333;
+}
+
+.slide_bg{
+  img{-webkit-touch-callout: default}
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: black; z-index: 10000;
+}

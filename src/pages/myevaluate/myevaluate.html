@@ -1,0 +1,150 @@
+<app-header title="评价订单"></app-header>
+<ion-content>
+  
+  <div class="top">
+    <div class="ddetail">商品评价</div>
+    <p class="orderNum">订单编号：{{list.order_sn}}</p>
+    <p class="orderTime">订单时间：{{list.time}}</p>
+    <ion-list class="noMargin" *ngIf="subject_id==1">
+      <ion-item class="bg" *ngFor="let item of list.order_goods">
+        <ion-thumbnail item-start>
+          <img src="{{item.goods_info_arr.pic_url}}">
+        </ion-thumbnail>
+        <h2 class="listTit">{{item.goods_info_arr.title}}</h2>
+        <p class="type"><span *ngFor="let type of item.typeArr">{{type}}</span></p>
+        <p>
+          <span class="price">￥{{item.goods_info_arr.price}}</span>
+          <span>×<em>{{list.order_goods.length}}</em></span>
+        </p>
+      </ion-item>
+    </ion-list>
+    <div class="designOrderDetail" *ngIf="subject_id==3">
+      <p class="first">设计费：<span>￥{{list.price}}</span></p>
+      <div *ngFor="let staffArr of list1">
+        <div *ngIf="staffArr.order_staff.length>0">
+          <div *ngFor="let staff of staffArr.order_staff">
+            <p><em class="workpingjia">设计师：</em>{{staff.user.nickname}}</p>
+            <p><em class="workpingjia">设计师手机号：</em>{{staff.user.tel}}</p>
+          </div>
+        </div>
+      </div>
+      <div *ngFor="let item of list.order_goods;let i=index;">
+        <p><em class="workpingjia">每平米设计费单价：</em>{{item.typeArr[0]}}元</p>
+        <p><em class="workpingjia">待设计房屋面积：</em>{{item.typeArr[1]}}平方米</p>
+      </div>
+      <p><em class="workpingjia">待设计房屋地址：</em>{{list.address}}</p>
+    </div>
+    <div class="designOrderDetail" *ngIf="subject_id==4">
+      <div *ngFor="let item of list.order_goods;let i=index;">
+        <p class="first">施工费：<span>￥{{list.price}}</span></p>
+        <div *ngFor="let staffArr of list1">
+          <div *ngIf="staffArr.order_staff.length>0">
+            <div *ngFor="let staff of staffArr.order_staff">
+              <p><em class="workpingjia">施工长：</em>{{staff.user.nickname}}</p>
+              <p><em class="workpingjia">施工长手机号：</em>{{staff.user.tel}}</p>
+            </div>
+          </div>
+        </div>
+
+        <p><em class="workpingjia">每平米施工费单价：</em>{{item.typeArr[0]}}元</p>
+        <p><em class="workpingjia">待施工房屋面积：</em>{{item.typeArr[1]}}平方米</p>
+        <p><em class="workpingjia">待施工房屋地址：</em>{{list.address}}</p>
+      </div>
+    </div>
+    <div class="designOrderDetail" *ngIf="subject_id==2">
+      <div *ngFor="let item of list.order_goods;let i=index;">
+        <p class="first">{{item.goods_info_arr.title}}<span>￥{{list.price}}</span></p>
+        <p>{{item.goods_info_arr.title}}每平米单价：{{item.typeArr[0]}}元</p>
+        <p>待设计房屋面积：{{item.typeArr[1]}}平方米</p>
+      </div>
+    </div>
+    <div class="evaluateDet">
+      <p class="evaluateType clearfix" *ngIf="subject_id==1">
+        <span *ngFor="let item of evaluateType" (click)="changeImg(item.id,i)">
+          <img *ngIf="evaluateId==item.id" src="{{item.pic_checked}}">
+          <img *ngIf="evaluateId!=item.id" src="{{item.pic}}">
+          {{item.title}}
+        </span>
+      </p>
+      <p class="evaluateType clearfix" *ngIf="subject_id==2 || subject_id==3 || subject_id==4">
+        <span *ngFor="let item of evaluateType1" (click)="changeImg(item.id,i)">
+          <img *ngIf="evaluateId==item.id" src="{{item.pic_checked}}">
+          <img *ngIf="evaluateId!=item.id" src="{{item.pic}}">
+          {{item.title}}
+        </span>
+      </p>
+      <div class="evaluateBox clearfix">
+        <label>评价内容</label>
+        <textarea rows="4" [(ngModel)] = "content"></textarea>
+      </div>
+      <div class="evaluateBox clearfix" *ngIf="subject_id==1">
+        <div class="scoreCell clearfix" *ngFor="let item of scoreCell">
+          <label>{{item.title}}</label>
+          <div class="score">
+            <span *ngFor="let img of item.star" (click)="setScore(item.id,img.pid)"><img src="{{img.pic}}"></span>
+            <span>{{item.score}}分</span>
+          </div>
+        </div>
+      </div>
+      <div class="evaluateBox clearfix" *ngIf="subject_id==2">
+        <div class="scoreCell clearfix" *ngFor="let item of scoreCell3">
+          <label>{{item.title}}</label>
+          <div class="score">
+            <span *ngFor="let img of item.star" (click)="setScore3(item.id,img.pid)"><img src="{{img.pic}}"></span>
+            <span>{{item.score}}分</span>
+          </div>
+        </div>
+      </div>
+      <div class="evaluateBox clearfix" *ngIf="subject_id==3">
+        <div class="scoreCell clearfix" *ngFor="let item of scoreCell1">
+          <label>{{item.title}}</label>
+          <div class="score">
+            <span *ngFor="let img of item.star" (click)="setScore1(item.id,img.pid)"><img src="{{img.pic}}"></span>
+            <span>{{item.score}}分</span>
+          </div>
+        </div>
+      </div>
+      <div class="evaluateBox clearfix" *ngIf="subject_id==4">
+        <div class="scoreCell clearfix" *ngFor="let item of scoreCell2">
+          <label>{{item.title}}</label>
+          <div class="score">
+            <span *ngFor="let img of item.star" (click)="setScore2(item.id,img.pid)"><img src="{{img.pic}}"></span>
+            <span>{{item.score}}分</span>
+          </div>
+        </div>
+      </div>
+      <div class="evaluateBox clearfix">
+        <label>添加图片</label>
+        <div class="imgBox">
+          <ion-row class="photos">
+            <!--循环显示图片-->
+            <ion-col col-4 col-sm-4 col-md-20 class="photo_container" *ngFor="let photo of photos;">
+              <div class="photo">
+                <!-- <a class="close" (click)="deleteImg(photo)"></a> -->
+                <img [src]="photo" [alt]="photo">
+              </div>
+            </ion-col>
+            <!--添加图片-->
+            <ion-col col-4 col-sm-4 col-md-20 class="photo_container" align-items-center>
+              <div class="photo upload" (click)="addImg()">
+                <ion-icon name="md-camera"></ion-icon>
+                <span>添加照片</span>
+                <form action="" #form>
+                  <input type="file" name="file" accept="image/*" (change)="uploadImg($event)">
+                </form>
+              </div>
+            </ion-col>
+          </ion-row>
+
+          <!--<ul *ngIf="imgList.length>0"><li></li></ul>
+          <div class="add" (click)="uploadImg()">
+            <img src="./assets/imgs/add.png">
+          </div>-->
+        </div>
+      </div>
+      <div class="evaluateBox">
+        <button ion-button block style="background:linear-gradient(to right, #DF0371, #FA001B)" (click)="evaluateClick()">提交</button>
+      </div>
+    </div>
+  </div>
+</ion-content>

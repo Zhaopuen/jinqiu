@@ -1,0 +1,219 @@
+page-mycollection {
+    .xiugaimima{
+        font-size: 1.8rem;
+        color: #444;
+        padding: 1rem 1rem 0;
+        text-align: center;
+        font-weight:bold;
+    }
+    img{
+        object-fit: cover;
+    }
+    .xiugaimima{
+        font-size: 1.8rem;
+        color: #333;
+        padding: 1rem 1rem 1rem;
+        text-align: center;
+        font-weight: 550;
+        margin-bottom: 0.7rem;
+    }
+    .scroll-content{
+        margin-bottom: 44px !important;
+    }
+    .collect_box{
+        width:100%;
+        height:auto;
+        overflow: hidden;
+        .collect_mid:nth-child(even){
+            margin-right:0 !important;
+        }
+        .collect_mid{
+            width:48%;
+            height:auto;
+            overflow: hidden;
+            border:1px solid #d9d9d9;
+            float:left;
+            background:#fff;
+            margin: 0 3% 3% 0;
+            img{
+                width:100%;
+                height:14rem;
+            }
+           .collect_title{
+                line-height: 2.5rem;
+                padding:0 5px;
+                span{
+                    font-size: 1.3rem;
+                }
+            }
+            .collect_time{
+                line-height: 2.5rem;
+                padding:0 5px;
+                span{
+                    font-size: 1.3rem;
+                }
+            }
+        }
+    }
+
+    .collects_box{
+        width:100%;
+        height:auto;
+        overflow: hidden;
+        .collectios_mids{
+            width:100%;
+            height:auto;
+            overflow: hidden;
+            background:#fff;
+            border-bottom: 1px solid #d9d9d9;
+            padding:3%;
+            .collections_img{
+                width:25%;
+                height:6rem;
+                float:left;
+                margin-right: 3%;
+                img{
+                    width:100%;
+                    height:100%;
+                }
+            }
+            .collectios_title{
+                width:58%;
+                height:auto;
+                overflow: hidden;
+                margin-right: 3%;
+                float:left;
+                .collect_title{
+                    font-size: 1.5rem;
+                    color:#333;
+                    padding-bottom: 0.7rem;
+                }
+                .collect_shuxing{
+                    font-size: 1.4rem;
+                    color:#888;
+                    padding-bottom: 0.8rem;
+                }
+                .collect_price{
+                    font-size: 1.6rem;
+                    color:#EB1983;
+                }
+                span{
+                    display: block;
+                }
+            }
+            .collections_add{
+                width:10%;
+                height:auto;
+                overflow: hidden;
+                .addshop{
+                    font-size: 1.5rem;
+                    color:#EB1983;
+                    line-height: 2rem;
+                }
+                .collect_delete{
+                    font-size: 1.5rem;
+                    color:#888;
+                    line-height: 6rem;
+                }
+            }
+        }
+    }
+    .addshopAll{
+        width:100%;
+        height:4rem;
+        background:#fff;
+        border-top:1px solid #d9d9d9;
+        position: fixed;
+        bottom:0;
+        line-height: 4rem;
+        span{
+            font-size: 1.5rem;
+        }
+        .all_select{
+            padding-left: 16px;
+            width:60%;
+            display: block;
+            float:left;
+        }
+        button{
+            width:30%;
+            height:100%;
+            background:#E90075;
+            color:#fff;
+            line-height: 4rem;
+            text-align: center;
+            float:right;
+        }
+        .delete_alls{
+            width:10%;
+            display: block;
+            float:left;
+        }
+    }
+    .top{
+        background: #fff;
+        font-size:1.5rem;
+        float:left;
+        width:10%;
+      }
+      .top label{
+        float: left;
+        position: relative;
+        font-size: 1.7rem;
+      }
+      .top img{
+        width:20px;
+        height:20px;
+        margin-right:10px;
+        float: left;
+      }
+    .top input{
+        width:20px;
+        height:20px;
+        position: absolute;
+        top:0;
+        left:0;
+        opacity: 0;
+    }
+    .top .contact{
+        float: right;
+        color:#FF339A;
+        font-size: 1.4rem;
+    }
+    .top .icon{
+        color:#999;
+        font-size: 2rem;
+    }
+    label {
+        font-size:12px;
+        cursor:pointer;
+        margin-top: 2rem;
+    }
+    label i {
+        font-size:20px;
+        font-style:normal;
+        display:inline-block;
+        width:20px;
+        height:20px;
+        text-align:center;
+        line-height:18px;
+        color:#fff;
+        vertical-align:middle;
+        margin:-2px 2px 1px 0px;
+        border:#E90075 1px solid;
+        border-radius:4px;
+    }
+    input[type="checkbox"]{
+        display:none;
+    }
+    input[type="checkbox"]:checked + i{
+        background:#E90075;
+    }
+    input[type="checkbox"]:disabled + i{
+        border-color:#ccc;
+    }
+    input[type="checkbox"]:checked:disabled + i {
+        background:#ccc;
+    }
+
+}

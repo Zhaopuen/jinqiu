@@ -1,0 +1,65 @@
+<!--
+  Generated template for the SjbedesignedPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<app-header title="我的个人中心"></app-header>
+
+<ion-content style="top:44px;">
+  <div class="xiugaimima">在施工订单</div>
+  <div class="content">
+    <div class="content-item" *ngFor="let item of sureOrders;let i=index">
+      <p class="item-title">
+        <span class="title-btn"></span>
+        <span class="title-order"><i>订单单号:</i>{{item.order.order_sn}}</span>
+        <span class="title-waitfor">在施工</span>
+      </p>
+      <div *ngFor="let items of orderList;let i=index;">
+          <p class="item-time">
+              <span class="time-title">订单时间</span>
+              <span class="time-day">{{items.goods_info_arr.create_time}}</span>
+            </p>
+            <div class="item-con">
+                <p class="con-name"><span class="name-title">业主：</span>{{item.order.user.nickname}}</p>
+                <p class="con-tel">
+                  <span class="tel-title">业主电话：</span>{{item.order.user.tel}}
+                </p>
+                <p class="con-address"><span>地址：</span>{{item.order.user_profile.address}}</p>
+              <p class="con-price"><span>每平方米设计费单价：</span>{{items.props_value_arr['单价']}}元</p>
+              <p class="con-area"><span>待设计房屋面积：</span>{{items.props_value_arr['面积']}}平方米</p>
+            </div>
+            <div class="item-total">
+                <p><span>总计:</span>￥{{items.props_value_arr['单价']*items.props_value_arr['面积'] || 0}}</p>
+            </div>
+      </div>
+      <div class="item-btn">
+        <div class="btn-all">
+          <button ion-button style="color:#e90075;border-color:#e90075;width:11rem;" outline class="all-programme" (click)="cp.goto({view:'projectupload'})">上传工程隐蔽图片</button>
+          <button ion-button style="color:#e90075;border-color:#e90075;" outline class="all-dataone" (click)="cp.goto({view:'userworker',id:item.order.id})">用工管理</button>
+          <button ion-button style="color:#e90075;border-color:#e90075;" outline class="all-data" (click)="cp.goto({view:'workziliao',id:item.id})">顾客资料</button>
+        </div>
+      </div>
+    </div>
+    <div class="noorder" *ngIf="noShow">暂无在施工订单</div>
+  </div>
+
+
+</ion-content>
+
+<!-- 待施工订单弹窗 -->
+<div class="hardcover" *ngIf="ishardShowedit">
+    <div class="hardcover_middle">
+      <div class="hardcover_title" >
+          <h5>设计方案</h5>
+          <ion-icon name="ios-close" class="hardcover_close" (click)="editWorkClick()"></ion-icon>
+      </div>
+      <div class="hardcoverimgs">
+          <div class="workstime">
+            <span>方案：</span>
+            <input type="text" placeholder="" [(ngModel)]="addstartdate">
+          </div>
+        <button class="addworks" (click)="caeUpload()">提交</button>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,67 @@
+<app-header title="我的个人中心"></app-header>
+<ion-content class="bgwhite">
+  <form [formGroup]="pageForm">
+    <div class="input-container">
+      <ion-list>
+        <!--<ion-item *ngIf="!cp.u.keyid && !cp.u.tel" [hidden]="cp.settings.auth?true:false">
+          <ion-input type="text" formControlName="auth" placeholder="邀请码"></ion-input>
+          <button ion-button clear item-end class="link" (click)="cp.goto({view:'article',id:4})">如何获取？</button>
+        </ion-item>-->
+        <ion-item *ngIf="type==0">
+          <ion-label>昵称</ion-label>
+          <ion-input type="text"  formControlName="nickname" placeholder="昵称"></ion-input>
+        </ion-item>
+        <ion-item class="tip" *ngIf="pageForm.controls.nickname.touched && !pageForm.controls.nickname.valid">
+          <ion-note color="primary">昵称需2个字及以上</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>姓名</ion-label>
+          <ion-input type="text"  formControlName="real_name" placeholder="姓名"></ion-input>
+        </ion-item>
+        <ion-item class="tip" *ngIf="pageForm.controls.real_name.touched && !pageForm.controls.real_name.valid">
+          <ion-note color="primary">请正确输入姓名</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>身份证号码</ion-label>
+          <ion-input type="text"  formControlName="keyid" placeholder="身份证号"></ion-input>
+        </ion-item>
+        <ion-item class="tip" *ngIf="pageForm.controls.keyid.touched && !pageForm.controls.keyid.valid">
+          <ion-note color="primary">请正确输入18位身份证号</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>性别</ion-label>
+          <ion-select formControlName="gender" interface="popover">
+            <ion-option value="1">男</ion-option>
+            <ion-option value="2">女</ion-option>
+          </ion-select>
+        </ion-item>
+        <div *ngIf="type==8 || type==9">
+          <ion-item>
+          <ion-label>收款码</ion-label>
+          <ion-input type="text"  formControlName="receive_money_qrcode" placeholder="收款码"></ion-input>
+        </ion-item>
+          <ion-item class="tip" *ngIf="pageForm.controls.receive_money_qrcode.touched && !pageForm.controls.receive_money_qrcode.valid">
+            <ion-note color="primary">请输入收款码</ion-note>
+          </ion-item>
+        </div>
+        <ion-item>
+          <ion-label>地区</ion-label>
+          <ion-select formControlName="province" (ionChange)="change(pageForm.controls.province.value)" interface="popover">
+            <ion-option *ngFor="let item of provinces" value="{{item.region_id}}">{{item.region_name}}</ion-option>
+          </ion-select>
+          <ion-select formControlName="city" (ionChange)="change(pageForm.controls.city.value)" interface="popover" [hidden]="!pageForm.controls.province.value">
+            <ion-option *ngFor="let item of cities" value="{{item.region_id}}">{{item.region_name}}</ion-option>
+          </ion-select>
+          <ion-select formControlName="district" interface="popover" [hidden]="!pageForm.controls.city.value">
+            <ion-option *ngFor="let item of districts" value="{{item.region_id}}">{{item.region_name}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div class="btn-container">
+      <p>
+        <button ion-button block round [disabled]="pageForm && !pageForm.valid" (click)="sub()">提交</button>
+      </p>
+    </div>
+  </form>
+</ion-content>

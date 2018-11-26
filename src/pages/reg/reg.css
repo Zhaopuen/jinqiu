@@ -1,0 +1,18 @@
+page-reg .list-ios .item-block:first-child {
+  border-top: none; }
+page-reg .header-ios .toolbar-ios:last-child .toolbar-background-ios {
+  background: transparent; }
+page-reg .header-ios .button-inner {
+  color: #fff; }
+page-reg .header-ios .toolbar-ios:last-child .toolbar-background-ios {
+  border-width: 0; }
+page-reg .toolbar-title-ios {
+  color: #fff; }
+page-reg form .item-ios {
+  padding-left: 0; }
+page-reg form .list-ios .item-block:first-child {
+  border-top: none; }
+page-reg form .link.note.note-ios {
+  color: #488aff; }
+page-reg form .btn-container {
+  margin-bottom: 1rem; }

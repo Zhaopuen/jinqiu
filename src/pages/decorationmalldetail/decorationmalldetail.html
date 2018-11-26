@@ -1,0 +1,424 @@
+<!-- 促销商品详情 -->
+<link rel="stylesheet" href="/assets/icon/videogular.css">
+<app-header title="金秋梦装饰"></app-header>
+<ion-content>
+  <!-- 面包屑 -->
+  <div class="pmalldetail_crumbs">
+    <span>当前位置：</span>
+    <a href="">促销商品></a>
+    <span style="color:#E63088;">商品详情</span>
+  </div>
+  <!-- 详情轮播图 -->
+  <div *ngIf="mallInfo">
+    <ion-slides pager style="height:25rem;">
+      <ion-slide style="height:25rem;" *ngIf="mallVideo">
+        <vg-player>
+          <video  [vgMedia]="media" #media id="singleVideo" preload="auto" controls style="height:100%;">
+            <source src="{{mallVideo}}" type="video/mp4">
+          </video>
+        </vg-player>
+      </ion-slide>
+      <ion-slide style="height:25rem;" *ngFor="let item of swiperImg;let i = index;">
+        <img src="{{item}}" alt="" (click)="showBigImgBlock(item)">
+      </ion-slide>
+    </ion-slides>
+
+    <ion-card-content style="background:#fff;position:relative;">
+      <div class="has_collections">
+        <ion-card-title style="display:block;float:left;">{{mallInfo.title}}</ion-card-title>
+        <div class="decoration_collect" (click)="collectMall()">
+          <ion-icon ios="ios-star-outline" md="md-star" *ngIf="starShow"></ion-icon>
+          <ion-icon ios="ios-star" md="md-star" *ngIf="!starShow" style="color:#E63088;"></ion-icon>
+          <span>收藏商品</span>
+        </div>
+      </div>
+
+      <div class="pmalldetail_cardprice">
+        <!-- <span>￥<em style="font-size: 3rem;">{{mallInfo.cost_price}}</em></span>
+      <button ion-button color="secondary" outline style="width:5.5rem;font-size: 1.6rem;">促销价</button> -->
+        <span>促销单价：RMB
+          <em style="font-size: 3rem;"> ￥{{mallInfo.cost_price}}</em>
+        </span>
+      </div>
+      <!-- <div class="pmalldetail_cardshare">
+        <ion-icon name="md-share"></ion-icon><br/>
+        <span>分享</span>
+    </div> -->
+      <div class="pmalldetail_cardzhekou">原价
+        <span> ￥{{mallInfo.price}}</span>
+      </div>
+      <div class="pmalldetail_cardadd">
+        <span>促销时间：{{mallInfo.promo_start_time}}至{{mallInfo.promo_end_time}}</span>
+        <!-- <span>月销{{mallInfo.stock}}笔</span> -->
+        <span>江苏苏州</span>
+      </div>
+    </ion-card-content>
+
+    <ion-list>
+      <div no-lines class="label_box">
+        <div style="float:left;margin-right: 0.5rem;font-size: 1.3rem;">
+          <ion-icon name="checkmark-circle" class="selectedIcon" style="margin-right: 0.2rem;"></ion-icon>15天退换货</div>
+        <div style="float:left;margin-right: 0.5rem;font-size: 1.3rem;">
+          <ion-icon name="checkmark-circle" class="selectedIcon" style="margin-right: 0.2rem;"></ion-icon>材质保真</div>
+        <div style="float:left;margin-right: 0.5rem;font-size: 1.3rem;">
+          <ion-icon name="checkmark-circle" class="selectedIcon" style="margin-right: 0.2rem;"></ion-icon>免费送货入户</div>
+        <div style="font-size: 1.3rem;">
+          <ion-icon name="checkmark-circle" class="selectedIcon" style="margin-right: 0.2rem;"></ion-icon>免费安装</div>
+        <!-- <ion-checkbox [(ngModel)]="pepperoni"></ion-checkbox> -->
+      </div>
+      <!-- <ion-item>
+      <ion-label>促销时间：{{mallInfo.promo_start_time}}至{{mallInfo.promo_end_time}}</ion-label>
+    </ion-item> -->
+    </ion-list>
+
+    <ion-list style="background:#fff;padding:7px 16px;">
+      <div class="recommend">
+        <span>推荐指数：</span>
+        <div *ngIf="designOrderData.rec_star==1">
+          <ion-icon ios="ios-star" md="md-star"></ion-icon>
+        </div>
+        <div *ngIf="designOrderData.rec_star==2">
+          <ion-icon ios="ios-star" md="md-star"></ion-icon>
+          <ion-icon ios="ios-star" md="md-star"></ion-icon>
+        </div>
+        <div *ngIf="designOrderData.rec_star==3">
+          <ion-icon ios="ios-star" md="md-star"></ion-icon>
+          <ion-icon ios="ios-star" md="md-star"></ion-icon>
+          <ion-icon ios="ios-star" md="md-star"></ion-icon>
+        </div>
+        <div *ngIf="designOrderData.rec_star==4">
+          <ion-icon ios="ios-star" md="md-star"></ion-icon>
+          <ion-icon ios="ios-star" md="md-star"></ion-icon>
+          <ion-icon ios="ios-star" md="md-star"></ion-icon>
+          <ion-icon ios="ios-star" md="md-star"></ion-icon>
+        </div>
+        <div *ngIf="designOrderData.rec_star==5">
+          <ion-icon ios="ios-star" md="md-star"></ion-icon>
+          <ion-icon ios="ios-star" md="md-star"></ion-icon>
+          <ion-icon ios="ios-star" md="md-star"></ion-icon>
+          <ion-icon ios="ios-star" md="md-star"></ion-icon>
+          <ion-icon ios="ios-star" md="md-star"></ion-icon>
+        </div>
+      </div>
+    </ion-list>
+
+    <div class="mallbox" style="padding:16px 16px 2px;">
+      <ion-segment [(ngModel)]="mall">
+        <ion-segment-button value="mallproduct">
+          商品介绍
+        </ion-segment-button>
+        <ion-segment-button value="mallpingjia" (click)="mallComment()">
+          商品评价
+        </ion-segment-button>
+        <ion-segment-button value="mallcj">
+          厂家介绍
+        </ion-segment-button>
+        <ion-segment-button value="mallshop">
+          购物指南
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+
+    <div [ngSwitch]="mall">
+
+      <!-- 商品介绍 -->
+      <ion-list *ngSwitchCase="'mallproduct'">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-6 class="mallproductname">
+              <span>产地：</span>
+              <em>{{mallClassInfo['产地']}}</em>
+            </ion-col>
+            <ion-col col-6 class="mallproductname">
+              <span>功能特点：</span>
+              <em>{{mallClassInfo['功能特点']}}</em>
+            </ion-col>
+            <ion-col col-6 class="mallproductname">
+              <span>发货地：</span>
+              <em>{{mallClassInfo['发货地']}}</em>
+            </ion-col>
+            <ion-col col-6 class="mallproductname">
+              <span>尺寸：</span>
+              <em>{{mallClassInfo['尺寸']}}</em>
+            </ion-col>
+            <ion-col col-6 class="mallproductname">
+              <span>材质：</span>
+              <em>{{mallClassInfo['材质']}}</em>
+            </ion-col>
+            <ion-col col-6 class="mallproductname">
+              <span>重量：</span>
+              <em>{{mallClassInfo['重量']}}</em>
+            </ion-col>
+            <ion-col col-6 class="mallproductname">
+              <span>风格：</span>
+              <em>{{mallClassInfo['风格']}}</em>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-item class="mallproductimg" no-lines>
+          <h5 style="font-size:1.8rem;">商品展示：</h5>
+          <div [innerHtml]="mallInfo.content" class="mallzhanshi" style="padding:0 1rem 8rem"></div>
+        </ion-item>
+
+      </ion-list>
+
+
+      <!-- 商品评价 -->
+      <ion-list *ngSwitchCase="'mallpingjia'">
+        <ion-item style="padding:0;">
+          <div style="padding: 16px 5% 0;background:#fff;" class="mallcomments">
+            <ion-segment [(ngModel)]="malldetail">
+              <ion-segment-button value="malldetailall" (click)="mallComment()">
+                全部
+              </ion-segment-button>
+              <ion-segment-button value="malldetailphoto" (click)="mallCommentPic()">
+                图片
+              </ion-segment-button>
+              <!-- <ion-segment-button value="malldetailsatisfied" (click)="mallCommentGood()">
+              满意
+            </ion-segment-button> -->
+
+              <!-- <ion-segment-button value="malldetailyiban" (click)="mallCommentJust()">
+              一般
+            </ion-segment-button>
+            <ion-segment-button value="malldetailcha" (click)="mallCommentPoor()">
+              差评
+            </ion-segment-button> -->
+            </ion-segment>
+          </div>
+
+          <div [ngSwitch]="malldetail">
+            <!-- 全部 -->
+            <ion-list *ngSwitchCase="'malldetailall'" style="padding-bottom:7rem;">
+              <ion-item style="margin-bottom:4rem;" no-lines style="padding:0">
+                <!-- <div class="nocomment" *ngIf="nocomment" style="text-align: center;">暂无评论~</div> -->
+                <div *ngFor="let item of mallCommentData;let i=index;" class="commentlist">
+                  <ion-thumbnail style="padding:2% 2% 0;min-height: 3rem;">
+                    <img src="{{item.user.avatar}}" class="in_design_avatar">
+                    <span class="allname">{{item.user.nickname}}</span>
+                    <span class="comment_times">
+                      <em>时间：</em>{{item.create_time}}</span>
+                  </ion-thumbnail>
+                  <div class="in_designtime">
+                    <div class="houseInfoArrss" *ngIf="item.order.house_info_arr">
+                      <span> 小区：{{item.order.house_info_arr.community}} </span>
+                      <span> 面积： {{item.order.house_info_arr.area}}</span>
+                    </div>
+                    <div *ngIf="!item.order.house_info_arr">暂无房屋信息</div>
+                  </div>
+                  <!-- 评论评分 -->
+                  <div class="in_design_xiaoguo" *ngIf="item.ratings_arr">
+                    <span>质量：{{item.ratings_arr['质量']}}分</span>
+                    <span>服务：{{item.ratings_arr['服务']}}分</span>
+                    <span>物流：{{item.ratings_arr['物流']}}分</span>
+                    <span>综合体验：{{item.ratings_arr['外观']}}分</span>
+                  </div>
+                  <h4 class="in_comment_content" [innerHtml]="item.content"></h4>
+                  <div class="in_comment_imgbox">
+                    <img src="{{items}}" *ngFor="let items of mallCommentData[i].pics_arr;let j=index;" (click)="showBigImgBlock(items)">
+                  </div>
+                </div>
+              </ion-item>
+
+            </ion-list>
+
+            <!-- 满意 -->
+            <!-- <ion-list *ngSwitchCase="'malldetailsatisfied'" style="padding-bottom:4rem;">
+            <ion-item style="margin-bottom:4rem;" no-lines style="padding:0">
+              <div *ngFor="let item of mallCommentData;let i=index;" class="commentlist">
+                <ion-thumbnail style="padding:0;min-height: 3rem;">
+                  <img src="{{item.user.avatar}}" class="in_design_avatar">
+                  <span  class="allname">{{item.user.nickname}}</span>
+                </ion-thumbnail>
+                <div class="in_designtime">
+                  <span>{{item.create_time}}</span>
+                  <span> 小区：资金 </span>
+                  <span> 面积：10 </span>
+                </div>
+                <h4 class="in_comment_content" [innerHtml]="item.content"></h4>
+                <div class="in_comment_imgbox">
+                  <img src="{{items}}" *ngFor="let items of mallCommentimgData;let j=index;">
+                </div>
+              </div>
+            </ion-item>
+
+          </ion-list> -->
+
+            <!-- 图片 -->
+            <ion-list *ngSwitchCase="'malldetailphoto'" style="padding-bottom:7rem;">
+              <ion-item style="margin-bottom:4rem;" no-lines style="padding:0">
+                <!-- <div class="nocomment" *ngIf="nocomment" style="text-align: center;">暂无评论~</div> -->
+                <div *ngFor="let item of mallCommentData;let i=index;" class="commentlist">
+                  <ion-thumbnail style="padding:2% 2% 0;min-height: 3rem;">
+                    <img src="{{item.user.avatar}}" class="in_design_avatar">
+                    <span class="allname">{{item.user.nickname}}</span>
+                    <span class="comment_times">
+                      <em>时间：</em>{{item.create_time}}</span>
+                  </ion-thumbnail>
+                  <div class="in_designtime">
+                    <div class="houseInfoArrss" *ngIf="item.order.house_info_arr">
+                      <span> 小区：{{item.order.house_info_arr.community}} </span>
+                      <span> 面积： {{item.order.house_info_arr.area}}</span>
+                    </div>
+                    <div *ngIf="!item.order.house_info_arr">暂无房屋信息</div>
+                  </div>
+                  <!-- 评论评分 -->
+                  <div class="in_design_xiaoguo" *ngIf="item.ratings_arr">
+                    <span>质量：{{item.ratings_arr['质量']}}分</span>
+                    <span>服务：{{item.ratings_arr['服务']}}分</span>
+                    <span>物流：{{item.ratings_arr['物流']}}分</span>
+                    <span>综合体验：{{item.ratings_arr['外观']}}分</span>
+                  </div>
+                  <h4 class="in_comment_content" [innerHtml]="item.content"></h4>
+                  <div class="in_comment_imgbox">
+                    <img src="{{items}}" *ngFor="let items of mallCommentData[i].pics_arr;let j=index;" (click)="showBigImgBlock(items)">
+                  </div>
+                </div>
+              </ion-item>
+
+            </ion-list>
+
+            <!-- 一般 -->
+            <!-- <ion-list *ngSwitchCase="'malldetailyiban'" style="padding-bottom:4rem;">
+            <ion-item style="margin-bottom:4rem;" no-lines style="padding:0">
+              <div *ngFor="let item of mallCommentData;let i=index;" class="commentlist">
+                <ion-thumbnail style="padding:0;min-height: 3rem;">
+                  <img src="{{item.user.avatar}}" class="in_design_avatar">
+                  <span  class="allname">{{item.user.nickname}}</span>
+                </ion-thumbnail>
+                <div class="in_designtime">
+                  <span>{{item.create_time}}</span>
+                  <span> 小区：资金 </span>
+                  <span> 面积：10 </span>
+                </div>
+                <h4 class="in_comment_content" [innerHtml]="item.content"></h4>
+                <div class="in_comment_imgbox">
+                  <img src="{{items}}" *ngFor="let items of mallCommentimgData;let j=index;">
+                </div>
+              </div>
+            </ion-item>
+
+          </ion-list> -->
+
+            <!-- 差评 -->
+            <!-- <ion-list *ngSwitchCase="'malldetailcha'" style="padding-bottom:4rem">
+            <ion-item style="margin-bottom:4rem;" no-lines style="padding:0">
+              <div *ngFor="let item of mallCommentData;let i=index;" class="commentlist">
+                <ion-thumbnail style="padding:0;min-height: 3rem;">
+                  <img src="{{item.user.avatar}}" class="in_design_avatar">
+                  <span  class="allname">{{item.user.nickname}}</span>
+                </ion-thumbnail>
+                <div class="in_designtime">
+                  <span>{{item.create_time}}</span>
+                  <span> 小区：资金 </span>
+                  <span> 面积：10 </span>
+                </div>
+                <h4 class="in_comment_content" [innerHtml]="item.content"></h4>
+                <div class="in_comment_imgbox">
+                  <img src="{{items}}" *ngFor="let items of mallCommentimgData;let j=index;">
+                </div>
+              </div>
+            </ion-item>
+
+          </ion-list> -->
+          </div>
+        </ion-item>
+      </ion-list>
+
+      <!-- 厂家介绍 -->
+      <ion-list *ngSwitchCase="'mallcj'" style="padding:0.5rem 1.5rem 7rem;">
+        <div class="mallzhanshi" [innerHtml]="ceshi"></div>
+      </ion-list>
+
+      <!-- 购物指南 -->
+      <ion-list *ngSwitchCase="'mallshop'" style="padding:0.5rem 1.5rem 7rem;">
+        <div [innerHtml]="mallShopLeader" class="mallzhanshi"></div>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>
+<div class="malldetailbutton">
+  <span (click)="cp.goto({view:'user-contact'})">联系客服</span>
+  <span (click)="rightBuy()">加入购物车</span>
+  <span (click)="rightBuybuy()">立即购买</span>
+</div>
+<!-- 加入购物车弹窗 -->
+<div class="rightBuy" *ngIf="isbuyShow">
+  <div class="rightBuy_middle">
+    <div class="rightBuy_imgs">
+      <img src="{{mallRightpicInfo[selectColorImg]}}" alt="">
+      <em>￥{{mallInfo.price}}</em>
+      <span>库存{{mallInfo.stock}}件</span>
+      <span>已选：{{mallColor}}</span>
+    </div>
+    <div class="rightBuy_colorcalss">
+      <h6>{{mallRightname}}</h6>
+      <span *ngFor="let item of mallRightInfo;let i=index;" [ngStyle]="{'color':i ==  mallColorClick  ? '#be0966' : '#808080' }"
+        (click)="mallColorStyle($event, item,i)">{{item}}</span>
+    </div>
+    <div class="rightBuy_size">
+      <h6>{{mallSizename}}</h6>
+      <span *ngFor="let item of mallSizeInfo;let i = index" [ngStyle]="{'color':i ==  mallSizeClick  ? '#be0966' : '#808080' }"
+        (click)="mallSizeStyle($event, item,i)">{{item}}</span>
+    </div>
+    <div class="rightbuy_material">
+      <h6>{{mallMaterialname}}</h6>
+      <span *ngFor="let item of mallMaterialInfo;let i=index;" [ngStyle]="{'color':i ==  mallMaterialClick  ? '#be0966' : '#808080' }"
+        (click)="mallMaterialStyle($event, item,i)">{{item}}</span>
+    </div>
+    <!-- <div class="rightBuy_colorcalss" *ngFor= "let item of malls;let i=index">
+        <h6>{{item.name}}</h6>
+        <span *ngFor="let items of item.value;let j=index;" [ngStyle]="{'color':j ==  mallColorClick  ? '#be0966' : '#808080' }" (click)="mallColorStyle($event, items,j)">{{items}}</span>
+      </div> -->
+    <div class="rightBuy_number">
+      <span>购买数量</span>
+      <div class="rightBuy_numberadd">
+        <button (click)="mallReduce(index)">-</button>
+        <em>{{mallNum}}</em>
+        <button (click)="mallAdd(index)">+</button>
+      </div>
+    </div>
+    <ion-icon name="ios-close" class="rightBuy_close" (click)="rightBuy()"></ion-icon>
+    <button ion-button class="rightBuy_sure" (click)="addShopping()">去购物车结算</button>
+  </div>
+</div>
+
+<!-- 立即购买弹窗 -->
+<div class="rightBuy" *ngIf="isbuyright">
+  <div class="rightBuy_middle">
+    <div class="rightBuy_imgs">
+      <img src="{{mallRightpicInfo[selectColorImg]}}" alt="">
+      <em>￥{{mallInfo.price}}</em>
+      <span>库存{{mallInfo.stock}}件</span>
+      <span>已选：{{mallColor}}</span>
+    </div>
+    <div class="rightBuy_colorcalss">
+      <h6>{{mallRightname}}</h6>
+      <span *ngFor="let item of mallRightInfo;let i=index;" [ngStyle]="{'color':i ==  mallColorClick  ? '#be0966' : '#808080' }"
+        (click)="mallColorStyle($event, item,i)">{{item}}</span>
+    </div>
+    <div class="rightBuy_size">
+      <h6>{{mallSizename}}</h6>
+      <span *ngFor="let item of mallSizeInfo;let i = index" [ngStyle]="{'color':i ==  mallSizeClick  ? '#be0966' : '#808080' }"
+        (click)="mallSizeStyle($event, item,i)">{{item}}</span>
+    </div>
+    <div class="rightbuy_material">
+      <h6>{{mallMaterialname}}</h6>
+      <span *ngFor="let item of mallMaterialInfo;let i=index;" [ngStyle]="{'color':i ==  mallMaterialClick  ? '#be0966' : '#808080' }"
+        (click)="mallMaterialStyle($event, item,i)">{{item}}</span>
+    </div>
+    <div class="rightBuy_number">
+      <span>购买数量</span>
+      <div class="rightBuy_numberadd">
+        <button (click)="mallReduce(index)">-</button>
+        <em>{{mallNum}}</em>
+        <button (click)="mallAdd(index)">+</button>
+      </div>
+    </div>
+    <ion-icon name="ios-close" class="rightBuy_close" (click)="rightBuybuy()"></ion-icon>
+    <button ion-button class="rightBuy_sure" (click)="buyShopping()">确定</button>
+  </div>
+</div>
+<div class="showBigImg" (click)="showBigImgNone()" [ngStyle]="{'display': showBigImgNum == 0 ? 'none' : 'block'}">
+  <img src="{{ showBigImgSrc }}" />
+</div>

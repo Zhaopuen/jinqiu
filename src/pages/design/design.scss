@@ -1,0 +1,540 @@
+
+page-design {
+  //background: #f8f8f8;
+  .houseInfoArrss{
+    height:auto;
+    overflow: hidden;
+  }
+  .comment_times{
+    margin-left: 0.8rem;
+    font-size: 1.4rem;
+    color:#6666;
+  }
+  .showBigImg {
+    position: fixed;
+    left: 0;
+    top: 19%;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: #333;
+    z-index:9999999999;
+  }
+  .showBigImg img {
+    // margin-top: 10rem;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 37%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  .design_imgsbox{
+    width:100%;
+    height:auto;
+    overflow: hidden;
+    position: relative;
+  }
+  .quanjing{
+    position: absolute;
+    z-index:999999;
+    bottom:20px;
+    right:20px;
+  }
+  img{
+    object-fit: cover;
+  }
+  .commentlist {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    background: #fff;
+    padding:1rem 0;
+    border-bottom:10px solid #f9f9f9;
+    span{
+      line-height: 3rem;
+      // margin-left: 0.8rem;
+    }
+    .allname{
+      margin-left:0.8rem;
+    }
+  }
+  ion-content {
+     top: 44px;
+   }
+  .fixed-content, .scroll-content {
+    margin-top: 0 !important;
+  }
+  .topTip{
+    position: fixed;
+    // top:44px;
+    left:0;
+    width:100%;
+    background: #fff;
+    height:34px;
+    line-height: 34px;
+    z-index: 100;
+    text-align: center;
+    color:#666;
+    white-space: nowrap;
+    overflow: auto;
+    small{
+      font-size:1.1rem;
+    }
+  }
+  .scroll-content {
+    //background: #f8f8f8;
+    padding: 0 !important;
+    .designbox_tabs {
+      margin-top:85px;
+      margin-bottom: 10px;
+      ion-segment {
+        justify-content: flex-start;
+        margin: 0 0.2rem;
+      }
+      .segment-ios .segment-button {
+        width: auto !important;
+        border-radius: 0.4rem;
+        margin: 0 0.4rem;
+        border: 2px solid #3d3d3d;
+        padding: 0 0.1rem;
+        color: #3d3d3d;
+        display: inline;
+        flex: 0 !important;
+        min-width: 12rem;
+        text-overflow: clip !important;
+      }
+      .segment-ios .segment-button:nth-child(2) {
+        min-width: 8rem;
+      }
+      .toolbar-ios .segment-button {
+        height: 1.4rem;
+        width: auto !important;
+        // width: 1rem;
+      }
+      .segment-ios .segment-button.segment-activated {
+        background: #15B72E;
+        color: #fff;
+        border: 1px solid #15B72E;
+      }
+    }
+    .segment-ios .segment-button.segment-activated {
+      background: #15B72E !important;
+      border-color: #15B72E;
+      color: #fff;
+    }
+    .segment-ios .segment-button {
+      border-color: #3d3d3d;
+      color: #333;
+    }
+    .recommend {
+      width: 100%;
+      height: 3rem;
+      background: #fff;
+      line-height: 3rem;
+      padding: 0 1.5rem;
+      font-size: 1.6rem;
+      margin-bottom: 1.5rem;
+      margin-top: -3px;
+      .ion-ios-star {
+        color: #FF006C !important;
+      }
+      span {
+        float: left;
+        margin-right: 0.8rem;
+        font-size: 1.5rem;
+      }
+      div {
+        float: left;
+      }
+    }
+    .ion-item-group {
+      background: #fff;
+    }
+    .in_designtime {
+      font-size: 1.4rem;
+      line-height: 3rem;
+      padding:0 3%;
+      height: 3rem;
+      color: #9D9D9D;
+      // span{
+      //     width:33.3%;
+      //     display:block;
+      //     float:left;
+      // }
+    }
+    .in_design_cost .item-ios {
+      padding: 0 2rem !important;
+      font-size: 1.5rem !important;
+    }
+    .item-ios {
+      padding: 0 !important;
+    }
+    .label-ios {
+      margin: 0;
+    }
+    .item-ios.item-block .item-inner {
+      padding-right: 0 !important;
+    }
+    .in_design_xiaoguo {
+      font-size: 1.6rem;
+      background: #f8f8f8;
+      height: 3.5rem;
+      line-height: 3.5rem;
+      width: 100%;
+      padding: 0 1rem;
+      color: #595959;
+      span {
+        font-size: 1.4rem;
+      }
+    }
+    .in_comment_content {
+      width: 100%;
+      padding:0 3%;
+      font-size: 1.5rem;
+      white-space: normal;
+      color: #333;
+      line-height: 2.3rem;
+      margin:0.3rem 0;
+    }
+    .item-ios ion-thumbnail {
+      padding: 0.5rem 1.7rem;
+    }
+    .in_comment_imgbox {
+      overflow: hidden;
+      padding:0 3%;
+      height: auto;
+      float: left;
+      margin-right: 3.3%;
+      margin: 0.4rem 0 0.8rem 0;
+      img {
+        width: 30%;
+        height: 8rem;
+        float: left;
+        margin-right: 3.3%;
+        margin-bottom:  0.4rem;
+      }
+    }
+    .page-design .scroll-content .item-ios ion-thumbn {
+      padding: 1.7rem !important;
+    }
+    .in_design_avatar {
+      display: inline-block !important;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      float:left;
+      border: 1px solid #d9d9d9;
+      img{
+        width:100%;
+        height:100%;
+        overflow: hidden;
+        border-radius:50%;
+      }
+    }
+
+    .wallInfo {
+      padding: 1rem;
+      p {
+        margin-bottom: 1rem;
+        span.listTit {
+          float: left;
+          margin-top: 0.7rem;
+        }
+        .btnSelected {
+          color: #fff;
+          background: #000;
+        }
+      }
+      .imgList {
+        li:nth-child(even){
+          margin-right: 0% !important;
+        }
+        li {
+          float: left;
+          width: 48%;
+          height: auto;
+          overflow: hidden;
+          position: relative;
+          margin-right: 3%;
+          p {
+            // padding: 1rem;
+            line-height: 3rem;
+            background: #fff;
+            text-align: center;
+            margin-top: -0.3rem;
+          }
+          img {
+            width: 100%;
+            height: 11rem;
+          }
+          .selected {
+            position: absolute;
+            font-size: 2rem;
+            color: #d4237a;
+            right: 10%;
+            bottom: 12%;
+          }
+        }
+      }
+    }
+
+    .design_qiang {
+      padding: 1em;
+      .design_wallbox {
+        white-space: normal;
+        height: auto;
+        overflow: hidden;
+        margin-bottom: 1rem;
+        .design_wallspan {
+          display: inline-block;
+          width: 35%;
+          float: left;
+          font-size: 1.4rem;
+          margin-top: 0.5rem;
+          line-height: 3rem;
+        }
+        .design_wallboxdiv {
+          width: 65%;
+          float: left;
+        }
+        button {
+          width: 26% !important;
+          height: 2.7rem !important;
+          border-color: #d9d9d9 !important;
+          color: #565656 !important;
+          background: #fff !important;
+        }
+      }
+    }
+    .design_zximg {
+      display: block;
+      height: 9rem;
+    }
+    .design_imgsure {
+      width: 92% !important;
+      height: 4rem !important;
+      margin: 1% 4% 9%;
+    }
+  }
+  .in_design_input {
+    width: 5rem;
+    height: 2.5rem;
+    margin: 0 0.3rem;
+    border: 1px solid #d9d9d9;
+    text-align: center;
+  }
+  .design_span {
+    display: inline-block;
+    height: 1.2rem;
+    width: 1.2rem;
+    border-radius: 50%;
+    border: 1px solid #d9d9d9;
+    background: red;
+    margin-right: 0.5rem;
+  }
+  .ion-app.ios [padding] .scroll-content {
+    padding: 0;
+  }
+  .cardBox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .cardCell {
+      width: 46%;
+      margin: 2%;
+      border: 1px solid #d9d9d9;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      img {
+        width: 100%;
+        height: 14rem;
+        display: block;
+      }
+      p {
+        padding: 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        color: #333;
+        background: #fff;
+        font-size: 1.2rem;
+        span {
+          display: block;
+          width: 45%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+  .work_city {
+    padding: 1rem;
+    background: #fff !important;
+    border: 1px solid #d9d9d9;
+    span {
+      color: #E10C74;
+      font-size: 1.6rem;
+    }
+    select {
+      display: inline-block;
+      width: 9rem;
+      height: 2.5rem;
+    }
+    .work_sheng {
+      margin-right: 2rem;
+    }
+    button {
+      color: #fff !important;
+      display: block;
+      margin: 1rem auto;
+      height: 2.5rem !important;
+      span {
+        color: #fff !important;
+      }
+    }
+  }
+
+  .work-choose {
+    width: 100%;
+    height: 3.5rem;
+    background: #e0e0e0;
+    line-height: 3.5rem;
+    position: relative;
+    margin: 1rem 0;
+    .choose-title {
+      margin: 0 1rem;
+      overflow: hidden;
+      color: #626262;
+      .title-choose {
+        width: 3rem;
+        height: 2.5rem;
+        line-height: 2.5rem;
+        float: left;
+        border-right: 1px solid #fff;
+        box-sizing: border-box;
+        margin-top: 0.5rem;
+        margin-right: 0.5rem;
+        color: #fa76af;
+      }
+      .title-con {
+        margin-left: 0.5rem;
+      }
+    }
+    .choose-screen {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 20%;
+      height: 3.5rem;
+      float: right;
+      overflow: hidden;
+      background: #15B72E;
+      text-align: center;
+      line-height: 3.5rem;
+      color: #fff;
+    }
+  }
+
+  // 评论列表
+  .in_designtime {
+    font-size: 1.4rem;
+    line-height: 3rem;
+    height: 3rem;
+    color: #9D9D9D;
+    span {
+      display: block;
+      float: left;
+      margin-right: 1rem;
+    }
+  }
+  .label-ios {
+    margin: 0;
+  }
+  .item-ios.item-block .item-inner {
+    padding-right: 0 !important;
+  }
+  .in_design_xiaoguo {
+    font-size: 1.4rem;
+    background: #f8f8f8;
+    height: 3.5rem;
+    line-height: 3.5rem;
+    width: 100%;
+    color: #595959;
+    span {
+      width: 33.3%;
+      display: block;
+      float: left;
+      line-height: 3.5rem;
+    }
+  }
+  .in_comment_content {
+    width: 100%;
+    font-size: 1.5rem;
+    white-space: normal;
+    color: #333;
+    line-height: 2.3rem;
+    margin:0.3rem 0;
+  }
+  .item-ios ion-thumbnail {
+    padding: 0.5rem 1.7rem;
+  }
+  .in_comment_imgbox {
+    img {
+      width: 30%;
+      height: 10rem;
+      float: left;
+      margin-right: 3.3%;
+    }
+  }
+  .page-design .scroll-content .item-ios ion-thumbn {
+    padding: 1.7rem !important;
+  }
+  // .in_design_avatar {
+  //   display: inline-block !important;
+  //   width: 3rem !important;
+  //   height: 3rem !important;
+  //   border-radius: 50%;
+  // }
+  .ion-app.ios [padding] .scroll-content {
+    padding: 0;
+  }
+  .segment-ios .segment-button.segment-activated {
+    background: #15B72E !important;
+    border-color: #15B72E;
+    color: #fff;
+  }
+  .segment-ios .segment-button {
+    border-color: #3d3d3d;
+    color: #333;
+  }
+  .hardcover_wallimg {
+    width: 100%;
+    height: 3rem;
+    background: #fff;
+    padding: 0.7rem 0;
+  }
+  .hardcover_choosebox {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid #333;
+    border-radius: 50%;
+    margin: 0rem auto 1rem;
+  }
+  .city_text {
+    padding: 8px !important;
+  }
+  .workLeader_workp {
+    width: 50%;
+    text-align: center;
+  }
+  .work_content p {
+    line-height: 2.4rem;
+    color: #444;
+    font-size: 1.5rem;
+  }
+}

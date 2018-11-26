@@ -1,0 +1,197 @@
+<app-header title="金秋梦装饰"></app-header>
+
+<ion-content style="background:#FFEFF5;margin-top: 44px;">
+  <div class="choosew">选择{{usertypeName}}：</div>
+  <!-- <div class="workerBox">
+    <img src="" alt="">
+    <button>安排他</button>
+    <button>确认</button>
+  </div> -->
+
+  <ion-list class="measure_list_item" style="margin-bottom:0;background:#FFEFF5">
+    <ion-item>
+      <ion-label><span class="color">*</span>真实姓名</ion-label>
+      <ion-input type="text" [(ngModel)]="this.cp.u.user_profile.name" value="" placeholder="请输入姓名"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label><span class="color">*</span>联系方式</ion-label>
+      <ion-input type="text" [(ngModel)]="this.cp.u.tel" placeholder="请输入电话"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label><span class="color">*</span>微信号</ion-label>
+      <ion-input type="text" [(ngModel)]="this.cp.u.user_profile.wechat" value="" placeholder="请输入微信号"></ion-input>
+    </ion-item>
+      <form [formGroup]="pageForm">
+        <ion-item>
+          <ion-label>性别</ion-label>
+          <ion-select formControlName="gender" interface="popover">
+            <ion-option value="1">男</ion-option>
+            <ion-option value="2">女</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>地区</ion-label>
+          <ion-select formControlName="province" (ionChange)="change(pageForm.controls.province.value)" interface="popover">
+            <ion-option *ngFor="let item of provinces" value="{{item.region_id}}">{{item.region_name}}</ion-option>
+          </ion-select>
+          <ion-select formControlName="city" (ionChange)="change(pageForm.controls.city.value)" interface="popover" [hidden]="!pageForm.controls.province.value">
+            <ion-option *ngFor="let item of cities" value="{{item.region_id}}">{{item.region_name}}</ion-option>
+          </ion-select>
+          <ion-select formControlName="district" interface="popover" [hidden]="!pageForm.controls.city.value">
+            <ion-option *ngFor="let item of districts" value="{{item.region_id}}">{{item.region_name}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </form>
+      <!-- <ion-item>
+          <ion-label><span class="color">*</span>出生年月</ion-label>
+          <ion-input type="text" [(ngModel)]="this.cp.u.user_profile.birth_year" value="" placeholder="请输入出生年月"></ion-input>
+      </ion-item> -->
+      <ion-item>
+        <ion-label><span class="color">*</span>出生年月</ion-label>
+        <ion-datetime displayFormat="MM/YYYY" [(ngModel)]="this.cp.u.user_profile.birth_year" min="1900" max="2020" cancelText="取消" doneText="确定"></ion-datetime>
+      </ion-item>
+      <div class="style">
+        <div class="subStyle">
+          <ion-label style="float:left"><span class="color">*</span>擅长</ion-label>
+          <button class="styleBtn" [ngStyle]="{'background': buttonClickStyle[i] == i ? '#15b72e':'#fff','color': buttonClickStyle[i] == i ? '#fff':'#333'}" *ngFor="let item of styleTabs;let i = index" (click)="selectedBtn(i,item)" >{{item}}</button>
+        </div>
+      </div>
+      <div class="addWorks">
+          <h4 class="workjingli">工作经历</h4>
+          <div class="work_box" *ngFor="let item of work;let i=index;" (click)="editWorkClick($event,item)">
+            <div class="workstime">
+              <span>从业时间</span>
+              <input type="text" placeholder="XXXX年XX月——XXXX年XX月" [(ngModel)]=" item.start_date+'-'+item.end_date ">
+            </div>
+            <div class="workstime">
+              <span>任职公司</span>
+              <input type="text" placeholder="玫瑰家装" [(ngModel)]="item.company">
+            </div>
+            <div class="workstimeconten">
+              <h4>职务和工作内容</h4>
+              <textarea placeholder="玫瑰家装" [(ngModel)]="item.content"></textarea>
+            </div>
+            <div class="ionic_icon" (click)="deteleWork(item.id);$event.stopPropagation();">
+                <ion-icon ios="ios-close-circle" md="md-close-circle"></ion-icon>
+            </div>
+          </div>
+          <div class="addworksbox" (click)="hardcoverClick()">
+            <div class="addworksmidd">
+                <ion-icon name="md-add-circle" class="addwork_icon"></ion-icon>
+                <span>添加工作经历</span>
+            </div>
+          </div>
+      </div>
+      <div class="workteaxt">
+        <h4>最想和顾客说的一句话(20字以上)</h4>
+        <textarea name="" id="" cols="30" rows="10" [(ngModel)]="this.cp.u.user_profile.words"></textarea>
+      </div>
+        <ion-item style="margin:0;padding:0">
+          <div class="lifephoto evaluateBox">
+            <div class="photosleft">
+              <span>设计作品</span>
+              <p style="color:#E90075;">作品六张以上，必须本人作品，如盗用他人作品侵权后果自负</p>
+            </div>
+            <div class="imgBox" style="width:78%;">
+              <ion-row class="stylephotos">
+                <ion-col col-4 col-sm-4 col-md-20 class="photo_container" *ngFor="let photo of photos;">
+                  <div class="photo">
+                    <!-- <a class="close" (click)="deleteImg(photo)"></a> -->
+                    <img [src]="photo" [alt]="photo">
+                  </div>
+                </ion-col>
+                <ion-col col-4 col-sm-4 col-md-20 class="photo_container" align-items-center>
+                  <div class="photo upload" (click)="addImg()">
+                    <ion-icon name="md-camera"></ion-icon>
+                    <span>添加照片</span>
+                    <form action="" #form>
+                      <input type="file" name="file" id="fileid" accept="image/*" (change)="uploadImg($event)">
+                    </form>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </div>
+          </div>
+        </ion-item>
+        <ion-item>
+          <div class="lifephoto evaluateBox">
+            <p>上传一张生活照</p>
+            <div class="imgBox">
+              <ion-row class="stylephotos">
+                <ion-col col-4 col-sm-4 col-md-20 class="photo_container">
+                  <div class="photo">
+                    <!-- <a class="close" (click)="styledeleteImg(stylephotos)"></a> -->
+                    <img [src]="stylephotos" [alt]="stylephotos">
+                  </div>
+                </ion-col>
+                <ion-col col-4 col-sm-4 col-md-20 class="photo_container" align-items-center>
+                  <div class="photo upload" (click)="styleaddImg()">
+                    <ion-icon name="md-camera"></ion-icon>
+                    <span>添加照片</span>
+                    <form action="" #form1>
+                      <input type="file" name="file" id="fileid" accept="image/*" (change)="styleuploadImg($event)">
+                    </form>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </div>
+          </div>
+        </ion-item>
+        <button (click)="editPerson()" class="workbtn">保存</button>
+    </ion-list> 
+</ion-content>
+<!-- 工作经历弹窗 -->
+<div class="hardcover" *ngIf="ishardShow">
+    <div class="hardcover_middle">
+      <div class="hardcover_title">
+          <h5>添加工作经历</h5>
+          <ion-icon name="ios-close" class="hardcover_close" (click)="closeWork()"></ion-icon>
+      </div>
+  
+      <div class="hardcoverimgs" >
+        <div class="work_boxsss">
+          <div class="workstime">
+            <span>从业时间</span>
+            <input type="text" placeholder="XXXX年XX月——XXXX年XX月" [(ngModel)]="addstartdate">
+          </div>
+          <div class="workstime">
+            <span>任职公司</span>
+            <input type="text" placeholder="玫瑰家装" [(ngModel)]="addcompany">
+          </div>
+          <div class="workstimeconten">
+            <h4>职务和工作内容</h4>
+            <textarea placeholder="玫瑰家装" [(ngModel)]="addcontent"></textarea>
+          </div>
+        </div>
+        <button class="addworks" (click)="addWork()">确认添加</button>
+      </div>
+  
+    </div>
+  </div>
+
+  <!-- 修改工作经历弹窗 -->
+  <div class="hardcover" *ngIf="ishardShowedit">
+    <div class="hardcover_middle">
+      <div class="hardcover_title">
+          <h5>添加工作经历</h5>
+          <ion-icon name="ios-close" class="hardcover_close" (click)="closeWork()"></ion-icon>
+      </div>
+      <div class="hardcoverimgs">
+        <div class="work_boxsss">
+          <div class="workstime">
+            <span>从业时间</span>
+            <input type="text" placeholder="XXXX年XX月——XXXX年XX月" [(ngModel)]="addstartdate">
+          </div>
+          <div class="workstime">
+            <span>任职公司</span>
+            <input type="text" placeholder="玫瑰家装" [(ngModel)]="addcompany">
+          </div>
+          <div class="workstimeconten">
+            <h4>职务和工作内容</h4>
+            <textarea placeholder="玫瑰家装" [(ngModel)]="addcontent"></textarea>
+          </div>
+        </div>
+        <button class="addworks" (click)="editWork()">确认添加</button>
+      </div>
+    </div>
+  </div>

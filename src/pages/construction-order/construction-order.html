@@ -1,0 +1,78 @@
+<!--
+  Generated template for the DesignOrderPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<app-header title="金秋梦装饰"></app-header>
+
+
+<ion-content padding>
+  <ion-card-content class="designOrderHeader">
+    <div>
+      <img src="./assets/imgs/address.jpg"/>
+      <p>地址</p>
+    </div>
+    <div>
+      <p>{{ address }}</p>
+      <p>{{ addressName }}  {{ addressTel }}</p>
+    </div>
+  </ion-card-content>  
+  <div class="designOrderNum">
+    <p>订单编号：{{ designOrderNum }}</p>
+    <button ion-button color="#e80078" clear>确认并完成评论</button>
+  </div>
+  <div class="designOrderTime">
+    <p>订单时间：{{ designOrderTime }}</p>
+  </div>
+  <div class="designOrderDetail">
+      <p>施工费：￥80</p>
+      <p>每平米施工费单价：50元</p>
+      <p>待施工房屋面积：100平方米</p>
+  </div>
+  <div class="designer">
+      <h4>施工长</h4>
+      <div>
+        <p><span>姓名</span><span>联系方式</span></p>
+        <p><span>某某某</span><span>手机号 12345678910</span><span>微信号 12345678910</span></p>
+      </div>
+  </div>
+  <div class="designImg">
+    <h4>硬件全景</h4>
+    <div>
+      <img src="./assets/imgs/fir01.jpg">
+    </div>
+  </div>
+  <div class="designImg">
+    <h4>影藏工程图片</h4>
+    <div>
+      <img src="./assets/imgs/fir01.jpg">
+    </div>
+  </div>
+  <div class="designMesige">
+    <h4>量房预留信息</h4>
+    <p>您的姓氏：</p>
+    <p>您的名字：</p>
+    <p>您的性别：</p>
+    <p>待量房屋地址：</p>
+    <p>待量房屋面积：</p>
+    <p>装修类型：</p>
+    <p>期望装修风格：</p>
+    <p>您的装修费用预算：</p>
+    <p>计划开始时间：</p>
+    <p>希望入住时间：</p>
+    <p>您是通过什么方式知道我们平台：</p>
+    <p>您对房屋的装修有什么要求和期待：</p>
+    <p>户型图</p>
+    <div>
+      <img src="./assets/imgs/fir01.jpg">
+    </div>
+    <p>你喜欢或者期待的效果图</p>
+    <div>
+      <img src="./assets/imgs/fir01.jpg">
+      <img src="./assets/imgs/fir01.jpg">
+      <img src="./assets/imgs/fir01.jpg">
+      <img src="./assets/imgs/fir01.jpg">
+    </div>
+  </div>
+</ion-content>

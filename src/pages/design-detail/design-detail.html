@@ -1,0 +1,91 @@
+<!-- 设计师详情 -->
+<app-header title="金秋梦装饰"></app-header>
+<ion-content>
+    <div class="pmalldetail_crumbs">
+      <span>当前位置：</span>
+      <span> 设计 > </span>
+      <span> 指定设计师 > </span>
+      <span style="color:#E63088;">设计师详情</span>
+    </div>
+  <!--<app-top></app-top>-->
+  <!--<p class="topTip"><small>免费量房+3D全景设计+一站式购物+免费送货+免费安装+上门售服务</small></p>-->
+  <div [ngSwitch]="pet">
+    <!-- 施工长 -->
+    <ion-list *ngSwitchCase="'puppies'">
+     <div *ngIf="designDetailInfo">
+      <div class="work-detail">
+        <img src="{{designDetailInfo.user_profile.photo_url}}" alt="">
+        <p class="detail-con">
+          <span class="con-name">{{designDetailInfo.nickname}}</span>
+          <span class="con-redress">{{designDetailInfo.province_text}}{{designDetailInfo.city_text}}</span>
+        </p>
+        <p class="detail-good">
+          <span class="good">擅长</span>
+          <span class="good-title">{{designDetailInfo.user_profile.strengths}}</span>
+        </p>
+      </div>
+      <div padding style="background:#fff;">
+          <ion-segment [(ngModel)]="pagedetail">
+            <ion-segment-button value="pages">
+              详细简历
+            </ion-segment-button>
+            <ion-segment-button value="custorm" (click)="designerComment()">
+              顾客评价
+            </ion-segment-button>
+          </ion-segment>
+        </div>
+        <div [ngSwitch]="pagedetail"  style="background:#fff;height:auto;overflow: hidden;padding-bottom: 3rem;">
+          <ion-list *ngSwitchCase="'pages'">
+              <ul class="design_detailli">
+                <li>
+                  1.工作城市：{{designDetailInfo.province_text}}{{designDetailInfo.city_text}}
+                  <button ion-button outline color="rose" small (click)="saveDesigner(designDetailInfo.id)">选择指定</button>
+                </li>
+                <li>2.真实姓名：{{designDetailInfo.user_profile.name}}</li>
+                <li>3.联系方式：{{designDetailInfo.tel}}</li>
+                <li>4.出生年月：{{designDetailInfo.user_profile.birth_year}}{{designDetailInfo.user_profile.birth_month}}</li>
+                <li>5.擅长：{{designDetailInfo.user_profile.strengths}}</li>
+                <li>6.工作经历
+                    <div class="design_exprice" *ngIf="worke">
+                        <!-- *ngFor="let item of workExprice;let i = index;" -->
+                      <p><span>工作时间：{{workExprice.start_date}}-{{workExprice.end_date}}</span></p>
+                      <p><span>任职公司：{{workExprice.company}}</span></p>
+                      <p><span>职务和工作内容：{{workExprice.content}}</span></p>
+                      <p></p>
+                    </div>
+                </li>
+                <li>7.最想和顾客说的一段话：{{designDetailInfo.user_profile.words}}</li>
+                <li>8.设计作品：</li>
+                <div>
+                  <img *ngFor="let item of designpins;let i=index;" src="{{item}}" alt="" class="designimg">
+                </div>
+              </ul>
+          </ion-list>
+          <ion-list *ngSwitchCase="'custorm'">
+            <ion-item no-lines style="padding:0;">
+              <div class="nocomment" style="text-align: center;">暂无评论~</div>
+              <div *ngFor="let item of designerCommentData;let i=index;" class="commentlist">
+                <ion-thumbnail style="padding:0;min-height: 3rem;">
+                  <img src="{{item.user.avatar}}" class="in_design_avatar">
+                  <span  class="allname">{{item.user.nickname}}</span>
+                </ion-thumbnail>
+                <div class="in_designtime">
+                  <span>{{item.create_time}}</span>
+                  <span> 小区：资金 </span>
+                  <span> 面积：10 </span>
+                </div>
+                <!-- <div class="in_design_xiaoguo">
+                  <span >{{mallRatings}}</span>
+                </div> -->
+                <h4 class="in_comment_content" [innerHtml]="item.content"></h4>
+                <div class="in_comment_imgbox">
+                  <img src="{{items}}" *ngFor="let items of mallCommentimgData;let j=index;">
+                </div>
+              </div>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+    </ion-list>
+  </div>
+</ion-content>
