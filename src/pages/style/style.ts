@@ -27,7 +27,7 @@ export class StylePage {
   items=['一居室','二居室','三居室','四居室','别墅'];
   itemStyle=['现代风格','地中海风格','欧式风格','美式风格','中式风格'];
   threeImgList = [];
-  nothreeImgList=false;
+  nothreeImgList=true;
   threeImgListArticle = [];
   testLikeStyleImg=[];
   itemImgNum=0;
@@ -99,6 +99,7 @@ export class StylePage {
 // 3D全景图集
   zstyle: string ="3D";
   typeStyle($event,name,id,index){
+    console.log(id,'iddddddddddddd')
     this.type = name;
     this.typeId = id;
     this.typeClick = index;
@@ -115,9 +116,11 @@ export class StylePage {
     this.displayClick3D = 0;
     let a = this.typeId;
     var d = this.distypeId;
-    this.cp.getData("photo_cate/getlist?pc_id=1,"+a+','+d , {}).then((n:any) => {
+    console.log(a,d,'kkkkkkkkk')
+    // "photo_cate/getlist?pc_id=1,"+a+','+d , {}
+    this.cp.getData("photo_cate/getlist?pc_id="+a+','+d , {}).then((n:any) => {
       if( n.data.length <= 0){
-        this.nothreeImgList = true;
+        this.nothreeImgList = false;
         return
       }
       this.threeImgList = []
@@ -200,8 +203,13 @@ export class StylePage {
 
   // 3D全景图集数据请求
   threeGetData(){
+    this.type = "";
+    this.style = "";
     this.cp.getData("photo_cate/getlist", {pc_id:1}).then((n:any) => {
       this.threeImgList = n.data;
+      if(n.data !== ""){
+        this.nothreeImgList = true;
+      }
       console.log(n.data[0].photo.extra_arr['全景链接'],'3dcccccccccc')
      })
   }

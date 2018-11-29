@@ -2,14 +2,31 @@ page-style {
   // .content-ios{
   //   background: #fff !important;
   // }
+  .design_imgsbox{
+    width:100%;
+    height:auto;
+    overflow: hidden;
+    position: relative;
+  }
+  .quanjing{
+    position: absolute;
+    z-index:999999;
+    bottom:10px;
+    right:5px;
+    img{
+      width:91px;
+      height:28px;
+    }
+  }
   img{
     object-fit: cover;
   }
   .button-ios-dark{
-    background:#3d3d3d !important;
+    background:#fff !important;
+    color:#333 !important;
   }
   .button-ios-secondary{
-    background: #3BC62C !important;
+    background: #FE2593 !important;
   }
   ion-content.topIon {
     top: 44px;
@@ -48,6 +65,7 @@ page-style {
     color: #626262;
     position: relative;
     margin-bottom: 1rem;
+    padding-right: 1rem;
   }
   .styleSelectButton {
     float: right;
@@ -93,11 +111,11 @@ page-style {
   .model p i {
     font-style: normal;
     color: #000;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
   .modelbun {
-    width: 6.5rem;
-    height: 2.5rem;
+    width: 8.5rem;
+    height: 3rem;
     margin: 1rem auto;
     display: block;
   }
@@ -123,7 +141,7 @@ page-style {
 
   .ion_content .ion_item img {
     width: 100%;
-    height: 11rem;
+    // height: 11rem;
     border-radius: 0 !important;
   }
   .ion_content .ion_item p {
@@ -134,7 +152,7 @@ page-style {
 
   }
   .styleTxtPfirst span:nth-child(1) {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     color: #3d3d3d;
   }
   .styleTxtPfirst span:nth-child(2) {
@@ -211,6 +229,9 @@ page-style {
     align-content: center;
     justify-content: center;
     background: #fff;
+    span{
+      color:#FE2593;
+    }
   }
   .radio {
     border: 1px solid #999;
@@ -227,7 +248,7 @@ page-style {
     right: 0;
     width: 100%;
     height: 100%;
-    background: #333;
+    background: #fff;
     z-index:9999999999;
   }
   .showBigImg img {
@@ -310,7 +331,7 @@ page-style {
   .styleAboutItem {
     height: auto;
     .label-ios {
-      border-radius: 10px;
+      // border-radius: 10px;
       margin: 0 0.3rem;
     }
   }
@@ -345,7 +366,7 @@ page-style {
 
   .styleSegment {
     padding-left: 0.5rem;
-    margin-top: 85px;
+    margin-top: 80px;
     background: #eee;
     ion-segment {
       justify-content: flex-start;
@@ -353,12 +374,12 @@ page-style {
     .segment-ios .segment-button {
       border-radius: 0.4rem;
       margin: 0 0.25rem;
-      border: 2px solid #3d3d3d;
+      border: 2px solid #FE2593;
       padding: 0 0.1rem;
       color: #3d3d3d;
-      font-size: 12px;
-      height:2.6rem;
-      line-height: 2.4rem;
+      font-size: 1.45rem;
+      height:2.8rem;
+      line-height: 2.6rem;
       white-space: normal;
       display: inline;
       flex: 0;
@@ -368,24 +389,24 @@ page-style {
       text-overflow: clip !important;
     }
     .segment-ios .segment-button:nth-child(1) {
-      min-width: 6rem;
+      min-width: 8.5rem;
     }
     .segment-ios .segment-button:nth-child(2) {
-      min-width: 7rem;
+      min-width: 8.5rem;
     }
     .segment-ios .segment-button:nth-child(3) {
-      min-width: 6.5rem;
+      min-width: 7rem;
     }
     .segment-ios .segment-button:nth-child(4) {
-      min-width: 12rem;
+      min-width: 7rem;
     }
     .toolbar-ios .segment-button {
       display: block;
     }
     .segment-ios .segment-button.segment-activated {
-      background: rgb(47, 192, 71);
-      border: 1px solid rgb(47, 192, 71);
-      color: #333;
+      background: #FE2593;
+      border: 1px solid #FE2593;
+      color: #fff;
       font-weight: bold;
     }
   }

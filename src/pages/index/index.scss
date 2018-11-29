@@ -1,5 +1,11 @@
 page-index {
   background:#fff;
+  .zhengzhaoclass{
+    text-align: center;
+    margin-top: 0.8rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
   .toolbar-background-ios{
     background:#fff;
   }
@@ -123,27 +129,28 @@ page-index {
   }
 
   .index_segment {
-    margin-top:85px;
+    margin-top:80px;
     ion-segment {
       justify-content: flex-start;
     }
     .segment-ios .segment-button {
       border-radius: 0.4rem;
       margin: 0 0.5rem;
-      border: 1px solid #3d3d3d;
+      border: 2px solid #FE2593;
       padding: 0 0.1rem;
       color: #3d3d3d;
       display: inline;
       flex: 0;
-      min-width: 7rem;
+      min-width: 9rem;
+      font-size: 1.5rem !important;
     }
     .toolbar-ios .segment-button {
       height: 1.4rem;
       width: 1rem;
     }
     .segment-ios .segment-button.segment-activated {
-      background: rgb(47, 192, 71);
-      border: 1px solid rgb(47, 192, 71);
+      background: #FE2593;
+      border: 1px solid #FE2593;
       color: #fff;
     }
   }

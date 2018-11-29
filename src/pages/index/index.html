@@ -20,6 +20,7 @@
       <ion-list *ngSwitchCase="'company'" style="margin-top:1.5rem;">
         <div class="frofileMainImg">
           <img src={{mainImg}} style="border: 1px solid #d9d9d9;"/>
+          <div class="zhengzhaoclass" [innerHtml]="mainTitle"></div>
           <span (click)="mainImgLeft()"><img src="./assets/imgs/zuo.png" alt="" class="jiantouimg"></span>
           <span (click)="mainImgRight()"><img src="./assets/imgs/you.png" alt="" class="jiantouimg"></span>
         </div>
@@ -27,7 +28,7 @@
           <ion-grid>
             <ion-row style="flex-wrap: nowrap;justify-content: center;">
               <ion-col col-3 *ngFor="let item of compantyimg;let i = index">
-                <img (click)="mainImgclick($event, item.photo.pic_url,i)" src={{item.photo.pic_url}} style="height:8rem;border:1px solid #d9d9d9;"></ion-col>
+                <img (click)="mainImgclick($event, item.photo.pic_url,i,item.photo.name)" src={{item.photo.pic_url}} style="height:8rem;border:1px solid #d9d9d9;"></ion-col>
             </ion-row>
           </ion-grid>
         </ion-scroll>
@@ -41,7 +42,7 @@
       <!--关于我们-->
       <ion-list *ngSwitchCase="'main'">
         <ion-item style="margin: 0;padding: 0 ;width: 100%;white-space:normal;">
-          <ion-title style="height: 4rem;width:100%">{{company.title}}</ion-title>
+          <ion-title style="height: 2.5rem;width:100%">{{company.title}}</ion-title>
           <div class="companyHtml" [innerHtml]="company.content"></div>
         </ion-item>
       </ion-list>

@@ -21,6 +21,7 @@ export class IndexPage {
   company = [];
   compantyimg = [];
   mainImg = '';
+  mainTitle = "";
   mainImgNum = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cp: CommonProvider) {
@@ -93,14 +94,17 @@ export class IndexPage {
       console.log(n, "公司证照");
       this.compantyimg = n.data;
       this.mainImg = n.data[0].photo.pic_url;
+      this.mainTitle = n.data[0].photo.name;
+      console.log(this.mainTitle,'kkkkkkkkkkkk')
       // sessionStorage.setItem("compantyimg", JSON.stringify(n.data));
       // sessionStorage.setItem("mainImg", JSON.stringify(n.data[0].photo.pic_url));
     })
   }
 
   // 公司证照
-  mainImgclick($event, item, index) {
-    this.mainImg = item
+  mainImgclick($event, item, index,name) {
+    this.mainImg = item;
+    this.mainTitle = name;
   }
 
   mainImgRight() {
@@ -110,6 +114,7 @@ export class IndexPage {
     } else {
       this.mainImgNum += 1;
       this.mainImg = this.compantyimg[this.mainImgNum].photo.pic_url;
+      this.mainTitle = this.compantyimg[this.mainImgNum].photo.name;
     }
   }
 
@@ -119,6 +124,7 @@ export class IndexPage {
     } else {
       this.mainImgNum -= 1;
       this.mainImg = this.compantyimg[this.mainImgNum].photo.pic_url;
+      this.mainTitle = this.compantyimg[this.mainImgNum].photo.name;
     }
   }
 

@@ -29,7 +29,9 @@ export class MeasureHousePage {
   listPhotos: any = [];
   name = "";
   tel = "";
-  tableData = []
+  tableData = [];
+  minDate = "2018-11-29";
+  btnTitle = "感谢您对我们的信任，我们的工作人员稍后会联系您。";
   @ViewChild('form') form;
   @ViewChild('form1') form1;
   constructor(
@@ -51,6 +53,7 @@ export class MeasureHousePage {
 
   ionViewDidLoad() {
     let that = this;
+    that.houseInoIf();
     that.getData()
     this.cp.checkLogin2().then(loaded=>{
       if(loaded) {
@@ -71,6 +74,12 @@ export class MeasureHousePage {
     if(this.cp.u.id){
       this.tel = this.cp.u.tel;
     }
+
+    let data = new Date();
+    let year = data.getFullYear();
+    let month = data.getMonth() + 1;
+    let day = data.getDate()
+    this.minDate = year + '-' + month + '-' + day;
 
   }
 
@@ -185,6 +194,7 @@ export class MeasureHousePage {
     console.log(that.tableData)
   }
   select(row){
+    console.log(this.tableData[row].checked.length,'rowwwwwwwwwww')
     let that = this;
     that.tableData[row].checked = !that.tableData[row].checked;
   }
@@ -281,7 +291,7 @@ export class MeasureHousePage {
   // 期望装修费用的大小判断
   moneyVal(){
     console.log(55555)
-    if(this.endMoney < this.startMoney){
+    if(this.endMoney <= this.startMoney){
       this.cp.toast("后面的价钱不能小于前面的价钱");
     }
   }
@@ -324,11 +334,11 @@ export class MeasureHousePage {
     var date = new Date();
     date.getHours();
     console.log(date.getHours())
-    if( date.getHours()<8 && date.getHours()>18 ){
-      this.cp.toast("感谢您对我们的信任，我们的工作人员会在上班时间与您联系");
-    }else{
-      this.cp.toast("感谢您对我们的信任，稍后会有我们的工作人员与您联系");
-    }
+    // if( date.getHours()<8 && date.getHours()>18 ){
+    //   this.cp.toast("感谢您对我们的信任，我们的工作人员会在上班时间与您联系");
+    // }else{
+    //   this.cp.toast("感谢您对我们的信任，稍后会有我们的工作人员与您联系");
+    // }
     if(this.districts != undefined){
       for(let i = 0;i<this.districts.length;i++){
         if(this.districts[i].region_id == this.districts_t){
@@ -399,11 +409,44 @@ export class MeasureHousePage {
         source_from:this.sourceval
       }).then((n: any) => {
         if(n.code == 0){
-          this.cp.toast("感谢您对我们的信任，稍后会有我们的工作人员与您联系");
-          this.cp.goto({},'houselist')
+          this.confirm = true;
+          if( date.getHours()<8 && date.getHours()>18 ){
+            this.btnTitle = "感谢您对我们的信任，我们的工作人员会在上班时间与您联系"
+          }else{
+            this.btnTitle = "感谢您对我们的信任，稍后会有我们的工作人员与您联系"
+          }
+          // this.cp.toast("感谢您对我们的信任，稍后会有我们的工作人员与您联系");
+          // this.cp.goto({},'houselist')
         }
       })
     }
+  }
+
+
+  // 判断是否提交过量房预约信息
+  houseInfo = [];
+  showAlertTxt = false;
+  confirm = false;
+  houseInoIf(){
+    this.cp.getData("house/getlist",{
+
+    }).then((res:any) => {
+      if(res.data == []){
+        console.log(666666666)
+        this.showAlertTxt = false;
+      }else{
+        console.log(77777777777)
+        this.showAlertTxt = true;
+      }
+    })
+  }
+
+  showAlertFalse(){
+    this.showAlertTxt = !this.showAlertTxt;
+  }
+
+  confirmClick(){
+    this.confirm = !this.confirm;
   }
 
 }

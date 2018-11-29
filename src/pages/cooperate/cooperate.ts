@@ -59,9 +59,8 @@ export class CooperatePage {
       this.showAlertArticle = n
     });
   }
-  showAlert(row) {
-    console.log(row)
-    this.classFlag = row;
+  showAlert() {
+    // this.classFlag = row;
     this.showAlertTxt = true;
     // this.allQuestion(1);
     // const alert = this.alertCtrl.create({

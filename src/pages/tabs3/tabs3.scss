@@ -7,10 +7,15 @@ page-tabs3 {
     justify-content: initial;
     overflow: auto;
   }
-  .tabs-ios .tab-button{
-    min-width:130px !important;
-    white-space: nowrap;
-    padding:0 1rem;
+  .tabs-ios{
+    .tab-button{
+      min-width:100px !important;
+      white-space: nowrap;
+      padding:0 1rem;
+    }
+    .tab-button:nth-child(4){
+      min-width:135px !important;
+    }
   }
   ion-tabs{
     overflow-x: auto;
@@ -19,7 +24,7 @@ page-tabs3 {
     }
   }
   .tabs-ios .tab-button:hover:not(.disable-hover), .tabs-ios .tab-button[aria-selected=true]{
-    background:#2fc047 !important;
+    background:#FE2593 !important;
     color:#fff !important;
   }
   .enable-hover a:hover{

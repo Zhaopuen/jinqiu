@@ -5,25 +5,41 @@ page-cooperate {
   ion-content {
     top: 44px;
   }
+  .close_icon{
+    position: absolute;
+    right:1rem;
+    top:0.6rem;
+    font-size: 2.5rem !important;
+  }
   .first{
-    background:#2ec95c !important;
+    background:#2fc047 !important;
+    color:#fff !important;
+    border-color:#2fc047 !important;
+  }
+  .firstred{
+    background:#FE2593 !important;
+    color:#fff !important;
   }
   .two{
     background:red;
   }
   .button-ios-secondary.activated{
     background:#2ec95c;
+    color:#fff;
   }
   .serchcalss{
     // margin-top: 12rem;
     padding: 0 1rem;
     margin-bottom:1rem;
     button{
+      width:7rem;
       font-size:1.5rem !important;
-      padding:0 1rem !important;
+      // padding:0 1rem !important;
       height:2.5rem !important;
-      background:#3d3d3d;
+      background: #fff;
       line-height: 2.5rem;
+      border: 2px solid #FE2593;
+      color: #333;
     }
   }
   .topTip {
@@ -62,35 +78,32 @@ page-cooperate {
   }
   .search_box {
     height: 4rem;
-    // background: #fff;
     width: 100%;
-    // float: left;
     margin-bottom: 0.4rem;
-    margin-top: 85px;
+    margin-top: 80px;
     padding:0.6rem 1rem;
     border-radius:0 !important;
     div {
       float: left;
       width:100%;
+      border-radius:4px !important;
+      border:2px solid #FE2593;
       input {
-        width: 75%;
+        width: 70%;
         height: 3rem;
         float: left;
         padding: 0 0.7rem;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
-        border-radius:4px !important;
-        margin-right: 3%;
-        border: 2px solid #d9d9d9;
+        border:none !important;
       }
       button {
-        width: 20%;
+        width: 30%;
         height: 3rem;
-        background: rgb(47, 192, 71);
+        background: #FE2593;
         color: #fff;
-        border-radius: 4px;
-        font-size: 1.7rem;
+        font-size: 1.5rem;
         line-height:2.8rem;
       }
     }
@@ -112,6 +125,7 @@ page-cooperate {
   }
   .card-header-ios {
     border-bottom: 1px solid #d9d9d9;
+    font-size: 1.45rem !important;
   }
   .card-content-ios {
     padding-top: 13px !important;
@@ -140,15 +154,15 @@ page-cooperate {
     align-items: center;
     .showAlertmid {
       width: 80%;
-      height: auto;
+      height: 33rem;
       position: absolute;
       background: #fff;
-      margin-top: -3rem;
+      // margin-top: -3rem;
     }
     .showAlert_p {
       width: 100%;
       height: 3.5rem;
-      background: #15B72E;
+      background: #FE2593;
       text-align: center;
       line-height: 3.5rem;
       color: #fff;
@@ -156,15 +170,17 @@ page-cooperate {
     }
     .showarticle_content {
       padding: 5%;
+      height:26.5rem;
+      overflow-y: auto;
       p{
         white-space: normal !important;
       }
     }
     div {
-      min-height: 5rem;
+      height:100%;
       p {
         line-height: 2rem;
-        height: auto;
+        height: 100%;
       }
     }
     .showAlertTrue {
